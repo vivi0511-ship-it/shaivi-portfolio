@@ -1,11 +1,12 @@
 import Header from '../components/Header'
+import FeaturedWork from '../components/FeaturedWork'
 
 function Work() {
   return (
-    <div style={{ minHeight: '150vh', backgroundColor: '#030a1e', color: '#ffffff' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#030a1e', color: '#ffffff' }}>
       <Header />
-      <main style={{ paddingTop: '100px', paddingLeft: '2.5rem', paddingRight: '2.5rem' }}>
-        <h1 style={{ fontSize: '2.5rem', fontWeight: '700', letterSpacing: '0.05em' }}>Work</h1>
+      <main style={{ paddingTop: '80px' }}>
+        <FeaturedWork />
       </main>
     </div>
   )

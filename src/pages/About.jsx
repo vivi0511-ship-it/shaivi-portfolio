@@ -1,12 +1,17 @@
 import Header from '../components/Header'
+import AboutSection from '../components/About'
+import Footer from '../components/Footer'
 
 function About() {
   return (
-    <div style={{ minHeight: '150vh', backgroundColor: '#030a1e', color: '#ffffff' }}>
-      <Header />
-      <main style={{ paddingTop: '100px', paddingLeft: '2.5rem', paddingRight: '2.5rem' }}>
-        <h1 style={{ fontSize: '2.5rem', fontWeight: '700', letterSpacing: '0.05em' }}>About</h1>
-      </main>
+    <div style={{ minHeight: '100vh', backgroundColor: '#030a1e', color: '#ffffff', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div>
+        <Header />
+        <main style={{ paddingTop: '80px' }}>
+          <AboutSection />
+        </main>
+      </div>
+      <Footer />
     </div>
   )
 }

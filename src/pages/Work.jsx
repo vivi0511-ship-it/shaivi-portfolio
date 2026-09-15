@@ -133,8 +133,15 @@ function Work() {
         </button>
 
         <div
-          className="work-case-study-card"
+          className={`work-case-study-card ${activeProject.id === 'saathi' ? 'is-clickable' : ''}`}
           style={{ background: activeProject.cardBackground }}
+          onClick={() => {
+            if (activeProject.id === 'saathi') {
+              navigate('/work/saathi')
+            }
+          }}
+          role={activeProject.id === 'saathi' ? 'button' : undefined}
+          tabIndex={activeProject.id === 'saathi' ? 0 : undefined}
         >
           {/* Decorative Backgrounds */}
           {activeProject.hasGridBg && <div className="card-grid-bg"></div>}
@@ -181,6 +188,21 @@ function Work() {
               <p className="case-study-desc">{activeProject.description}</p>
             )}
 
+            {/* Read Case Study CTA Button for Saathi */}
+            {activeProject.id === 'saathi' && (
+              <div style={{ marginBottom: '20px' }}>
+                <button
+                  className="read-case-study-btn"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    navigate('/work/saathi')
+                  }}
+                >
+                  Read Full Case Study →
+                </button>
+              </div>
+            )}
+
             {/* Tools Used Section */}
             <div className="tools-used-group">
               <span className="tools-label">Tools used:</span>
@@ -212,7 +234,7 @@ function Work() {
                 <div className="tool-badge-square" title="Anthropic / Miro">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                     <path
-                      d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+                      d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 0Z"
                       fill="#f25f4c"
                     />
                   </svg>

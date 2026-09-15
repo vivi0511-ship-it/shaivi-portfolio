@@ -1,25 +1,28 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import TurntablePlayer from '../components/TurntablePlayer'
+import MarqueeBanner from '../components/MarqueeBanner'
 import Footer from '../components/Footer'
 import './SaathiCaseStudy.css'
 
 function SaathiCaseStudy() {
   const navigate = useNavigate()
+  const [isImageHovered, setIsImageHovered] = useState(false)
 
   const contentsNav = [
-    { id: 'sec-process', label: '01 Design Process' },
-    { id: 'sec-problem', label: '02 Problem Statement' },
-    { id: 'sec-comp', label: '03 Competitive Analysis' },
-    { id: 'sec-interviews', label: '04 User Interviews' },
-    { id: 'sec-insights', label: '05 Questionnaire Insights' },
-    { id: 'sec-personas', label: '06 User Personas' },
-    { id: 'sec-journey', label: '07 Journey Map' },
-    { id: 'sec-stakeholders', label: '08 Stakeholders' },
-    { id: 'sec-solution', label: '09 Proposed Solution' },
-    { id: 'sec-identity', label: '10 Visual Identity' },
-    { id: 'sec-screens', label: '11 High-Fidelity Screens' },
-    { id: 'sec-testing', label: '12 User Testing' },
-    { id: 'sec-iteration', label: '13 Iteration & Improvements' }
+    { href: '#sec-process', label: '01 Design Process' },
+    { href: '#sec-problem', label: '02 Problem Statement' },
+    { href: '#sec-comp', label: '03 Competitive Analysis' },
+    { href: '#sec-interviews', label: '04 User Interviews' },
+    { href: '#sec-insights', label: '05 Questionnaire Insights' },
+    { href: '#sec-personas', label: '06 User Personas' },
+    { href: '#sec-journey', label: '07 Journey Map' },
+    { href: '#sec-stakeholders', label: '08 Stakeholders' },
+    { href: '#sec-solution', label: '09 Proposed Solution' },
+    { href: '#sec-identity', label: '10 Visual Identity' },
+    { href: '#sec-screens', label: '11 High-Fidelity Screens' },
+    { href: '#sec-testing', label: '12 User Testing' },
+    { href: '#sec-iteration', label: '13 Iteration & Improvements' }
   ]
 
   return (
@@ -60,7 +63,11 @@ function SaathiCaseStudy() {
           </div>
         </div>
 
-        <div className="saathi-hero-right">
+        <div
+          className="saathi-hero-right"
+          onMouseEnter={() => setIsImageHovered(true)}
+          onMouseLeave={() => setIsImageHovered(false)}
+        >
           <img
             src="/assets/saathi_iphone_mockup.png"
             alt="Saathi iPhone App Mockup"
@@ -69,16 +76,10 @@ function SaathiCaseStudy() {
         </div>
       </section>
 
-      {/* Sticky Table of Contents Navigation Bar */}
-      <nav className="saathi-contents-bar">
-        <ul className="contents-list">
-          {contentsNav.map((item) => (
-            <li key={item.id} className="contents-item">
-              <a href={`#${item.id}`}>{item.label}</a>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      {/* Continuous 20s Right-to-Left Marquee Bar (Pauses when hovering over Hero Image above) */}
+      <div className="sticky-marquee-wrapper" style={{ position: 'sticky', top: '70px', zIndex: 90 }}>
+        <MarqueeBanner items={contentsNav} isPaused={isImageHovered} />
+      </div>
 
       {/* Main Body Content */}
       <div className="saathi-body-content">

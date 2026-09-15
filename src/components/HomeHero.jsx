@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAudio } from '../context/AudioContext'
 import TurntablePlayer from './TurntablePlayer'
+import MarqueeBanner from './MarqueeBanner'
 import './HomeHero.css'
 
 function HomeHero() {
@@ -200,6 +201,20 @@ function HomeHero() {
           </div>
         </div>
       </div>
+
+      {/* Landing Page Horizontal Marquee Banner between sections */}
+      <MarqueeBanner
+        items={[
+          'UI/UX DESIGNER',
+          'PRODUCT STRATEGY',
+          'USER RESEARCH',
+          'INFORMATION ARCHITECTURE',
+          'INTERACTIVE PROTOTYPING',
+          'DESIGN SYSTEMS',
+          'ACCESSIBLE INTERFACES'
+        ]}
+        className="landing-variant"
+      />
     </main>
   )
 }

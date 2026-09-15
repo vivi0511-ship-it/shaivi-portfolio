@@ -1,0 +1,347 @@
+.home-hero-container {
+  min-height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  background: linear-gradient(175deg, #fce3eb 0%, #f9e2ed 45%, #f5cfda 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Playfair Display', Georgia, serif;
+  color: #1a1618;
+}
+
+/* Background Soft Ambient Light Glow */
+.home-hero-container::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.45) 0%, rgba(252, 227, 235, 0) 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Floating Top-Left Turntable */
+.turntable-wrapper {
+  position: absolute;
+  top: 40px;
+  left: 45px;
+  z-index: 20;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+.turntable-wrapper:hover {
+  transform: scale(1.08) rotate(-3deg);
+}
+
+.turntable-img {
+  width: 92px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 10px 15px rgba(180, 100, 130, 0.15));
+  animation: floatRecord 5s ease-in-out infinite;
+}
+
+@keyframes floatRecord {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1.5deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+/* Main Layout Grid */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1300px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 60px 0 80px;
+  box-sizing: border-box;
+}
+
+/* Left Column: Text Content */
+.text-column {
+  flex: 1;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 40px;
+}
+
+.pixel-hi {
+  font-family: 'Pixelify Sans', 'Silkscreen', monospace;
+  font-size: 58px;
+  font-weight: 700;
+  color: #161315;
+  margin: 0 0 32px 0;
+  letter-spacing: -1.5px;
+  line-height: 1;
+  user-select: none;
+}
+
+.headline-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.main-headline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 40px;
+  font-weight: 500;
+  color: #1a1618;
+  margin: 0;
+  line-height: 1.25;
+  letter-spacing: -0.3px;
+}
+
+.bio-paragraph {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 21px;
+  font-weight: 400;
+  color: #383134;
+  line-height: 1.55;
+  max-width: 420px;
+  margin-top: 40px;
+  margin-bottom: 0;
+  letter-spacing: -0.1px;
+}
+
+/* Right Column: Rotary Dial Wheel */
+.dial-column {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+}
+
+.dial-wrapper {
+  position: relative;
+  width: 560px;
+  height: 670px;
+  margin-right: -140px; /* Aligns curve flush to right viewport edge as in image */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.dial-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(-15px 25px 35px rgba(160, 110, 130, 0.22));
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.dial-wrapper:hover .dial-img {
+  transform: scale(1.01);
+}
+
+/* Hotspot Overlays for Nodes */
+.dial-hotspot {
+  position: absolute;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  transition: transform 0.3s ease;
+}
+
+.dial-hotspot:hover {
+  transform: scale(1.08);
+}
+
+.hotspot-ring {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.dial-hotspot:hover .hotspot-ring {
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.9), inset 0 0 15px rgba(255, 180, 210, 0.5);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.node-tooltip {
+  position: absolute;
+  left: -110px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(30, 24, 26, 0.88);
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 14px;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(6px);
+  animation: fadeInTooltip 0.2s ease forwards;
+  z-index: 40;
+}
+
+/* Specific Tooltip Offsets */
+.node-home .node-tooltip {
+  left: auto;
+  right: 105%;
+}
+
+.node-work .node-tooltip {
+  left: auto;
+  right: 105%;
+}
+
+.node-about .node-tooltip {
+  left: auto;
+  right: 105%;
+}
+
+.node-contact .node-tooltip {
+  left: auto;
+  right: 105%;
+}
+
+/* Avatar Central Link Hotspot */
+.avatar-hotspot {
+  position: absolute;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 35;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-tooltip {
+  position: absolute;
+  bottom: 20px;
+  background: rgba(30, 24, 26, 0.88);
+  color: #ffffff;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 14px;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(6px);
+  animation: fadeInTooltip 0.2s ease forwards;
+}
+
+@keyframes fadeInTooltip {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+/* Responsive Styles for Smaller Screens */
+@media (max-width: 1024px) {
+  .hero-content {
+    flex-direction: column;
+    justify-content: center;
+    padding: 100px 30px 40px;
+    gap: 40px;
+  }
+
+  .text-column {
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
+    padding-top: 0;
+  }
+
+  .pixel-hi {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+
+  .main-headline {
+    font-size: 32px;
+  }
+
+  .bio-paragraph {
+    font-size: 18px;
+    max-width: 480px;
+    margin-top: 24px;
+  }
+
+  .dial-column {
+    height: auto;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .dial-wrapper {
+    width: 440px;
+    height: 520px;
+    margin-right: -40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .turntable-wrapper {
+    top: 20px;
+    left: 20px;
+  }
+
+  .turntable-img {
+    width: 65px;
+  }
+
+  .hero-content {
+    padding: 80px 20px 30px;
+  }
+
+  .pixel-hi {
+    font-size: 40px;
+  }
+
+  .main-headline {
+    font-size: 26px;
+  }
+
+  .bio-paragraph {
+    font-size: 16px;
+  }
+
+  .dial-wrapper {
+    width: 340px;
+    height: 400px;
+    margin-right: -30px;
+  }
+}

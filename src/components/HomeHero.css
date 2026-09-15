@@ -94,14 +94,18 @@
 }
 
 .pixel-hi {
-  font-family: 'Pixelify Sans', 'Silkscreen', monospace;
-  font-size: 58px;
-  font-weight: 700;
-  color: #161315;
   margin: 0 0 32px 0;
-  letter-spacing: -1.5px;
   line-height: 1;
   user-select: none;
+  display: inline-block;
+}
+
+.pixel-hi-img {
+  height: 62px;
+  width: auto;
+  display: block;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 2px 4px rgba(22, 19, 21, 0.1));
 }
 
 .headline-group {
@@ -292,9 +296,8 @@
     padding-top: 0;
   }
 
-  .pixel-hi {
-    font-size: 48px;
-    margin-bottom: 20px;
+  .pixel-hi-img {
+    height: 52px;
   }
 
   .main-headline {

@@ -48,7 +48,9 @@ function HomeHero() {
       <div className="hero-content">
         {/* Left Column: Typography */}
         <div className="text-column">
-          <h1 className="pixel-hi">hi!</h1>
+          <h1 className="pixel-hi" aria-label="hi!">
+            <img src="/assets/hi_font.svg" alt="hi!" className="pixel-hi-img" />
+          </h1>
 
           <div className="headline-group">
             <h2 className="main-headline">I am Shaivi,</h2>

@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import TurntablePlayer from '../components/TurntablePlayer'
-import P5CornerRadialMenu from '../components/P5CornerRadialMenu'
 import MarqueeBanner from '../components/MarqueeBanner'
 import Footer from '../components/Footer'
 import './SaathiCaseStudy.css'
@@ -37,8 +36,6 @@ function SaathiCaseStudy() {
         <div className="header-right-tools">
           <TurntablePlayer width="50px" />
         </div>
-
-        <P5CornerRadialMenu />
       </header>
 
       {/* Hero Section */}

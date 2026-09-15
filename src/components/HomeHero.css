@@ -2,7 +2,14 @@
   min-height: 100vh;
   width: 100vw;
   max-width: 100%;
-  background: linear-gradient(175deg, #fce3eb 0%, #f9e2ed 45%, #f5cfda 100%);
+  background-color: #fdd0da;
+  background-image: 
+    radial-gradient(circle at 85% 15%, rgba(255, 240, 245, 0.75) 0%, rgba(253, 208, 218, 0.35) 45%, transparent 75%),
+    linear-gradient(135deg, #fba8be 0%, #fdd0da 45%, #fb9ac0 80%, #f398bd 100%),
+    url('/assets/bg_pink.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -19,11 +26,11 @@
 .home-hero-container::before {
   content: '';
   position: absolute;
-  top: 10%;
-  right: 5%;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.45) 0%, rgba(252, 227, 235, 0) 70%);
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 224, 228, 0.2) 40%, transparent 70%);
   pointer-events: none;
   z-index: 1;
 }

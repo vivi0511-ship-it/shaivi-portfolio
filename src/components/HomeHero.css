@@ -273,10 +273,10 @@
 .central-head-wrapper {
   position: absolute;
   z-index: 35;
-  width: 420px;
-  height: 440px;
-  left: 68.5%;
-  top: 50%;
+  width: 430px;
+  height: 450px;
+  left: 62.7%;
+  top: 51.3%;
   transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
@@ -317,12 +317,13 @@
 
 .radial-node-bubble {
   position: relative;
-  width: 135px;
-  height: 135px;
+  width: 145px;
+  height: 145px;
   border-radius: 50%;
-  background: rgba(198, 132, 186, 0.62);
+  background: rgba(198, 132, 186, 0.58);
+  border: 2.5px solid rgba(255, 255, 255, 0.9);
   box-shadow: 
-    0 10px 25px rgba(180, 80, 130, 0.2);
+    0 10px 25px rgba(180, 80, 130, 0.22);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -341,7 +342,7 @@
   position: absolute;
   inset: -2px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.75);
+  border: 2px solid rgba(255, 255, 255, 0.85);
   pointer-events: none;
 }
 

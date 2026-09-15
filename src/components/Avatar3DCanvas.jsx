@@ -109,7 +109,8 @@ export default function Avatar3DCanvas({ activeCategory }) {
     avatarTexture.colorSpace = THREE.SRGBColorSpace
 
     // Create 3D Avatar Mesh (Curved plane for organic 3D depth)
-    const headGeo = new THREE.PlaneGeometry(1.75, 1.57, 16, 16)
+    const headGeo = new THREE.PlaneGeometry(1.75, 1.96, 16, 16)
+
 
     
     // Add subtle vertex curvature for real 3D depth

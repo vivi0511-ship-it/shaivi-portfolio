@@ -40,8 +40,8 @@ function HomeHero() {
       path: '/contact',
       img: '/assets/pod_console_trans.png',
       style: { top: '87.5%', left: '71.5%', transform: 'translate(-50%, -50%)' },
-      bannerClip: 'polygon(0% 28%, 78% 74%, 70% 100%, 0% 100%)',
-      textPos: { top: '42%', left: '11%', transform: 'rotate(-4deg)' }
+      bannerClip: 'polygon(0% 36%, 86% 68%, 76% 100%, 0% 100%)',
+      textPos: { top: '52%', left: '9%', transform: 'rotate(-4deg)' }
     },
     {
       id: 'avatar',

@@ -44,7 +44,6 @@ function About() {
 
       {/* ============================================================
           SECTION 1: HERO TAGLINE
-          Text wraps around the fixed center avatar
           ============================================================ */}
       <section className="editorial-section section-hero-tagline">
         <div className="tagline-wrap-container">
@@ -68,82 +67,82 @@ function About() {
       </section>
 
       {/* ============================================================
-          SECTION 2: ROLES
-          Cards positioned around center gap
+          SECTION 2: ROLES — Floating plain text, no cards
+          Matches GN.D reference: text groups flow vertically,
+          alternating sides around the center avatar gap
           ============================================================ */}
       <section className="editorial-section section-roles-display">
-        <div className="roles-container">
-          <h2 className="section-header-title">UX designer, UI Designer, UX researcher, Product Designer.</h2>
-          <div className="roles-radial-grid">
-            <div className="role-node node-top">
-              <span className="role-category-label">Product Designer</span>
-              <ul className="role-skills-list">
-                <li>Interaction Architecture</li>
-                <li>Design Strategy</li>
-                <li>Product Vision</li>
-              </ul>
+        <div className="roles-flow-container">
+
+          {/* Group 1: Centered above avatar */}
+          <div className="role-group role-center">
+            <span className="role-title">Product Design</span>
+            <span className="role-item">Interaction Architecture</span>
+            <span className="role-item">Design Strategy</span>
+            <span className="role-item">Product Vision</span>
+            <span className="role-item">Design Systems</span>
+          </div>
+
+          {/* Spacer row — left group + gap + right group flanking the avatar */}
+          <div className="role-split-row">
+            <div className="role-group role-align-right">
+              <span className="role-title">UX Research</span>
+              <span className="role-item">User Research &amp; Testing</span>
+              <span className="role-item">Empathy Mapping</span>
+              <span className="role-item">Journey Mapping</span>
+              <span className="role-item">Information Architecture</span>
+              <span className="role-item">Wireframing</span>
             </div>
-            <div className="role-node node-left">
-              <span className="role-category-label">UX Designer &amp; Researcher</span>
-              <ul className="role-skills-list">
-                <li>User Research &amp; Testing</li>
-                <li>Empathy &amp; Journey Mapping</li>
-                <li>Information Architecture</li>
-                <li>Wireframing</li>
-              </ul>
-            </div>
-            <div className="role-node node-right">
-              <span className="role-category-label">UI Designer</span>
-              <ul className="role-skills-list">
-                <li>Visual Systems</li>
-                <li>Micro-animations</li>
-                <li>Interactive Prototyping</li>
-                <li>Design Guidelines</li>
-              </ul>
-            </div>
-            <div className="role-node node-bottom">
-              <span className="role-category-label">Digital &amp; Spatial Design</span>
-              <ul className="role-skills-list">
-                <li>Spatial UI / XR</li>
-                <li>AI Integration</li>
-                <li>Accessibility</li>
-              </ul>
+            <div className="role-avatar-gap" />
+            <div className="role-group role-align-left">
+              <span className="role-title">UI Design</span>
+              <span className="role-item">Visual Systems</span>
+              <span className="role-item">Micro-animations</span>
+              <span className="role-item">Interactive Prototyping</span>
+              <span className="role-item">Design Guidelines</span>
+              <span className="role-item">Responsive Design</span>
             </div>
           </div>
+
+          {/* Group 4: Centered below avatar */}
+          <div className="role-group role-center">
+            <span className="role-title">Digital &amp; Spatial</span>
+            <span className="role-item">Spatial UI / XR</span>
+            <span className="role-item">AI Integration</span>
+            <span className="role-item">Accessibility</span>
+            <span className="role-item">3D Design</span>
+          </div>
+
         </div>
       </section>
 
       {/* ============================================================
-          SECTION 3: CONTACT
-          Cards positioned around center gap
+          SECTION 3: CONTACT — Same floating text style, no cards
           ============================================================ */}
       <section className="editorial-section section-contact-display">
-        <div className="contact-container">
-          <h2 className="section-header-title">Contact: Linkedin, Behance, Email</h2>
-          <div className="contact-radial-grid">
-            <a href="https://www.linkedin.com/in/connectwithshaivi/" target="_blank" rel="noopener noreferrer" className="contact-card card-linkedin">
-              <span className="contact-card-label">LinkedIn</span>
-              <span className="contact-card-link">connectwithshaivi &rarr;</span>
-            </a>
-            <a href="https://www.behance.net/shaivilavhe11" target="_blank" rel="noopener noreferrer" className="contact-card card-behance">
-              <span className="contact-card-label">Behance</span>
-              <span className="contact-card-link">shaivilavhe11 &rarr;</span>
-            </a>
-            <a href="mailto:shaivilavhe@gmail.com" className="contact-card card-email">
-              <span className="contact-card-label">Email</span>
-              <span className="contact-card-link">shaivilavhe@gmail.com &rarr;</span>
-            </a>
-            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" download className="contact-card card-resume">
-              <span className="contact-card-label">Curriculum Vitae</span>
-              <span className="contact-card-link">Download PDF &rarr;</span>
-            </a>
+        <div className="roles-flow-container">
+
+          <div className="role-group role-center">
+            <span className="role-title">Contact</span>
           </div>
+
+          <div className="role-split-row">
+            <div className="role-group role-align-right">
+              <a href="https://www.linkedin.com/in/connectwithshaivi/" target="_blank" rel="noopener noreferrer" className="role-item role-link">LinkedIn</a>
+              <a href="https://www.behance.net/shaivilavhe11" target="_blank" rel="noopener noreferrer" className="role-item role-link">Behance</a>
+            </div>
+            <div className="role-avatar-gap" />
+            <div className="role-group role-align-left">
+              <a href="mailto:shaivilavhe@gmail.com" className="role-item role-link">Email</a>
+              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" download className="role-item role-link">Download CV</a>
+            </div>
+          </div>
+
         </div>
       </section>
 
       {/* ============================================================
           SECTION 4: CHAPTERS / PRINCIPLES
-          Left & right text columns wrap around center gap
           ============================================================ */}
       <section className="editorial-section section-chapters-display">
         <div className="chapters-container">

@@ -1,7 +1,5 @@
 /* ==========================================================================
    ABOUT PAGE — Fixed Avatar with Scrolling Text (GN.D Reference Effect)
-   The avatar stays pinned to the viewport center.
-   All text/content scrolls past it, wrapping around the center gap.
    ========================================================================== */
 
 .about-editorial-wrapper {
@@ -19,7 +17,6 @@
   background-color: #FDFCFB !important;
   color: #111111 !important;
 }
-
 .about-page-wrapper .site-header {
   background-color: rgba(253, 252, 251, 0.88) !important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
@@ -50,7 +47,6 @@
 
 /* ==========================================================================
    FIXED AVATAR OVERLAY — pinned to viewport center
-   Rendered at the PAGE level (outside any flex/overflow container)
    ========================================================================== */
 .avatar-fixed-overlay {
   position: fixed;
@@ -79,7 +75,7 @@
 }
 
 /* ==========================================================================
-   GENERAL SECTION LAYOUT
+   GENERAL SECTION
    ========================================================================== */
 .editorial-section {
   min-height: 100vh;
@@ -106,7 +102,6 @@
 
 /* ==========================================================================
    SECTION 1: HERO TAGLINE
-   Text wraps around the center where the fixed avatar sits
    ========================================================================== */
 .section-hero-tagline { z-index: 10; }
 
@@ -136,13 +131,11 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  gap: 0;
 }
 
 .split-left { text-align: right; }
 .split-right { text-align: left; }
 
-/* Gap in the middle line where the fixed avatar shows through */
 .split-spacer {
   width: clamp(170px, 20vw, 240px);
   height: clamp(170px, 20vw, 240px);
@@ -178,141 +171,93 @@
 }
 
 /* ==========================================================================
-   SECTION 2: ROLES — cards radially positioned around center gap
+   SECTION 2 & 3: FLOATING TEXT ROLES & CONTACT (GN.D REFERENCE)
+   No cards — just plain text flowing vertically, alternating left/right
    ========================================================================== */
-.section-roles-display { z-index: 10; }
-
-.roles-container {
-  max-width: 1000px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.roles-radial-grid {
-  position: relative;
-  width: 100%;
-  min-height: 560px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.role-node {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  padding: 1.2rem 1.6rem;
-  border-radius: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
-  transition: all 0.3s ease;
-  max-width: 260px;
+.section-roles-display,
+.section-contact-display {
   z-index: 10;
 }
 
-.role-node:hover {
-  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.08);
-  border-color: rgba(0, 0, 0, 0.12);
-  background: #ffffff;
-}
-
-.node-top { top: 0; left: 50%; transform: translateX(-50%); text-align: center; }
-.node-top:hover { transform: translate(-50%, -4px); }
-.node-left { left: 0; top: 50%; transform: translateY(-50%); text-align: right; }
-.node-left:hover { transform: translate(-4px, -50%); }
-.node-right { right: 0; top: 50%; transform: translateY(-50%); text-align: left; }
-.node-right:hover { transform: translate(4px, -50%); }
-.node-bottom { bottom: 0; left: 50%; transform: translateX(-50%); text-align: center; }
-.node-bottom:hover { transform: translate(-50%, 4px); }
-
-.role-category-label {
-  display: block;
-  font-size: 1rem;
-  font-weight: 700;
-  color: #111111;
-  margin-bottom: 0.5rem;
-}
-
-.role-skills-list { list-style: none; padding: 0; margin: 0; }
-.role-skills-list li {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 0.95rem;
-  color: #444444;
-  margin-bottom: 0.25rem;
-}
-
-/* ==========================================================================
-   SECTION 3: CONTACT — cards around center gap
-   ========================================================================== */
-.section-contact-display { z-index: 10; }
-
-.contact-container {
-  max-width: 1000px;
+.roles-flow-container {
+  max-width: 900px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 3rem;
 }
 
-.contact-radial-grid {
-  position: relative;
-  width: 100%;
-  min-height: 480px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.contact-card {
-  position: absolute;
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  padding: 1.25rem 1.75rem;
-  border-radius: 14px;
-  text-decoration: none;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+/* A single role group — title + items stacked vertically */
+.role-group {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.35rem;
-  min-width: 220px;
-  z-index: 10;
 }
 
-.contact-card:hover {
-  transform: translateY(-6px);
-  border-color: #2563eb;
-  box-shadow: 0 16px 36px rgba(37, 99, 235, 0.12);
+.role-center {
+  text-align: center;
 }
 
-.card-linkedin { top: 15%; left: 8%; }
-.card-behance { top: 15%; right: 8%; }
-.card-email { bottom: 15%; left: 8%; }
-.card-resume { bottom: 15%; right: 8%; }
+.role-align-right {
+  align-items: flex-end;
+  text-align: right;
+}
 
-.contact-card-label {
-  font-size: 0.75rem;
+.role-align-left {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.role-title {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.95rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #666666;
+  color: #111111;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.4rem;
 }
 
-.contact-card-link {
+.role-item {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #111111;
+  font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+  color: #444444;
+  line-height: 1.7;
+  display: block;
+}
+
+.role-link {
+  text-decoration: none;
+  color: #444444;
   transition: color 0.2s ease;
 }
 
-.contact-card:hover .contact-card-link { color: #2563eb; }
+.role-link:hover {
+  color: #111111;
+}
+
+/* Split row: left group | avatar gap | right group */
+.role-split-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  gap: 0;
+}
+
+.role-avatar-gap {
+  width: clamp(170px, 20vw, 240px);
+  flex-shrink: 0;
+}
+
+.role-split-row .role-group {
+  flex: 1;
+  max-width: 300px;
+}
 
 /* ==========================================================================
-   SECTION 4: CHAPTERS — left & right text columns wrap around center gap
+   SECTION 4: CHAPTERS
    ========================================================================== */
 .section-chapters-display { z-index: 10; }
 
@@ -425,7 +370,6 @@
   margin: 0;
 }
 
-/* Center gap matching the avatar width */
 .chapter-center-spacer {
   width: clamp(170px, 20vw, 240px);
   flex-shrink: 0;
@@ -466,40 +410,26 @@
 
   .avatar-fixed-img { width: 120px; }
 
+  .role-avatar-gap { width: 120px; }
+
   .middle-split {
     flex-wrap: wrap;
     white-space: normal;
   }
 
-  .role-node {
-    position: relative;
-    top: auto !important; left: auto !important;
-    right: auto !important; bottom: auto !important;
-    transform: none !important;
-    max-width: 100%; width: 100%;
-    box-sizing: border-box;
+  .role-split-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .role-split-row .role-group {
+    max-width: 100%;
+    align-items: center !important;
     text-align: center !important;
-    margin-bottom: 1rem;
   }
 
-  .roles-radial-grid {
-    flex-direction: column;
-    min-height: auto;
-    gap: 1rem;
-  }
-
-  .contact-radial-grid {
-    flex-direction: column;
-    min-height: auto;
-    gap: 1rem;
-  }
-
-  .contact-card {
-    position: relative;
-    top: auto !important; left: auto !important;
-    right: auto !important; bottom: auto !important;
-    width: 100%; box-sizing: border-box;
-  }
+  .role-avatar-gap { display: none; }
 
   .chapter-columns-wrap {
     flex-direction: column;

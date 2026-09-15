@@ -71,60 +71,6 @@
 }
 
 /* ==========================================================================
-   TOP STAGE PILL NAVIGATION (GN.D 1 2 About 3 style)
-   ========================================================================== */
-.about-stage-nav {
-  position: fixed;
-  top: 84px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 90;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  padding: 4px 6px;
-  border-radius: 999px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-}
-
-.stage-pill {
-  background: transparent;
-  border: none;
-  font-size: 0.78rem;
-  font-weight: 500;
-  color: #555555;
-  padding: 0.4rem 0.9rem;
-  border-radius: 999px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  transition: all 0.25s ease;
-}
-
-.stage-num {
-  font-size: 0.7rem;
-  font-weight: 600;
-  opacity: 0.5;
-}
-
-.stage-pill:hover {
-  color: #111111;
-  background: rgba(0, 0, 0, 0.04);
-}
-
-.stage-pill.active {
-  color: #111111;
-  background: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  font-weight: 600;
-}
-
-/* ==========================================================================
    CENTERED STICKY 3D AVATAR HEAD (PERFECT DEAD-CENTER)
    ========================================================================== */
 .avatar-center-stage {
@@ -150,7 +96,7 @@
 }
 
 .avatar-head-img {
-  width: clamp(170px, 22vw, 250px);
+  width: clamp(180px, 22vw, 250px);
   height: auto;
   display: block;
   filter: drop-shadow(0 24px 36px rgba(0, 0, 0, 0.14));
@@ -224,19 +170,24 @@
 
 .hero-tagline-text {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(2.2rem, 4.8vw, 4.2rem);
+  font-size: clamp(2.4rem, 5vw, 4.3rem);
   font-weight: 400;
-  line-height: 1.25;
+  line-height: 1.2;
   color: #111111;
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .tagline-line {
   display: block;
   white-space: nowrap;
+}
+
+.top-line {
+  margin-bottom: 2.2rem;
 }
 
 .middle-split {
@@ -252,13 +203,17 @@
 }
 
 .split-spacer {
-  width: clamp(190px, 24vw, 270px);
+  width: clamp(200px, 24vw, 270px);
   flex-shrink: 0;
 }
 
 .split-right {
   text-align: left;
   flex: 1;
+}
+
+.bottom-line {
+  margin-top: 2.2rem;
 }
 
 .hero-subtitle-caption {
@@ -598,7 +553,7 @@
 }
 
 .chapter-center-spacer {
-  width: clamp(190px, 24vw, 270px);
+  width: clamp(200px, 24vw, 270px);
   flex-shrink: 0;
 }
 
@@ -690,19 +645,5 @@
 
   .avatar-head-img {
     width: 140px;
-  }
-
-  .about-stage-nav {
-    top: 76px;
-    padding: 2px 4px;
-  }
-
-  .stage-pill {
-    padding: 0.3rem 0.65rem;
-    font-size: 0.72rem;
-  }
-
-  .stage-num {
-    display: none;
   }
 }

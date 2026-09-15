@@ -37,7 +37,6 @@ const CHAPTERS = [
 ]
 
 function About() {
-  const [activeSection, setActiveSection] = useState('tagline')
   const [activeChapter, setActiveChapter] = useState(0)
   const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 })
 
@@ -59,71 +58,9 @@ function About() {
     return () => window.removeEventListener('mousemove', handleMouseMove)
   }, [])
 
-  // Scroll observer to update active section bar
-  useEffect(() => {
-    const options = {
-      root: null,
-      rootMargin: '-30% 0px -30% 0px',
-      threshold: 0.2
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          if (entry.target.id === 'section-tagline') setActiveSection('tagline')
-          if (entry.target.id === 'section-roles') setActiveSection('roles')
-          if (entry.target.id === 'section-contact') setActiveSection('contact')
-          if (entry.target.id === 'section-chapters') setActiveSection('chapters')
-        }
-      })
-    }, options)
-
-    if (taglineRef.current) observer.observe(taglineRef.current)
-    if (rolesRef.current) observer.observe(rolesRef.current)
-    if (contactRef.current) observer.observe(contactRef.current)
-    if (chaptersRef.current) observer.observe(chaptersRef.current)
-
-    return () => observer.disconnect()
-  }, [])
-
-  const scrollToSection = (id) => {
-    const el = document.getElementById(id)
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-
   return (
     <div className="about-editorial-wrapper">
-      {/* Top Floating Navigation Bar matching reference style (GN.D 1 2 About 3) */}
-      <nav className="about-stage-nav" aria-label="About page sections">
-        <button
-          className={`stage-pill ${activeSection === 'tagline' ? 'active' : ''}`}
-          onClick={() => scrollToSection('section-tagline')}
-        >
-          <span className="stage-num">01</span> Tagline
-        </button>
-        <button
-          className={`stage-pill ${activeSection === 'roles' ? 'active' : ''}`}
-          onClick={() => scrollToSection('section-roles')}
-        >
-          <span className="stage-num">02</span> Roles
-        </button>
-        <button
-          className={`stage-pill ${activeSection === 'contact' ? 'active' : ''}`}
-          onClick={() => scrollToSection('section-contact')}
-        >
-          <span className="stage-num">03</span> Contact
-        </button>
-        <button
-          className={`stage-pill ${activeSection === 'chapters' ? 'active' : ''}`}
-          onClick={() => scrollToSection('section-chapters')}
-        >
-          <span className="stage-num">04</span> Principles
-        </button>
-      </nav>
-
-      {/* CENTERED STICKY 3D AVATAR HEAD - PERFECTLY CENTERED AT (50vw, 50vh) */}
+      {/* CENTERED STICKY 3D AVATAR HEAD - PERFECT DEAD-CENTER AT (50vw, 50vh) */}
       <div className="avatar-center-stage">
         <div
           className="avatar-head-wrapper"

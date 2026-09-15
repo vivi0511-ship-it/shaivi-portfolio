@@ -91,15 +91,6 @@ function HomeHero() {
         )
       })}
 
-      {/* Top Left Music Player Turntable */}
-      <div className="floating-turntable" title="Shaivi's Music & Design Studio">
-        <img
-          src="/assets/turntable_transparent.png"
-          alt="Floating Record Player"
-          className="turntable-img"
-        />
-      </div>
-
       {/* Main Layout Grid */}
       <div className={`p5-hero-content ${activeHoverNode ? 'is-screen-focused' : ''}`}>
         {/* Left Column: Default Bio Text Layout */}

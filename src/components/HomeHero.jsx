@@ -12,7 +12,7 @@ function HomeHero() {
       title: 'HOME',
       path: '/',
       img: '/assets/pod_house_trans.png',
-      style: { top: '2%', left: '62%' },
+      style: { top: '12.5%', left: '38.5%', transform: 'translate(-50%, -50%)' },
       bannerClip: 'polygon(0% 0%, 64% 0%, 71% 33%, 0% 46%)',
       textPos: { top: '10%', left: '8%', transform: 'rotate(-3deg)' }
     },
@@ -21,7 +21,7 @@ function HomeHero() {
       title: 'WORK',
       path: '/work',
       img: '/assets/pod_laptop_trans.png',
-      style: { top: '31%', left: '53%' },
+      style: { top: '41.5%', left: '24.5%', transform: 'translate(-50%, -50%)' },
       bannerClip: 'polygon(0% 20%, 57% 38%, 62% 62%, 0% 82%)',
       textPos: { top: '38%', left: '7%', transform: 'rotate(-4deg)' }
     },
@@ -30,7 +30,7 @@ function HomeHero() {
       title: 'RESUME',
       path: '/about',
       img: '/assets/pod_resume_trans.png',
-      style: { top: '62%', left: '62%' },
+      style: { top: '78.5%', left: '37.5%', transform: 'translate(-50%, -50%)' },
       bannerClip: 'polygon(0% 36%, 68% 66%, 52% 100%, 0% 100%)',
       textPos: { top: '54%', left: '9%', transform: 'rotate(-3deg)' }
     },
@@ -39,7 +39,7 @@ function HomeHero() {
       title: 'ABOUT ME',
       path: '/contact',
       img: '/assets/pod_console_trans.png',
-      style: { top: '74%', left: '78%' },
+      style: { top: '87.5%', left: '71.5%', transform: 'translate(-50%, -50%)' },
       bannerClip: 'polygon(0% 28%, 78% 74%, 70% 100%, 0% 100%)',
       textPos: { top: '42%', left: '11%', transform: 'rotate(-4deg)' }
     }

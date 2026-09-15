@@ -254,19 +254,29 @@
   justify-content: center;
 }
 
-/* Background Purple Translucent Arc Circle */
-.radial-arc-bg {
+/* 3D Purple Donut Ring Background */
+.radial-ring-wrapper {
   position: absolute;
-  width: 580px;
-  height: 580px;
-  border-radius: 50%;
-  background: rgba(198, 132, 186, 0.48);
+  width: 620px;
+  height: 620px;
   pointer-events: none;
-  transition: opacity 180ms ease;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.65;
+  transition: opacity 180ms ease, transform 0.3s ease;
 }
 
-.p5-hero-content.is-screen-focused .radial-arc-bg {
-  opacity: 0.5;
+.radial-ring-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 35px rgba(180, 50, 120, 0.25));
+}
+
+.p5-hero-content.is-screen-focused .radial-ring-wrapper {
+  opacity: 0.45;
 }
 
 /* Central 3D Bronze Head Avatar */

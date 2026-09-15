@@ -129,8 +129,14 @@ function HomeHero() {
         {/* Right Column: Radial Menu Nodes around 3D Bronze Head */}
         <div className="right-radial-column">
           <div className="radial-wrapper">
-            {/* Background Purple Translucent Arc Circle */}
-            <div className="radial-arc-bg"></div>
+            {/* 3D Purple Donut Ring Background */}
+            <div className="radial-ring-wrapper">
+              <img
+                src="/assets/purple_ring_3d.png"
+                alt="3D Purple Ring"
+                className="radial-ring-img"
+              />
+            </div>
 
             {/* Central 3D Bronze Female Head (Interactive ABOUT ME Trigger) */}
             <div

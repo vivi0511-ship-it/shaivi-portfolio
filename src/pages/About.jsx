@@ -4,10 +4,10 @@ import Footer from '../components/Footer'
 
 function About() {
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#030a1e', color: '#ffffff', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+    <div className="about-page-wrapper" style={{ minHeight: '100vh', backgroundColor: '#FDFCFB', color: '#111111', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
       <div>
         <Header />
-        <main style={{ paddingTop: '80px' }}>
+        <main>
           <AboutSection />
         </main>
       </div>

@@ -139,8 +139,8 @@
 
 /* Left Column: Default Bio Typography */
 .left-bio-column {
-  flex: 1;
-  max-width: 520px;
+  flex: 1.1;
+  max-width: 620px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -155,24 +155,24 @@
   transform: scale(0.97);
 }
 
-/* Floating Turntable */
+/* Floating Turntable (Top Right Corner) */
 .floating-turntable {
   position: absolute;
-  top: -55px;
-  left: -20px;
-  z-index: 25;
+  top: 35px;
+  right: 45px;
+  z-index: 35;
   cursor: pointer;
   transition: transform 0.4s ease;
 }
 
 .floating-turntable:hover {
-  transform: scale(1.1) rotate(-4deg);
+  transform: scale(1.12) rotate(-5deg);
 }
 
 .turntable-img {
-  width: 90px;
+  width: 120px;
   height: auto;
-  filter: drop-shadow(0 12px 20px rgba(180, 90, 130, 0.2));
+  filter: drop-shadow(0 15px 25px rgba(180, 80, 130, 0.28));
   animation: floatZeroGTurntable 6s ease-in-out infinite;
 }
 
@@ -189,48 +189,48 @@
 }
 
 .pixel-hi {
-  margin: 0 0 28px 0;
+  margin: 0 0 32px 0;
   line-height: 1;
   user-select: none;
   display: inline-block;
 }
 
 .pixel-hi-img {
-  height: 60px;
+  height: 85px;
   width: auto;
   display: block;
   image-rendering: pixelated;
-  filter: drop-shadow(0 2px 5px rgba(22, 19, 21, 0.12));
+  filter: drop-shadow(0 3px 8px rgba(22, 19, 21, 0.16));
 }
 
 .headline-group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 10px;
 }
 
 .main-headline {
   font-family: 'Space Mono', 'Fira Code', 'Courier New', monospace;
-  font-size: 26px;
+  font-size: 38px;
   font-weight: 700;
   color: #ffffff;
   margin: 0;
-  line-height: 1.35;
-  letter-spacing: -0.2px;
-  text-shadow: 0 2px 8px rgba(180, 80, 120, 0.25);
+  line-height: 1.28;
+  letter-spacing: -0.3px;
+  text-shadow: 0 3px 12px rgba(180, 80, 120, 0.3);
 }
 
 .bio-paragraph {
   font-family: 'Space Mono', 'Fira Code', 'Courier New', monospace;
-  font-size: 16px;
+  font-size: 21px;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(255, 255, 255, 0.96);
   line-height: 1.6;
-  margin-top: 32px;
+  margin-top: 36px;
   margin-bottom: 0;
-  max-width: 440px;
-  letter-spacing: -0.1px;
-  text-shadow: 0 1px 6px rgba(180, 80, 120, 0.2);
+  max-width: 560px;
+  letter-spacing: -0.15px;
+  text-shadow: 0 2px 8px rgba(180, 80, 120, 0.22);
 }
 
 /* Right Column: Radial Menu Nodes around 3D Bronze Head */

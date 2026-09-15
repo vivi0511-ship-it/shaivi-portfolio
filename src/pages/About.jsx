@@ -7,10 +7,6 @@ import Footer from '../components/Footer'
 function About() {
   const [activeCategory, setActiveCategory] = useState(null)
 
-  const handleEarringClick = (mode) => {
-    console.log('3D Earring clicked, current mode:', mode)
-  }
-
   return (
     <div className="about-page-wrapper" style={{ minHeight: '100vh', backgroundColor: '#FDFCFB', color: '#111111' }}>
       {/* Avatar radial menu (same as Work page) */}
@@ -18,10 +14,7 @@ function About() {
 
       {/* FIXED 3D AVATAR CANVAS CENTERPIECE — pinned to viewport center */}
       <div className="avatar-fixed-overlay">
-        <Avatar3DCanvas
-          activeCategory={activeCategory}
-          onEarringClick={handleEarringClick}
-        />
+        <Avatar3DCanvas activeCategory={activeCategory} />
       </div>
 
       <main>

@@ -128,7 +128,7 @@ function HomeHero() {
             {/* Central 3D Bronze Female Head */}
             <div className="central-head-wrapper">
               <img
-                src="/assets/head_3d_trans.png"
+                src="/assets/head_3d_clean.png"
                 alt="Shaivi 3D Bronze Character"
                 className="central-head-img"
               />

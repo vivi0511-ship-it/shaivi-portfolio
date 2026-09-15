@@ -47,11 +47,28 @@
   background: rgba(255, 180, 210, 0.5);
 }
 
+/* Dusky Screen Focus Overlay on Hover */
+.dusky-focus-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 12;
+  background: linear-gradient(135deg, rgba(120, 85, 105, 0.58) 0%, rgba(95, 68, 85, 0.65) 100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+  will-change: opacity;
+}
+
+.dusky-focus-overlay.is-overlay-active {
+  opacity: 1;
+}
+
 /* Persona 5 Projection Banner Layer */
 .p5-projection-banner {
   position: absolute;
   inset: 0;
   z-index: 15;
+  background: linear-gradient(135deg, #f5a9ca 0%, #f193ba 100%);
   transform-origin: 100% 50%;
   transform: scaleX(0) scaleY(0.2);
   opacity: 0;
@@ -72,7 +89,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 40%;
+  height: 35%;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 100%);
   pointer-events: none;
 }
@@ -95,15 +112,15 @@
 }
 
 .p5-banner-title {
-  font-family: 'Playfair Display', 'Inter', sans-serif;
-  font-size: 88px;
-  font-weight: 800;
+  font-family: 'Anton', 'Bebas Neue', sans-serif;
+  font-size: 110px;
+  font-weight: 400;
   color: #ffffff;
-  letter-spacing: 3px;
+  letter-spacing: 2.5px;
   margin: 0;
-  line-height: 0.95;
+  line-height: 0.9;
   text-transform: uppercase;
-  text-shadow: 0 6px 20px rgba(180, 50, 100, 0.35);
+  text-shadow: 0 4px 18px rgba(180, 50, 100, 0.28);
 }
 
 /* Main Layout Grid */
@@ -120,7 +137,7 @@
   box-sizing: border-box;
 }
 
-/* Screen Focus Shift on Hover */
+/* Left Column: Default Bio Typography */
 .left-bio-column {
   flex: 1;
   max-width: 520px;
@@ -133,9 +150,9 @@
 }
 
 .p5-hero-content.is-screen-focused .left-bio-column {
-  opacity: 0.25;
-  filter: blur(3px);
-  transform: scale(0.98);
+  opacity: 0.18;
+  filter: blur(4px);
+  transform: scale(0.97);
 }
 
 /* Floating Turntable */
@@ -233,14 +250,19 @@
   justify-content: center;
 }
 
-/* Background Arc Accent Circle */
+/* Background Purple Translucent Arc Circle */
 .radial-arc-bg {
   position: absolute;
-  width: 520px;
-  height: 520px;
+  width: 560px;
+  height: 560px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(235, 175, 200, 0.45) 0%, rgba(225, 160, 190, 0.25) 70%, transparent 100%);
+  background: rgba(200, 130, 180, 0.42);
   pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.p5-hero-content.is-screen-focused .radial-arc-bg {
+  opacity: 0.5;
 }
 
 /* Central 3D Bronze Head */
@@ -253,10 +275,6 @@
   align-items: center;
   justify-content: center;
   transition: opacity 180ms ease, filter 180ms ease;
-}
-
-.p5-hero-content.is-screen-focused .central-head-wrapper {
-  filter: drop-shadow(0 15px 30px rgba(180, 70, 110, 0.25));
 }
 
 .central-head-img {
@@ -279,10 +297,10 @@
 
 .radial-node-bubble {
   position: relative;
-  width: 135px;
-  height: 135px;
+  width: 145px;
+  height: 145px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 190, 215, 0.45) 60%, rgba(255, 150, 190, 0.6) 100%);
+  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.82) 0%, rgba(255, 190, 215, 0.5) 60%, rgba(245, 150, 190, 0.7) 100%);
   box-shadow: 
     inset 0 4px 14px rgba(255, 255, 255, 0.95),
     inset 0 -4px 12px rgba(220, 80, 140, 0.35),
@@ -294,8 +312,8 @@
 }
 
 .node-icon-img {
-  width: 78%;
-  height: 78%;
+  width: 82%;
+  height: 82%;
   object-fit: contain;
   filter: drop-shadow(0 6px 12px rgba(180, 80, 120, 0.22));
 }
@@ -304,19 +322,19 @@
   position: absolute;
   inset: -2px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.7);
+  border: 2px solid rgba(255, 255, 255, 0.75);
   pointer-events: none;
 }
 
 /* Hover State Mechanics */
 .radial-node-item.is-node-hovered {
   z-index: 40 !important;
-  transform: scale(1.28) !important;
+  transform: scale(1.3) !important;
 }
 
 .radial-node-item.is-node-hovered .radial-node-bubble {
   border-color: rgba(255, 255, 255, 0.98);
-  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 195, 222, 0.65) 60%, rgba(255, 160, 200, 0.75) 100%);
+  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.98) 0%, rgba(255, 200, 222, 0.75) 60%, rgba(255, 160, 200, 0.85) 100%);
   box-shadow: 
     inset 0 6px 20px rgba(255, 255, 255, 1),
     inset 0 -5px 15px rgba(220, 70, 140, 0.48),
@@ -362,18 +380,18 @@
   }
 
   .radial-node-bubble {
-    width: 105px;
-    height: 105px;
+    width: 110px;
+    height: 110px;
   }
 
   .p5-banner-title {
-    font-size: 56px;
+    font-size: 70px;
   }
 }
 
 @media (max-width: 600px) {
   .p5-banner-title {
-    font-size: 38px;
+    font-size: 44px;
   }
 
   .radial-wrapper {
@@ -387,7 +405,7 @@
   }
 
   .radial-node-bubble {
-    width: 80px;
-    height: 80px;
+    width: 85px;
+    height: 85px;
   }
 }

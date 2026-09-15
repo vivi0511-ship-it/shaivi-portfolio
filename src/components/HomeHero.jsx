@@ -10,47 +10,38 @@ function HomeHero() {
     {
       id: 'house',
       title: 'HOME',
-      subTitle: 'ABOUT ME',
       path: '/',
       img: '/assets/pod_house_trans.png',
-      style: { top: '8%', left: '68%' },
-      // Clip path trapezoid expanding from top-right origin to full left side
-      bannerClip: 'polygon(0% 0%, 100% 0%, 100% 65%, 0% 90%)',
-      bannerGradient: 'linear-gradient(135deg, #f7a2c2 0%, #f38cb3 100%)',
-      textPos: { top: '22%', left: '12%' }
+      style: { top: '2%', left: '62%' },
+      bannerClip: 'polygon(0% 0%, 64% 0%, 71% 33%, 0% 46%)',
+      textPos: { top: '10%', left: '8%', transform: 'rotate(-3deg)' }
     },
     {
       id: 'laptop',
       title: 'WORK',
-      subTitle: 'PORTFOLIO',
       path: '/work',
       img: '/assets/pod_laptop_trans.png',
-      style: { top: '34%', left: '55%' },
-      bannerClip: 'polygon(0% 12%, 100% 32%, 100% 82%, 0% 100%)',
-      bannerGradient: 'linear-gradient(135deg, #f8a6c5 0%, #f48fb6 100%)',
-      textPos: { top: '48%', left: '14%' }
+      style: { top: '31%', left: '53%' },
+      bannerClip: 'polygon(0% 20%, 57% 38%, 62% 62%, 0% 82%)',
+      textPos: { top: '38%', left: '7%', transform: 'rotate(-4deg)' }
     },
     {
       id: 'resume',
       title: 'RESUME',
-      subTitle: 'EXPERIENCE',
       path: '/about',
       img: '/assets/pod_resume_trans.png',
-      style: { top: '64%', left: '62%' },
-      bannerClip: 'polygon(0% 25%, 100% 55%, 100% 98%, 0% 92%)',
-      bannerGradient: 'linear-gradient(135deg, #f69ebd 0%, #f286ad 100%)',
-      textPos: { top: '56%', left: '12%' }
+      style: { top: '62%', left: '62%' },
+      bannerClip: 'polygon(0% 36%, 68% 66%, 52% 100%, 0% 100%)',
+      textPos: { top: '54%', left: '9%', transform: 'rotate(-3deg)' }
     },
     {
       id: 'console',
-      title: 'HOBBIES',
-      subTitle: 'CONTACT & PLAY',
+      title: 'ABOUT ME',
       path: '/contact',
       img: '/assets/pod_console_trans.png',
-      style: { top: '76%', left: '79%' },
-      bannerClip: 'polygon(0% 40%, 100% 72%, 100% 100%, 0% 100%)',
-      bannerGradient: 'linear-gradient(135deg, #f7a0c0 0%, #f388b0 100%)',
-      textPos: { top: '68%', left: '15%' }
+      style: { top: '74%', left: '78%' },
+      bannerClip: 'polygon(0% 28%, 78% 74%, 70% 100%, 0% 100%)',
+      textPos: { top: '42%', left: '11%', transform: 'rotate(-4deg)' }
     }
   ]
 
@@ -68,9 +59,12 @@ function HomeHero() {
 
   return (
     <main className="persona5-hero-container">
-      {/* Background Soft Ambient Light */}
+      {/* Zero Gravity Ambient Glows */}
       <div className="ambient-glow glow-top-left"></div>
       <div className="ambient-glow glow-bottom-right"></div>
+
+      {/* Dusky Screen Focus Overlay on Hover */}
+      <div className={`dusky-focus-overlay ${activeHoverNode ? 'is-overlay-active' : ''}`}></div>
 
       {/* Persona 5 Projection Banner Layers */}
       {radialNodes.map((node) => {
@@ -81,12 +75,11 @@ function HomeHero() {
             key={`banner-${node.id}`}
             className={`p5-projection-banner ${isActive ? 'is-banner-active' : ''}`}
             style={{
-              clipPath: node.bannerClip,
-              background: node.bannerGradient
+              clipPath: node.bannerClip
             }}
           >
             <div className="banner-shine-overlay"></div>
-            
+
             {/* Snappy Persona 5 Kinetic Title */}
             <div
               className={`p5-banner-text-wrapper ${isActive ? 'is-text-entered' : ''}`}
@@ -129,7 +122,7 @@ function HomeHero() {
         {/* Right Column: Radial Menu Nodes around 3D Bronze Head */}
         <div className="right-radial-column">
           <div className="radial-wrapper">
-            {/* Background Arc Accent Circle */}
+            {/* Background Purple Translucent Arc Circle */}
             <div className="radial-arc-bg"></div>
 
             {/* Central 3D Bronze Female Head */}

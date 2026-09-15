@@ -6,109 +6,141 @@ function HomeHero() {
   const navigate = useNavigate()
   const [activeTooltip, setActiveTooltip] = useState('')
 
-  const navNodes = [
+  const floatingPods = [
     {
-      id: 'home',
+      id: 'house',
       label: 'Home',
       path: '/',
-      style: { top: '3.5%', left: '27.5%', width: '22%', height: '18.5%' }
+      img: '/assets/pod_house_trans.png',
+      className: 'pod-house',
+      style: { top: '3%', left: '46%' }
     },
     {
-      id: 'work',
+      id: 'laptop',
       label: 'Selected Work',
       path: '/work',
-      style: { top: '36%', left: '7.5%', width: '22%', height: '18.5%' }
+      img: '/assets/pod_laptop_trans.png',
+      className: 'pod-laptop',
+      style: { top: '15%', left: '76%' }
     },
     {
-      id: 'about',
+      id: 'camera',
+      label: 'Visuals & Media',
+      path: '/work#visuals',
+      img: '/assets/pod_camera_trans.png',
+      className: 'pod-camera',
+      style: { top: '12%', left: '16%' }
+    },
+    {
+      id: 'resume',
       label: 'About Shaivi',
       path: '/about',
-      style: { top: '69%', left: '24%', width: '22%', height: '18.5%' }
+      img: '/assets/pod_resume_trans.png',
+      className: 'pod-resume',
+      style: { top: '42%', left: '85%' }
     },
     {
-      id: 'contact',
+      id: 'console',
       label: 'Get in Touch',
       path: '/contact',
-      style: { top: '78%', left: '68%', width: '22%', height: '18.5%' }
+      img: '/assets/pod_console_trans.png',
+      className: 'pod-console',
+      style: { top: '70%', left: '74%' }
+    },
+    {
+      id: 'book',
+      label: 'Research & Books',
+      path: '/about#research',
+      img: '/assets/pod_book_trans.png',
+      className: 'pod-book',
+      style: { top: '78%', left: '44%' }
+    },
+    {
+      id: 'shapes',
+      label: 'Design Systems',
+      path: '/work#systems',
+      img: '/assets/pod_shapes_trans.png',
+      className: 'pod-shapes',
+      style: { top: '65%', left: '14%' }
     }
   ]
 
   return (
-    <main className="home-hero-container">
-      {/* Top Left Floating Turntable */}
-      <div className="turntable-wrapper" title="Shaivi's Music & Design Studio">
-        <img
-          src="/assets/turntable_transparent.png"
-          alt="Record Player Turntable"
-          className="turntable-img"
-        />
-      </div>
+    <main className="antigravity-hero-container">
+      {/* Zero Gravity Ambient Glows */}
+      <div className="ambient-glow glow-top-left"></div>
+      <div className="ambient-glow glow-bottom-right"></div>
 
-      {/* Main Content Layout */}
-      <div className="hero-content">
-        {/* Left Column: Typography */}
-        <div className="text-column">
-          <h1 className="pixel-hi" aria-label="hi!">
-            <img src="/assets/hi_font.svg" alt="hi!" className="pixel-hi-img" />
-          </h1>
-
-          <div className="headline-group">
-            <h2 className="main-headline">I am Shaivi,</h2>
-            <h2 className="main-headline">I am a UI/UX designer.</h2>
+      <div className="antigravity-hero-content">
+        {/* Left Column: Bio Text Inside Large Glass Panel */}
+        <div className="left-glass-panel-wrapper">
+          <div className="floating-turntable" title="Shaivi's Music & Design Studio">
+            <img
+              src="/assets/turntable_transparent.png"
+              alt="Floating Record Player"
+              className="turntable-img"
+            />
           </div>
 
-          <p className="bio-paragraph">
-            I love to research, get to the bottom of the problems and make stuff that actually works.
-          </p>
+          <div className="bio-glass-panel">
+            <div className="glass-panel-highlight"></div>
+
+            <h1 className="pixel-hi" aria-label="hi!">
+              <img src="/assets/hi_font.svg" alt="hi!" className="pixel-hi-img" />
+            </h1>
+
+            <div className="headline-group">
+              <h2 className="main-headline">I am Shaivi,</h2>
+              <h2 className="main-headline">I am a UI/UX designer.</h2>
+            </div>
+
+            <p className="bio-paragraph">
+              I love to research, get to the bottom of the problems and make stuff that actually works.
+            </p>
+          </div>
         </div>
 
-        {/* Right Column: Rotary Dial Wheel */}
-        <div className="dial-column">
-          <div className="dial-wrapper">
-            <img
-              src="/assets/dial_pink_glass.png"
-              alt="Interactive Pink Glass Navigation Dial & Shaivi 3D Avatar"
-              className="dial-img"
-            />
+        {/* Right Column: Zero Gravity Cloud around 3D Bronze Head */}
+        <div className="right-zerog-cloud-container">
+          <div className="zerog-cloud-wrapper">
+            {/* Central 3D Bronze Female Head */}
+            <div className="central-head-wrapper">
+              <img
+                src="/assets/head_3d_trans.png"
+                alt="Shaivi 3D Bronze Character"
+                className="central-head-img"
+              />
+              <div className="head-aura"></div>
+            </div>
 
-            {/* Interactive Node Hotspots */}
-            {navNodes.map((node) => (
+            {/* 7 Floating Pink Glass Pod Capsules */}
+            {floatingPods.map((pod) => (
               <div
-                key={node.id}
-                className={`dial-hotspot node-${node.id}`}
-                style={node.style}
-                onMouseEnter={() => setActiveTooltip(node.label)}
+                key={pod.id}
+                className={`glass-pod-item ${pod.className}`}
+                style={pod.style}
+                onMouseEnter={() => setActiveTooltip(pod.label)}
                 onMouseLeave={() => setActiveTooltip('')}
-                onClick={() => navigate(node.path)}
+                onClick={() => navigate(pod.path)}
                 role="button"
                 tabIndex={0}
-                aria-label={`Navigate to ${node.label}`}
+                aria-label={`Navigate to ${pod.label}`}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
-                    navigate(node.path)
+                    navigate(pod.path)
                   }
                 }}
               >
-                <div className="hotspot-ring"></div>
-                {activeTooltip === node.label && (
-                  <div className="node-tooltip">{node.label}</div>
+                <div className="pod-glass-capsule">
+                  <img src={pod.img} alt={pod.label} className="pod-icon-img" />
+                  <div className="pod-specular-reflection"></div>
+                </div>
+
+                {activeTooltip === pod.label && (
+                  <div className="pod-tooltip-badge">{pod.label}</div>
                 )}
               </div>
             ))}
-
-            {/* Avatar Center Hotspot */}
-            <Link
-              to="/about"
-              className="avatar-hotspot"
-              style={{ top: '16%', left: '41%', width: '56%', height: '58%' }}
-              onMouseEnter={() => setActiveTooltip('About Me')}
-              onMouseLeave={() => setActiveTooltip('')}
-              aria-label="Shaivi Avatar - About Me"
-            >
-              {activeTooltip === 'About Me' && (
-                <div className="avatar-tooltip">About Shaivi</div>
-              )}
-            </Link>
           </div>
         </div>
       </div>

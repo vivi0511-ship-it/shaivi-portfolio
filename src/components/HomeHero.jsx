@@ -105,7 +105,7 @@ function HomeHero() {
 
           <div className="bio-text-group">
             <h1 className="pixel-hi" aria-label="hi!">
-              <img src="/assets/hi_font.svg" alt="hi!" className="pixel-hi-img" />
+              <img src="/assets/hi_font_white.svg" alt="hi!" className="pixel-hi-img" />
             </h1>
 
             <div className="headline-group">

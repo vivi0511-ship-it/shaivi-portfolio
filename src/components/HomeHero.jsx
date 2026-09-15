@@ -1,13 +1,16 @@
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useState, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './HomeHero.css'
 
 function HomeHero() {
   const navigate = useNavigate()
-  const [activePodId, setActivePodId] = useState(null)
-  const [tilt, setTilt] = useState({ x: 0, y: 0 })
+  const [activeNode, setActiveNode] = useState(null)
+  const [spinRotation, setSpinRotation] = useState(0)
+  const [isSpinning, setIsSpinning] = useState(false)
+  const [hubText, setHubText] = useState('YOU MANIFESTED THIS. READY TO PICK UP?')
+  const dialRef = useRef(null)
 
-  const floatingPods = [
+  const menuNodes = [
     {
       id: 'house',
       code: '01',
@@ -15,9 +18,10 @@ function HomeHero() {
       subLabel: 'Main Entrance & Hero',
       path: '/',
       img: '/assets/pod_house_trans.png',
-      className: 'pod-house',
-      x: 46,
-      y: 3
+      angle: 58,
+      x: 68.55,
+      y: 79.68,
+      spinToAngle: 232 // degrees clockwise to reach finger stop (~290°)
     },
     {
       id: 'laptop',
@@ -26,42 +30,46 @@ function HomeHero() {
       subLabel: 'View Portfolio Projects',
       path: '/work',
       img: '/assets/pod_laptop_trans.png',
-      className: 'pod-laptop',
-      x: 76,
-      y: 15
-    },
-    {
-      id: 'camera',
-      code: '03',
-      label: 'VISUALS & MEDIA',
-      subLabel: 'Graphics & Photography',
-      path: '/work#visuals',
-      img: '/assets/pod_camera_trans.png',
-      className: 'pod-camera',
-      x: 16,
-      y: 12
+      angle: 20,
+      x: 82.89,
+      y: 61.97,
+      spinToAngle: 270
     },
     {
       id: 'resume',
-      code: '04',
+      code: '03',
       label: 'ABOUT SHAIVI',
-      subLabel: 'Bio & Experience',
+      subLabel: 'Bio & Background',
       path: '/about',
       img: '/assets/pod_resume_trans.png',
-      className: 'pod-resume',
-      x: 85,
-      y: 42
+      angle: -18,
+      x: 83.29,
+      y: 39.18,
+      spinToAngle: 308
     },
     {
       id: 'console',
-      code: '05',
+      code: '04',
       label: 'GET IN TOUCH',
       subLabel: 'Contact & Socials',
       path: '/contact',
       img: '/assets/pod_console_trans.png',
-      className: 'pod-console',
-      x: 74,
-      y: 70
+      angle: -55,
+      x: 70.08,
+      y: 21.33,
+      spinToAngle: 345
+    },
+    {
+      id: 'camera',
+      code: '05',
+      label: 'VISUALS & MEDIA',
+      subLabel: 'Graphics & Photography',
+      path: '/work#visuals',
+      img: '/assets/pod_camera_trans.png',
+      angle: -92,
+      x: 48.78,
+      y: 15.02,
+      spinToAngle: 22
     },
     {
       id: 'book',
@@ -70,78 +78,128 @@ function HomeHero() {
       subLabel: 'UX & Interaction Notes',
       path: '/about#research',
       img: '/assets/pod_book_trans.png',
-      className: 'pod-book',
-      x: 44,
-      y: 78
+      angle: -129,
+      x: 27.97,
+      y: 22.80,
+      spinToAngle: 59
     },
     {
       id: 'shapes',
       code: '07',
       label: 'DESIGN SYSTEMS',
-      subLabel: 'UI Components & Motion',
+      subLabel: 'UI Architecture & Motion',
       path: '/work#systems',
       img: '/assets/pod_shapes_trans.png',
-      className: 'pod-shapes',
-      x: 14,
-      y: 65
+      angle: -166,
+      x: 16.04,
+      y: 41.53,
+      spinToAngle: 96
+    },
+    {
+      id: 'turntable',
+      code: '08',
+      label: 'STUDIO & MUSIC',
+      subLabel: 'Audio & Creative Space',
+      path: '/about#music',
+      img: '/assets/turntable_transparent.png',
+      angle: -203,
+      x: 17.78,
+      y: 63.68,
+      spinToAngle: 133
     }
   ]
 
-  // Compute magnetic tilt effect when cursor moves inside hovered pod
-  const handleMouseMove = (e, podId) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    const mouseX = e.clientX - rect.left - rect.width / 2
-    const mouseY = e.clientY - rect.top - rect.height / 2
-    
-    // Magnetic pull sensitivity
-    const tiltX = (mouseY / (rect.height / 2)) * -18
-    const tiltY = (mouseX / (rect.width / 2)) * 18
-    
-    setTilt({ x: tiltX, y: tiltY })
-  }
-
-  const handleMouseEnter = (podId) => {
-    setActivePodId(podId)
-  }
-
-  const handleMouseLeave = () => {
-    setActivePodId(null)
-    setTilt({ x: 0, y: 0 })
-  }
-
-  // Calculate antigravity repulsion offset for adjacent non-hovered pods
-  const getRepulsionStyle = (pod) => {
-    if (!activePodId) return {}
-    
-    const activePod = floatingPods.find((p) => p.id === activePodId)
-    if (!activePod || activePod.id === pod.id) return {}
-
-    // Vector from active pod to this pod
-    const dx = pod.x - activePod.x
-    const dy = pod.y - activePod.y
-    const distance = Math.sqrt(dx * dx + dy * dy) || 1
-
-    // Antigravity push strength (strongest for close pods)
-    const pushFactor = Math.max(0, 45 - distance) / 45
-    const pushDistance = pushFactor * 32 // 32px max repulsion shift
-
-    const pushX = (dx / distance) * pushDistance
-    const pushY = (dy / distance) * pushDistance
-
-    return {
-      transform: `translate(${pushX}px, ${pushY}px) scale(${1 - pushFactor * 0.08})`,
-      transition: 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)'
+  // Synthetic Mechanical Rotary Sound Effect
+  const playRotarySound = (isStop = false) => {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext
+      if (!AudioCtx) return
+      const ctx = new AudioCtx()
+      
+      if (isStop) {
+        // Metallic clack sound at finger stop
+        const osc = ctx.createOscillator()
+        const gain = ctx.createGain()
+        osc.type = 'triangle'
+        osc.frequency.setValueAtTime(240, ctx.currentTime)
+        osc.frequency.exponentialRampToValueAtTime(30, ctx.currentTime + 0.12)
+        gain.gain.setValueAtTime(0.3, ctx.currentTime)
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12)
+        osc.connect(gain)
+        gain.connect(ctx.destination)
+        osc.start()
+        osc.stop(ctx.currentTime + 0.13)
+      } else {
+        // Soft mechanical tick
+        const osc = ctx.createOscillator()
+        const gain = ctx.createGain()
+        osc.type = 'sine'
+        osc.frequency.setValueAtTime(150, ctx.currentTime)
+        osc.frequency.exponentialRampToValueAtTime(50, ctx.currentTime + 0.05)
+        gain.gain.setValueAtTime(0.12, ctx.currentTime)
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05)
+        osc.connect(gain)
+        gain.connect(ctx.destination)
+        osc.start()
+        osc.stop(ctx.currentTime + 0.06)
+      }
+    } catch (e) {
+      // Audio fallback
     }
   }
 
+  const handleNodeMouseEnter = (node) => {
+    if (isSpinning) return
+    setActiveNode(node)
+    setHubText(`DIALING [${node.code}] ${node.label}`)
+    playRotarySound(false)
+  }
+
+  const handleNodeMouseLeave = () => {
+    if (isSpinning) return
+    setActiveNode(null)
+    setHubText('YOU MANIFESTED THIS. READY TO PICK UP?')
+  }
+
+  // Rotary Dial Spin Physics & Navigation Trigger
+  const handleNodeClick = (node) => {
+    if (isSpinning) return
+    setIsSpinning(true)
+    setActiveNode(node)
+    setHubText(`CONNECTING TO ${node.label}...`)
+    
+    // Phase 1: Clockwise spin to finger stop
+    const targetDeg = node.spinToAngle || 180
+    setSpinRotation(targetDeg)
+    playRotarySound(false)
+
+    // Phase 2: Metallic stop sound at peak spin
+    setTimeout(() => {
+      playRotarySound(true)
+    }, 450)
+
+    // Phase 3: Elastic spring return back to 0°
+    setTimeout(() => {
+      setSpinRotation(0)
+    }, 700)
+
+    // Phase 4: Navigate to target route
+    setTimeout(() => {
+      setIsSpinning(false)
+      setActiveNode(null)
+      setHubText('YOU MANIFESTED THIS. READY TO PICK UP?')
+      navigate(node.path)
+    }, 1250)
+  }
+
   return (
-    <main className="antigravity-hero-container">
-      {/* Zero Gravity Ambient Glows */}
+    <main className="vintage-rotary-hero-container">
+      {/* Zero Gravity Soft Ambient Glows */}
       <div className="ambient-glow glow-top-left"></div>
       <div className="ambient-glow glow-bottom-right"></div>
 
-      <div className="antigravity-hero-content">
-        {/* Left Column: Bio Text Inside Large Glass Panel */}
+      <div className="rotary-hero-content">
+        {/* Left Column: Bio Text Glass Card */}
         <div className="left-glass-panel-wrapper">
           <div className="floating-turntable" title="Shaivi's Music & Design Studio">
             <img
@@ -169,86 +227,74 @@ function HomeHero() {
           </div>
         </div>
 
-        {/* Right Column: Zero Gravity Cloud around 3D Bronze Head */}
-        <div className="right-zerog-cloud-container">
-          <div className="zerog-cloud-wrapper">
-            {/* Central 3D Bronze Female Head */}
-            <div className="central-head-wrapper">
+        {/* Right Column: Vintage Pink Glass Rotary Dial Phone Wheel */}
+        <div className="right-rotary-column">
+          <div className="rotary-phone-wrapper" ref={dialRef}>
+            {/* Outer Rotatable Dial Disc Assembly */}
+            <div
+              className={`rotary-dial-disc ${isSpinning ? 'is-spinning' : ''}`}
+              style={{
+                transform: `rotate(${spinRotation}deg)`
+              }}
+            >
               <img
-                src="/assets/head_3d_trans.png"
-                alt="Shaivi 3D Bronze Character"
-                className="central-head-img"
+                src="/assets/rotary_dial_pink_glass.png"
+                alt="Vintage Pink Glass Rotary Phone Dial"
+                className="rotary-dial-img"
               />
-              <div className="head-aura"></div>
+
+              {/* 8 Porthole Menu Nodes around Rotary Disc Perimeter */}
+              {menuNodes.map((node) => {
+                const isActive = activeNode?.id === node.id
+
+                return (
+                  <div
+                    key={node.id}
+                    className={`rotary-porthole-node ${isActive ? 'is-active-node' : ''}`}
+                    style={{
+                      left: `${node.x}%`,
+                      top: `${node.y}%`,
+                      /* Counter-rotate icon contents so they remain upright as dial spins */
+                      transform: `translate(-50%, -50%) rotate(${-spinRotation}deg) scale(${
+                        isActive ? 1.25 : 1
+                      })`
+                    }}
+                    onMouseEnter={() => handleNodeMouseEnter(node)}
+                    onMouseLeave={handleNodeMouseLeave}
+                    onClick={() => handleNodeClick(node)}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Dial ${node.label}`}
+                  >
+                    {/* Glass Porthole Bubble Shell */}
+                    <div className="porthole-glass-shell">
+                      <img src={node.img} alt={node.label} className="porthole-icon-img" />
+                      <div className="porthole-glass-flare"></div>
+                    </div>
+
+                    {/* Sleek Glass Capsule Badge Reveal */}
+                    {isActive && (
+                      <div className="rotary-glass-pill-badge">
+                        <div className="pill-badge-highlight"></div>
+                        <div className="pill-title-row">
+                          <span className="pill-code">{node.code}</span>
+                          <span className="pill-title">{node.label}</span>
+                        </div>
+                        <span className="pill-sub">{node.subLabel}</span>
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
             </div>
 
-            {/* 7 Floating Pink Glass Pod Capsules */}
-            {floatingPods.map((pod) => {
-              const isActive = activePodId === pod.id
-              const repulsionStyle = getRepulsionStyle(pod)
-
-              return (
-                <div
-                  key={pod.id}
-                  className={`glass-pod-item ${pod.className} ${isActive ? 'is-active-hover' : ''}`}
-                  style={{
-                    top: `${pod.y}%`,
-                    left: `${pod.x}%`,
-                    ...repulsionStyle
-                  }}
-                  onMouseEnter={() => handleMouseEnter(pod.id)}
-                  onMouseMove={(e) => handleMouseMove(e, pod.id)}
-                  onMouseLeave={handleMouseLeave}
-                  onClick={() => navigate(pod.path)}
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`Navigate to ${pod.label}`}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      navigate(pod.path)
-                    }
-                  }}
-                >
-                  {/* Glass Capsule Pod Container with 3D Magnetic Tilt */}
-                  <div
-                    className="pod-glass-capsule"
-                    style={
-                      isActive
-                        ? { transform: `perspective(600px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(1.28)` }
-                        : {}
-                    }
-                  >
-                    <img src={pod.img} alt={pod.label} className="pod-icon-img" />
-                    <div className="pod-specular-reflection"></div>
-                    <div className="pod-chromatic-flare"></div>
-                  </div>
-
-                  {/* Persona 5 Strikers Kinetic Glass Capsule Label Reveal */}
-                  {isActive && (
-                    <div className="persona-glass-pill-label">
-                      <div className="persona-pill-highlight"></div>
-                      
-                      <div className="persona-title-row">
-                        <span className="persona-code">{pod.code}</span>
-                        <div className="persona-title-text">
-                          {pod.label.split('').map((char, index) => (
-                            <span
-                              key={index}
-                              className="persona-char"
-                              style={{ animationDelay: `${index * 0.022}s` }}
-                            >
-                              {char === ' ' ? '\u00A0' : char}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="persona-sublabel-row">{pod.subLabel}</div>
-                    </div>
-                  )}
-                </div>
-              )
-            })}
+            {/* Central Cream Glass Hub (Stationary) */}
+            <div className="central-rotary-hub">
+              <div className="hub-glass-bevel"></div>
+              <div className="hub-content">
+                <p className="hub-manifesto-text">{hubText}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

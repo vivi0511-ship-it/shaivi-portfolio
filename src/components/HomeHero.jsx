@@ -102,6 +102,14 @@ function HomeHero() {
       <div className={`p5-hero-content ${activeHoverNode ? 'is-screen-focused' : ''}`}>
         {/* Left Column: Default Bio Text Layout */}
         <div className="left-bio-column">
+          <div className="floating-turntable" title="Shaivi's Music & Design Studio">
+            <img
+              src="/assets/turntable_transparent.png"
+              alt="Floating Record Player"
+              className="turntable-img"
+            />
+          </div>
+
           <div className="bio-text-group">
             <h1 className="pixel-hi" aria-label="hi!">
               <img src="/assets/hi_font_white.svg" alt="hi!" className="pixel-hi-img" />

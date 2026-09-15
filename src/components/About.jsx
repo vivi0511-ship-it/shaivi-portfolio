@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 import './About.css'
 
 const CHAPTERS = [
@@ -38,45 +38,22 @@ const CHAPTERS = [
 
 function About() {
   const [activeChapter, setActiveChapter] = useState(0)
-  const [scrollY, setScrollY] = useState(0)
-
-  // Track scroll for parallax on avatar
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY)
-    }
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   return (
     <div className="about-editorial-wrapper">
 
       {/* ============================================================
-          SECTION 1: HERO TAGLINE — Avatar sits inline in the text gap
+          SECTION 1: HERO TAGLINE
+          Text wraps around the fixed center avatar
           ============================================================ */}
       <section className="editorial-section section-hero-tagline">
         <div className="tagline-wrap-container">
-          {/* Line 1: "Turning complex" */}
           <span className="tagline-line">Turning complex</span>
-
-          {/* Line 2: "problems into [AVATAR] simple solutions" */}
           <span className="tagline-line middle-split">
             <span className="split-left">problems into</span>
-            <span className="avatar-inline-slot">
-              <img
-                src="/assets/head_3d_clean.png"
-                alt="Shaivi 3D Avatar"
-                className="avatar-inline-img"
-                style={{
-                  transform: `translateY(${scrollY * -0.08}px)`
-                }}
-              />
-            </span>
+            <span className="split-spacer" />
             <span className="split-right">simple solutions</span>
           </span>
-
-          {/* Line 3: "that work." */}
           <span className="tagline-line">that work.</span>
         </div>
 
@@ -92,6 +69,7 @@ function About() {
 
       {/* ============================================================
           SECTION 2: ROLES
+          Cards positioned around center gap
           ============================================================ */}
       <section className="editorial-section section-roles-display">
         <div className="roles-container">
@@ -113,14 +91,6 @@ function About() {
                 <li>Information Architecture</li>
                 <li>Wireframing</li>
               </ul>
-            </div>
-            {/* Center avatar for roles section */}
-            <div className="roles-center-avatar">
-              <img
-                src="/assets/head_3d_clean.png"
-                alt="Shaivi 3D Avatar"
-                className="roles-avatar-img"
-              />
             </div>
             <div className="role-node node-right">
               <span className="role-category-label">UI Designer</span>
@@ -145,6 +115,7 @@ function About() {
 
       {/* ============================================================
           SECTION 3: CONTACT
+          Cards positioned around center gap
           ============================================================ */}
       <section className="editorial-section section-contact-display">
         <div className="contact-container">
@@ -158,14 +129,6 @@ function About() {
               <span className="contact-card-label">Behance</span>
               <span className="contact-card-link">shaivilavhe11 &rarr;</span>
             </a>
-            {/* Center avatar for contact section */}
-            <div className="contact-center-avatar">
-              <img
-                src="/assets/head_3d_clean.png"
-                alt="Shaivi 3D Avatar"
-                className="contact-avatar-img"
-              />
-            </div>
             <a href="mailto:shaivilavhe@gmail.com" className="contact-card card-email">
               <span className="contact-card-label">Email</span>
               <span className="contact-card-link">shaivilavhe@gmail.com &rarr;</span>
@@ -180,6 +143,7 @@ function About() {
 
       {/* ============================================================
           SECTION 4: CHAPTERS / PRINCIPLES
+          Left & right text columns wrap around center gap
           ============================================================ */}
       <section className="editorial-section section-chapters-display">
         <div className="chapters-container">
@@ -195,7 +159,6 @@ function About() {
             ))}
           </div>
 
-          {/* Chapter title row: "Ch. One  [Roman Numeral]  Quality" */}
           <div className="chapter-header-wrap">
             <div className="chapter-title-row">
               <span className="chapter-num-name">Ch. {CHAPTERS[activeChapter].numText}</span>
@@ -204,18 +167,11 @@ function About() {
             </div>
           </div>
 
-          {/* Avatar + Left & Right Text Columns wrapping around center */}
           <div className="chapter-columns-wrap">
             <div className="chapter-text-column column-left">
               <p>{CHAPTERS[activeChapter].leftText}</p>
             </div>
-            <div className="chapter-center-avatar-slot">
-              <img
-                src="/assets/head_3d_clean.png"
-                alt="Shaivi 3D Avatar"
-                className="chapter-avatar-img"
-              />
-            </div>
+            <div className="chapter-center-spacer" />
             <div className="chapter-text-column column-right">
               <p>{CHAPTERS[activeChapter].rightText}</p>
             </div>

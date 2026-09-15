@@ -9,7 +9,7 @@ function About() {
   const [activeCategory, setActiveCategory] = useState(null)
 
   return (
-    <div className="about-page-wrapper" style={{ minHeight: '100vh', backgroundColor: '#FDFCFB', color: '#111111' }}>
+    <div className="about-page-wrapper" style={{ minHeight: '100vh' }}>
       {/* Top Left Corner Interactive Turntable Audio Music Player */}
       <div style={{ position: 'fixed', top: '25px', left: '35px', zIndex: 100 }}>
         <TurntablePlayer width="90px" />

@@ -44,22 +44,20 @@ function About({ onHoverCategory, onLeaveCategory }) {
     <div className="about-editorial-wrapper">
 
       {/* ============================================================
-          SECTION 1: HERO TAGLINE
+          SECTION 1: HERO TAGLINE WITH MONOSPACE TYPOGRAPHY & AVATAR SPLIT
           ============================================================ */}
       <section className="editorial-section section-hero-tagline">
         <div className="tagline-wrap-container">
-          <span className="tagline-line">Turning complex</span>
+          <span className="tagline-line">I am Shaivi,</span>
           <span className="tagline-line middle-split">
-            <span className="split-left">problems into</span>
+            <span className="split-left">I am a</span>
             <span className="split-spacer" />
-            <span className="split-right">simple solutions</span>
+            <span className="split-right">UI/UX designer.</span>
           </span>
-          <span className="tagline-line">that work.</span>
+          <span className="tagline-subtext">
+            I love to research, get to the bottom of the problems and make stuff that actually works.
+          </span>
         </div>
-
-        <p className="hero-subtitle-caption">
-          UX Designer, UI Designer, UX Researcher &amp; Product Designer
-        </p>
 
         <div className="scroll-hint-indicator">
           <span>Scroll down to explore</span>
@@ -68,7 +66,7 @@ function About({ onHoverCategory, onLeaveCategory }) {
       </section>
 
       {/* ============================================================
-          SECTION 2: ROLES — Floating plain text, no cards
+          SECTION 2: ROLES — Floating plain text in monospace
           ============================================================ */}
       <section className="editorial-section section-roles-display">
         <div className="roles-flow-container">

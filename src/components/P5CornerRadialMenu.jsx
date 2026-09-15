@@ -6,6 +6,7 @@ import './P5CornerRadialMenu.css'
 function P5CornerRadialMenu() {
   const navigate = useNavigate()
   const { playSfx } = useAudio()
+  const [isContainerHovered, setIsContainerHovered] = useState(false)
   const [activeHoverNode, setActiveHoverNode] = useState(null)
 
   const radialNodes = [
@@ -54,13 +55,23 @@ function P5CornerRadialMenu() {
     }
   ]
 
-  const handleMouseEnter = (nodeId) => {
+  const handleContainerMouseEnter = () => {
+    setIsContainerHovered(true)
+    playSfx('hover')
+  }
+
+  const handleContainerMouseLeave = () => {
+    setIsContainerHovered(false)
+    setActiveHoverNode(null)
+  }
+
+  const handleNodeMouseEnter = (nodeId) => {
     setActiveHoverNode(nodeId)
     playSfx('hover')
     playSfx('banner')
   }
 
-  const handleMouseLeave = () => {
+  const handleNodeMouseLeave = () => {
     setActiveHoverNode(null)
   }
 
@@ -71,9 +82,9 @@ function P5CornerRadialMenu() {
 
   return (
     <>
-      {/* Persona 5 Projection Banner Layers shooting across the screen */}
+      {/* Persona 5 Projection Banner Layers shooting across screen on hover */}
       {radialNodes.map((node) => {
-        const isActive = activeHoverNode === node.id
+        const isActive = isContainerHovered && activeHoverNode === node.id
 
         return (
           <div
@@ -95,8 +106,12 @@ function P5CornerRadialMenu() {
       })}
 
       {/* Top Right Radial Menu Container */}
-      <div className="p5-corner-menu-container">
-        {/* Translucent Donut Ring Background */}
+      <div
+        className={`p5-corner-menu-container ${isContainerHovered ? 'is-expanded' : ''}`}
+        onMouseEnter={handleContainerMouseEnter}
+        onMouseLeave={handleContainerMouseLeave}
+      >
+        {/* Translucent Donut Ring Background (Visible on Hover) */}
         <div className="corner-ring-wrapper">
           <img
             src="/assets/purple_ring_translucent.png"
@@ -105,11 +120,11 @@ function P5CornerRadialMenu() {
           />
         </div>
 
-        {/* Central 3D Bronze Female Head (Interactive ABOUT ME Trigger) */}
+        {/* Central 3D Bronze Female Head (Default Avatar Trigger & ABOUT ME) */}
         <div
           className={`corner-head-wrapper ${activeHoverNode === 'avatar' ? 'is-hovered' : ''}`}
-          onMouseEnter={() => handleMouseEnter('avatar')}
-          onMouseLeave={handleMouseLeave}
+          onMouseEnter={() => handleNodeMouseEnter('avatar')}
+          onMouseLeave={handleNodeMouseLeave}
           onClick={() => handleNodeClick('/about')}
           role="button"
           tabIndex={0}
@@ -127,7 +142,7 @@ function P5CornerRadialMenu() {
           />
         </div>
 
-        {/* 4 Radial Menu Nodes */}
+        {/* 4 Radial Menu Nodes (Visible on Hover) */}
         {radialNodes
           .filter((node) => node.id !== 'avatar')
           .map((node) => {
@@ -138,8 +153,8 @@ function P5CornerRadialMenu() {
                 key={node.id}
                 className={`corner-node-item ${isHovered ? 'is-hovered' : ''}`}
                 style={node.style}
-                onMouseEnter={() => handleMouseEnter(node.id)}
-                onMouseLeave={handleMouseLeave}
+                onMouseEnter={() => handleNodeMouseEnter(node.id)}
+                onMouseLeave={handleNodeMouseLeave}
                 onClick={() => handleNodeClick(node.path)}
                 role="button"
                 tabIndex={0}

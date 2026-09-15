@@ -66,8 +66,8 @@ function HomeHero() {
         <div className="dial-column">
           <div className="dial-wrapper">
             <img
-              src="/assets/dial_transparent.png"
-              alt="Interactive Navigation Dial & Shaivi 3D Avatar"
+              src="/assets/dial_pink_glass.png"
+              alt="Interactive Pink Glass Navigation Dial & Shaivi 3D Avatar"
               className="dial-img"
             />
 

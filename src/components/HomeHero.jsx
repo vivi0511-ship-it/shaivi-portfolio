@@ -91,7 +91,7 @@ function HomeHero() {
         )
       })}
 
-      {/* Top Right Music Player Turntable */}
+      {/* Top Left Music Player Turntable */}
       <div className="floating-turntable" title="Shaivi's Music & Design Studio">
         <img
           src="/assets/turntable_transparent.png"

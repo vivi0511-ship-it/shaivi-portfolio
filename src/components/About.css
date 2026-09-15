@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ABOUT PAGE — Fixed Avatar with Scrolling Text (GN.D Reference Effect)
+   ABOUT PAGE — Fixed Avatar + Scrolling Text (GN.D Reference)
    ========================================================================== */
 
 .about-editorial-wrapper {
@@ -89,17 +89,6 @@
   box-sizing: border-box;
 }
 
-.section-header-title {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #666666;
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
 /* ==========================================================================
    SECTION 1: HERO TAGLINE
    ========================================================================== */
@@ -171,13 +160,10 @@
 }
 
 /* ==========================================================================
-   SECTION 2 & 3: FLOATING TEXT ROLES & CONTACT (GN.D REFERENCE)
-   No cards — just plain text flowing vertically, alternating left/right
+   SECTION 2 & 3: FLOATING TEXT ROLES & CONTACT
    ========================================================================== */
 .section-roles-display,
-.section-contact-display {
-  z-index: 10;
-}
+.section-contact-display { z-index: 10; }
 
 .roles-flow-container {
   max-width: 900px;
@@ -188,7 +174,6 @@
   gap: 3rem;
 }
 
-/* A single role group — title + items stacked vertically */
 .role-group {
   display: flex;
   flex-direction: column;
@@ -196,19 +181,9 @@
   gap: 0.35rem;
 }
 
-.role-center {
-  text-align: center;
-}
-
-.role-align-right {
-  align-items: flex-end;
-  text-align: right;
-}
-
-.role-align-left {
-  align-items: flex-start;
-  text-align: left;
-}
+.role-center { text-align: center; }
+.role-align-right { align-items: flex-end; text-align: right; }
+.role-align-left { align-items: flex-start; text-align: left; }
 
 .role-title {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -232,18 +207,13 @@
   color: #444444;
   transition: color 0.2s ease;
 }
+.role-link:hover { color: #111111; }
 
-.role-link:hover {
-  color: #111111;
-}
-
-/* Split row: left group | avatar gap | right group */
 .role-split-row {
   display: flex;
   align-items: flex-start;
   justify-content: center;
   width: 100%;
-  gap: 0;
 }
 
 .role-avatar-gap {
@@ -257,66 +227,32 @@
 }
 
 /* ==========================================================================
-   SECTION 4: CHAPTERS
+   SECTION 4: CHAPTERS — All displayed vertically as you scroll
+   Each chapter: title row → left/right text columns with center gap
+   The fixed avatar sits in the gap as text scrolls past
    ========================================================================== */
-.section-chapters-display { z-index: 10; }
-
-.chapters-container {
-  max-width: 1100px;
+.chapter-scroll-section {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 8rem 2rem;
+  position: relative;
+  box-sizing: border-box;
+  z-index: 10;
 }
 
-.chapter-selector-tabs {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 2.5rem;
-}
-
-.chapter-tab-pill {
-  background: transparent;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 999px;
-  padding: 0.45rem 1.1rem;
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: #555555;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.chapter-tab-pill:hover {
-  background: rgba(0, 0, 0, 0.04);
-  color: #111111;
-  border-color: rgba(0, 0, 0, 0.25);
-}
-
-.chapter-tab-pill.active {
-  background: #111111;
-  color: #ffffff;
-  border-color: #111111;
-  font-weight: 600;
-}
-
-.chapter-header-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
+/* Title row: "Ch. One    I    Feel" */
 .chapter-title-row {
   display: flex;
   align-items: baseline;
   justify-content: center;
   gap: 2rem;
+  margin-bottom: 3rem;
 }
 
 .chapter-num-name {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -332,19 +268,21 @@
 }
 
 .chapter-title-name {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   color: #111111;
 }
 
+/* Left & Right text columns wrapping around center avatar gap */
 .chapter-columns-wrap {
   display: flex;
   align-items: flex-start;
   justify-content: center;
   width: 100%;
   max-width: 1040px;
-  margin: 1rem auto 0;
+  margin: 0 auto;
 }
 
 .chapter-text-column {
@@ -370,31 +308,10 @@
   margin: 0;
 }
 
+/* Center gap matching the fixed avatar width */
 .chapter-center-spacer {
   width: clamp(170px, 20vw, 240px);
   flex-shrink: 0;
-}
-
-.chapter-dots-indicator {
-  display: flex;
-  gap: 0.6rem;
-  margin-top: 3.5rem;
-}
-
-.chapter-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.2);
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.chapter-dot.active {
-  background: #111111;
-  transform: scale(1.4);
 }
 
 /* ==========================================================================
@@ -403,19 +320,11 @@
 @media (max-width: 900px) {
   .tagline-wrap-container { font-size: 2rem; }
 
-  .split-spacer {
-    width: 120px;
-    height: 120px;
-  }
-
+  .split-spacer { width: 120px; height: 120px; }
   .avatar-fixed-img { width: 120px; }
-
   .role-avatar-gap { width: 120px; }
 
-  .middle-split {
-    flex-wrap: wrap;
-    white-space: normal;
-  }
+  .middle-split { flex-wrap: wrap; white-space: normal; }
 
   .role-split-row {
     flex-direction: column;
@@ -434,7 +343,7 @@
   .chapter-columns-wrap {
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem;
   }
 
   .chapter-text-column {
@@ -444,4 +353,6 @@
   }
 
   .chapter-center-spacer { display: none; }
+
+  .chapter-scroll-section { padding: 5rem 1.5rem; }
 }

@@ -283,8 +283,8 @@
 .central-head-wrapper {
   position: absolute;
   z-index: 35;
-  width: 440px;
-  height: 460px;
+  width: 510px;
+  height: 530px;
   left: 56%;
   top: 50%;
   transform: translate(-50%, -50%);

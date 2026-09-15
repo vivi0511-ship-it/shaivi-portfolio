@@ -36,12 +36,19 @@ function HomeHero() {
     },
     {
       id: 'console',
-      title: 'ABOUT ME',
+      title: 'HOBBIES',
       path: '/contact',
       img: '/assets/pod_console_trans.png',
       style: { top: '87.5%', left: '71.5%', transform: 'translate(-50%, -50%)' },
       bannerClip: 'polygon(0% 28%, 78% 74%, 70% 100%, 0% 100%)',
       textPos: { top: '42%', left: '11%', transform: 'rotate(-4deg)' }
+    },
+    {
+      id: 'avatar',
+      title: 'ABOUT ME',
+      path: '/about',
+      bannerClip: 'polygon(0% 15%, 82% 35%, 75% 72%, 0% 95%)',
+      textPos: { top: '35%', left: '10%', transform: 'rotate(-3deg)' }
     }
   ]
 
@@ -117,8 +124,23 @@ function HomeHero() {
             {/* Background Purple Translucent Arc Circle */}
             <div className="radial-arc-bg"></div>
 
-            {/* Central 3D Bronze Female Head */}
-            <div className="central-head-wrapper">
+            {/* Central 3D Bronze Female Head (Interactive ABOUT ME Trigger) */}
+            <div
+              className={`central-head-wrapper ${
+                activeHoverNode === 'avatar' ? 'is-avatar-hovered' : ''
+              }`}
+              onMouseEnter={() => handleMouseEnter('avatar')}
+              onMouseLeave={handleMouseLeave}
+              onClick={() => handleNodeClick('/about')}
+              role="button"
+              tabIndex={0}
+              aria-label="Navigate to ABOUT ME"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  handleNodeClick('/about')
+                }
+              }}
+            >
               <img
                 src="/assets/head_3d_clean.png"
                 alt="Shaivi 3D Bronze Character"
@@ -127,36 +149,38 @@ function HomeHero() {
             </div>
 
             {/* 4 Radial Menu Nodes */}
-            {radialNodes.map((node) => {
-              const isHovered = activeHoverNode === node.id
-              const isDimmed = activeHoverNode !== null && !isHovered
+            {radialNodes
+              .filter((node) => node.id !== 'avatar')
+              .map((node) => {
+                const isHovered = activeHoverNode === node.id
+                const isDimmed = activeHoverNode !== null && !isHovered
 
-              return (
-                <div
-                  key={node.id}
-                  className={`radial-node-item ${isHovered ? 'is-node-hovered' : ''} ${
-                    isDimmed ? 'is-node-dimmed' : ''
-                  }`}
-                  style={node.style}
-                  onMouseEnter={() => handleMouseEnter(node.id)}
-                  onMouseLeave={handleMouseLeave}
-                  onClick={() => handleNodeClick(node.path)}
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`Navigate to ${node.title}`}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      handleNodeClick(node.path)
-                    }
-                  }}
-                >
-                  <div className="radial-node-bubble">
-                    <img src={node.img} alt={node.title} className="node-icon-img" />
-                    <div className="node-glass-ring"></div>
+                return (
+                  <div
+                    key={node.id}
+                    className={`radial-node-item ${isHovered ? 'is-node-hovered' : ''} ${
+                      isDimmed ? 'is-node-dimmed' : ''
+                    }`}
+                    style={node.style}
+                    onMouseEnter={() => handleMouseEnter(node.id)}
+                    onMouseLeave={handleMouseLeave}
+                    onClick={() => handleNodeClick(node.path)}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Navigate to ${node.title}`}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        handleNodeClick(node.path)
+                      }
+                    }}
+                  >
+                    <div className="radial-node-bubble">
+                      <img src={node.img} alt={node.title} className="node-icon-img" />
+                      <div className="node-glass-ring"></div>
+                    </div>
                   </div>
-                </div>
-              )
-            })}
+                )
+              })}
           </div>
         </div>
       </div>

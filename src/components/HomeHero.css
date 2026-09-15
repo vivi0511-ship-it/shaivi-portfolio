@@ -254,8 +254,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 180ms ease, filter 180ms ease;
-  pointer-events: none;
+  cursor: pointer;
+  outline: none;
+  pointer-events: auto;
+  transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 180ms ease, filter 180ms ease;
+}
+
+.central-head-wrapper.is-avatar-hovered {
+  z-index: 45 !important;
+  transform: translate(-50%, -50%) scale(1.08) !important;
 }
 
 .central-head-img {
@@ -263,6 +270,11 @@
   height: auto;
   display: block;
   filter: drop-shadow(-15px 25px 35px rgba(160, 90, 120, 0.3));
+  transition: filter 200ms ease;
+}
+
+.central-head-wrapper.is-avatar-hovered .central-head-img {
+  filter: drop-shadow(-20px 30px 45px rgba(180, 80, 130, 0.45));
 }
 
 /* Radial Menu Node Items */

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import TurntablePlayer from '../components/TurntablePlayer'
 import './Work.css'
 
 const caseStudies = [
@@ -92,19 +93,9 @@ function Work() {
 
   return (
     <div className="work-page-container">
-      {/* Top Left Corner Floating Record Player */}
-      <div
-        className="work-top-left"
-        onClick={() => navigate('/')}
-        title="Return to Home"
-        role="button"
-        tabIndex={0}
-      >
-        <img
-          src="/assets/turntable_transparent.png"
-          alt="Record Player"
-          className="turntable-corner-img"
-        />
+      {/* Top Left Corner Interactive Turntable Audio Player */}
+      <div className="work-top-left">
+        <TurntablePlayer width="90px" />
       </div>
 
       {/* Top Right Corner Floating 3D Avatar Head */}

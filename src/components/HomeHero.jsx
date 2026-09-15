@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAudio } from '../context/AudioContext'
+import TurntablePlayer from './TurntablePlayer'
 import './HomeHero.css'
 
 function HomeHero() {
   const navigate = useNavigate()
+  const { playSfx } = useAudio()
   const [activeHoverNode, setActiveHoverNode] = useState(null)
 
   const radialNodes = [
@@ -54,6 +57,8 @@ function HomeHero() {
 
   const handleMouseEnter = (nodeId) => {
     setActiveHoverNode(nodeId)
+    playSfx('hover')
+    playSfx('banner')
   }
 
   const handleMouseLeave = () => {
@@ -61,6 +66,7 @@ function HomeHero() {
   }
 
   const handleNodeClick = (path) => {
+    playSfx('click')
     navigate(path)
   }
 
@@ -102,12 +108,8 @@ function HomeHero() {
       <div className={`p5-hero-content ${activeHoverNode ? 'is-screen-focused' : ''}`}>
         {/* Left Column: Default Bio Text Layout */}
         <div className="left-bio-column">
-          <div className="floating-turntable" title="Shaivi's Music & Design Studio">
-            <img
-              src="/assets/turntable_transparent.png"
-              alt="Floating Record Player"
-              className="turntable-img"
-            />
+          <div className="hero-turntable-wrapper" title="Shaivi's Music Studio - Click to Play/Pause">
+            <TurntablePlayer width="140px" className="hero-turntable-player" />
           </div>
 
           <div className="bio-text-group">

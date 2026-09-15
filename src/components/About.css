@@ -43,6 +43,12 @@
   border-color: rgba(0, 0, 0, 0.15) !important;
 }
 
+/* Hide duplicate P5 radial corner menu on About page */
+.about-page-wrapper .p5-corner-menu-container,
+.about-page-wrapper .p5-corner-banner {
+  display: none !important;
+}
+
 .about-page-wrapper .site-footer {
   background-color: #F7F6F2 !important;
   color: #111111 !important;
@@ -69,7 +75,7 @@
    ========================================================================== */
 .about-stage-nav {
   position: fixed;
-  top: 88px;
+  top: 84px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 90;
@@ -119,7 +125,7 @@
 }
 
 /* ==========================================================================
-   CENTERED STICKY 3D AVATAR HEAD
+   CENTERED STICKY 3D AVATAR HEAD (PERFECT DEAD-CENTER)
    ========================================================================== */
 .avatar-center-stage {
   position: fixed;
@@ -131,10 +137,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 0;
+  height: 0;
 }
 
 .avatar-head-wrapper {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transition: transform 0.15s ease-out;
 }
 
@@ -160,9 +171,9 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 90%;
-  height: 90%;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
+  width: 110%;
+  height: 110%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.14) 0%, transparent 70%);
   border-radius: 50%;
   z-index: -1;
   pointer-events: none;
@@ -178,7 +189,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 8rem 2rem 5rem 2rem;
+  padding: 6rem 2rem;
   position: relative;
   box-sizing: border-box;
 }
@@ -208,6 +219,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .hero-tagline-text {
@@ -216,7 +228,7 @@
   font-weight: 400;
   line-height: 1.25;
   color: #111111;
-  margin: 0 0 2.5rem 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -240,7 +252,7 @@
 }
 
 .split-spacer {
-  width: clamp(190px, 24vw, 280px);
+  width: clamp(190px, 24vw, 270px);
   flex-shrink: 0;
 }
 
@@ -303,7 +315,7 @@
 
 .role-node {
   position: absolute;
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   padding: 1.2rem 1.6rem;
@@ -385,7 +397,6 @@
   font-size: 0.95rem;
   color: #444444;
   margin-bottom: 0.25rem;
-
 }
 
 /* ==========================================================================
@@ -587,7 +598,7 @@
 }
 
 .chapter-center-spacer {
-  width: clamp(190px, 24vw, 280px);
+  width: clamp(190px, 24vw, 270px);
   flex-shrink: 0;
 }
 

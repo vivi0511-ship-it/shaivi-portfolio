@@ -52,7 +52,7 @@ function About() {
       const { innerWidth, innerHeight } = window
       const x = (e.clientX - innerWidth / 2) / (innerWidth / 2)
       const y = (e.clientY - innerHeight / 2) / (innerHeight / 2)
-      setMouseOffset({ x: x * 8, y: y * 8 })
+      setMouseOffset({ x: x * 6, y: y * 6 })
     }
 
     window.addEventListener('mousemove', handleMouseMove)
@@ -123,12 +123,12 @@ function About() {
         </button>
       </nav>
 
-      {/* CENTERED STICKY 3D AVATAR HEAD */}
+      {/* CENTERED STICKY 3D AVATAR HEAD - PERFECTLY CENTERED AT (50vw, 50vh) */}
       <div className="avatar-center-stage">
         <div
           className="avatar-head-wrapper"
           style={{
-            transform: `translate(calc(-50% + ${mouseOffset.x}px), calc(-50% + ${mouseOffset.y}px))`
+            transform: `translate3d(${mouseOffset.x}px, ${mouseOffset.y}px, 0)`
           }}
         >
           <img

@@ -124,10 +124,10 @@ export default function Avatar3DCanvas({ activeCategory }) {
     const headMat = new THREE.MeshStandardMaterial({
       map: avatarTexture,
       transparent: true,
-      alphaTest: 0.05,
+      depthWrite: false,
       roughness: 0.35,
       metalness: 0.08,
-      side: THREE.DoubleSide
+      side: THREE.FrontSide
     })
 
     const headMesh = new THREE.Mesh(headGeo, headMat)

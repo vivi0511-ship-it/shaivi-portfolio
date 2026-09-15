@@ -224,14 +224,14 @@
   pointer-events: none;
 }
 
-/* Floating Glass Pods */
+/* Floating Glass Pods Base */
 .glass-pod-item {
   position: absolute;
   z-index: 30;
   cursor: pointer;
   user-select: none;
   outline: none;
-  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .pod-glass-capsule {
@@ -239,10 +239,10 @@
   width: 142px;
   height: 142px;
   border-radius: 32px;
-  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.75) 0%, rgba(255, 190, 215, 0.38) 55%, rgba(255, 150, 190, 0.5) 100%);
-  backdrop-filter: blur(12px) saturate(130%);
-  -webkit-backdrop-filter: blur(12px) saturate(130%);
-  border: 2px solid rgba(255, 255, 255, 0.75);
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.78) 0%, rgba(255, 190, 215, 0.38) 55%, rgba(255, 150, 190, 0.5) 100%);
+  backdrop-filter: blur(14px) saturate(135%);
+  -webkit-backdrop-filter: blur(14px) saturate(135%);
+  border: 2px solid rgba(255, 255, 255, 0.78);
   box-shadow: 
     inset 0 4px 14px rgba(255, 255, 255, 0.95),
     inset 0 -4px 12px rgba(220, 80, 140, 0.35),
@@ -251,15 +251,17 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: all 0.35s ease;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .pod-icon-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 6px 12px rgba(180, 80, 120, 0.2));
-  transition: transform 0.4s ease;
+  filter: drop-shadow(0 6px 12px rgba(180, 80, 120, 0.22));
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .pod-specular-reflection {
@@ -269,53 +271,148 @@
   right: 12px;
   height: 25px;
   border-radius: 16px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0) 100%);
   pointer-events: none;
 }
 
-/* Hover Dynamics for Pods */
-.glass-pod-item:hover {
-  z-index: 50;
-  transform: scale(1.14) translateY(-6px) !important;
-}
-
-.glass-pod-item:hover .pod-glass-capsule {
-  border-color: rgba(255, 255, 255, 0.95);
-  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 200, 222, 0.5) 55%, rgba(255, 160, 200, 0.65) 100%);
-  box-shadow: 
-    inset 0 5px 18px rgba(255, 255, 255, 1),
-    inset 0 -5px 15px rgba(220, 80, 140, 0.45),
-    0 0 30px rgba(255, 180, 215, 0.85),
-    0 18px 45px rgba(190, 70, 120, 0.32);
-}
-
-.glass-pod-item:hover .pod-icon-img {
-  transform: scale(1.08) rotate(2deg);
-}
-
-/* Tooltip Badge for Pods */
-.pod-tooltip-badge {
+.pod-chromatic-flare {
   position: absolute;
-  bottom: -36px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(30, 24, 26, 0.88);
-  color: #ffffff;
-  padding: 6px 14px;
-  border-radius: 18px;
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 13px;
+  inset: -2px;
+  border-radius: 34px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0) 0%, rgba(255, 200, 225, 0) 40%, rgba(255, 255, 255, 0.6) 100%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+/* Persona 5 Strikers Active Hover Physics & Spring Pop */
+.glass-pod-item.is-active-hover {
+  z-index: 100 !important;
+}
+
+.glass-pod-item.is-active-hover .pod-glass-capsule {
+  border-color: rgba(255, 255, 255, 0.98);
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 195, 222, 0.55) 55%, rgba(255, 155, 200, 0.7) 100%);
+  box-shadow: 
+    inset 0 6px 20px rgba(255, 255, 255, 1),
+    inset 0 -6px 18px rgba(220, 70, 140, 0.48),
+    0 0 45px rgba(255, 185, 220, 0.95),
+    0 20px 50px rgba(190, 60, 115, 0.38);
+}
+
+.glass-pod-item.is-active-hover .pod-chromatic-flare {
+  opacity: 1;
+}
+
+.glass-pod-item.is-active-hover .pod-icon-img {
+  transform: scale(1.12) translateZ(15px);
+}
+
+/* Persona 5 Strikers Kinetic Elongated Glass Capsule Pill Reveal */
+.persona-glass-pill-label {
+  position: absolute;
+  left: 108%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 218, 232, 0.88);
+  backdrop-filter: blur(18px) saturate(145%);
+  -webkit-backdrop-filter: blur(18px) saturate(145%);
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  border-radius: 28px;
+  padding: 10px 22px 10px 18px;
+  box-shadow: 
+    inset 0 3px 10px rgba(255, 255, 255, 0.95),
+    inset 0 -3px 8px rgba(220, 70, 130, 0.3),
+    0 12px 30px rgba(180, 50, 100, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
   white-space: nowrap;
   pointer-events: none;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(6px);
-  animation: fadeInBadge 0.2s ease forwards;
-  z-index: 60;
+  z-index: 120;
+  animation: personaPillPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-@keyframes fadeInBadge {
-  from { opacity: 0; transform: translateX(-50%) translateY(4px); }
-  to { opacity: 1; transform: translateX(-50%) translateY(0px); }
+/* Reverse orientation for pods on the far right edge */
+.pod-laptop .persona-glass-pill-label,
+.pod-resume .persona-glass-pill-label,
+.pod-console .persona-glass-pill-label {
+  left: auto;
+  right: 108%;
+}
+
+@keyframes personaPillPop {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.7) translateX(-15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1) translateX(0px);
+  }
+}
+
+.persona-pill-highlight {
+  position: absolute;
+  top: 6px;
+  left: 14px;
+  right: 14px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.95) 50%, rgba(255,255,255,0) 100%);
+  pointer-events: none;
+}
+
+.persona-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.persona-code {
+  font-family: 'Pixelify Sans', 'Silkscreen', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #ff3377;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 2px 7px;
+  border-radius: 10px;
+  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.9);
+}
+
+.persona-title-text {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #1a1618;
+  display: flex;
+}
+
+.persona-char {
+  display: inline-block;
+  opacity: 0;
+  animation: personaLetterCascade 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes personaLetterCascade {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) rotateX(-90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px) rotateX(0deg);
+  }
+}
+
+.persona-sublabel-row {
+  font-family: 'Pixelify Sans', 'Silkscreen', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: #604050;
+  letter-spacing: 0.4px;
+  padding-left: 2px;
+  opacity: 0.9;
 }
 
 /* Zero-Gravity Individual Pod Float Animations */

@@ -4,66 +4,135 @@ import './HomeHero.css'
 
 function HomeHero() {
   const navigate = useNavigate()
-  const [activeTooltip, setActiveTooltip] = useState('')
+  const [activePodId, setActivePodId] = useState(null)
+  const [tilt, setTilt] = useState({ x: 0, y: 0 })
 
   const floatingPods = [
     {
       id: 'house',
-      label: 'Home',
+      code: '01',
+      label: 'HOME',
+      subLabel: 'Main Entrance & Hero',
       path: '/',
       img: '/assets/pod_house_trans.png',
       className: 'pod-house',
-      style: { top: '3%', left: '46%' }
+      x: 46,
+      y: 3
     },
     {
       id: 'laptop',
-      label: 'Selected Work',
+      code: '02',
+      label: 'SELECTED WORK',
+      subLabel: 'View Portfolio Projects',
       path: '/work',
       img: '/assets/pod_laptop_trans.png',
       className: 'pod-laptop',
-      style: { top: '15%', left: '76%' }
+      x: 76,
+      y: 15
     },
     {
       id: 'camera',
-      label: 'Visuals & Media',
+      code: '03',
+      label: 'VISUALS & MEDIA',
+      subLabel: 'Graphics & Photography',
       path: '/work#visuals',
       img: '/assets/pod_camera_trans.png',
       className: 'pod-camera',
-      style: { top: '12%', left: '16%' }
+      x: 16,
+      y: 12
     },
     {
       id: 'resume',
-      label: 'About Shaivi',
+      code: '04',
+      label: 'ABOUT SHAIVI',
+      subLabel: 'Bio & Experience',
       path: '/about',
       img: '/assets/pod_resume_trans.png',
       className: 'pod-resume',
-      style: { top: '42%', left: '85%' }
+      x: 85,
+      y: 42
     },
     {
       id: 'console',
-      label: 'Get in Touch',
+      code: '05',
+      label: 'GET IN TOUCH',
+      subLabel: 'Contact & Socials',
       path: '/contact',
       img: '/assets/pod_console_trans.png',
       className: 'pod-console',
-      style: { top: '70%', left: '74%' }
+      x: 74,
+      y: 70
     },
     {
       id: 'book',
-      label: 'Research & Books',
+      code: '06',
+      label: 'RESEARCH & BOOKS',
+      subLabel: 'UX & Interaction Notes',
       path: '/about#research',
       img: '/assets/pod_book_trans.png',
       className: 'pod-book',
-      style: { top: '78%', left: '44%' }
+      x: 44,
+      y: 78
     },
     {
       id: 'shapes',
-      label: 'Design Systems',
+      code: '07',
+      label: 'DESIGN SYSTEMS',
+      subLabel: 'UI Components & Motion',
       path: '/work#systems',
       img: '/assets/pod_shapes_trans.png',
       className: 'pod-shapes',
-      style: { top: '65%', left: '14%' }
+      x: 14,
+      y: 65
     }
   ]
+
+  // Compute magnetic tilt effect when cursor moves inside hovered pod
+  const handleMouseMove = (e, podId) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const mouseX = e.clientX - rect.left - rect.width / 2
+    const mouseY = e.clientY - rect.top - rect.height / 2
+    
+    // Magnetic pull sensitivity
+    const tiltX = (mouseY / (rect.height / 2)) * -18
+    const tiltY = (mouseX / (rect.width / 2)) * 18
+    
+    setTilt({ x: tiltX, y: tiltY })
+  }
+
+  const handleMouseEnter = (podId) => {
+    setActivePodId(podId)
+  }
+
+  const handleMouseLeave = () => {
+    setActivePodId(null)
+    setTilt({ x: 0, y: 0 })
+  }
+
+  // Calculate antigravity repulsion offset for adjacent non-hovered pods
+  const getRepulsionStyle = (pod) => {
+    if (!activePodId) return {}
+    
+    const activePod = floatingPods.find((p) => p.id === activePodId)
+    if (!activePod || activePod.id === pod.id) return {}
+
+    // Vector from active pod to this pod
+    const dx = pod.x - activePod.x
+    const dy = pod.y - activePod.y
+    const distance = Math.sqrt(dx * dx + dy * dy) || 1
+
+    // Antigravity push strength (strongest for close pods)
+    const pushFactor = Math.max(0, 45 - distance) / 45
+    const pushDistance = pushFactor * 32 // 32px max repulsion shift
+
+    const pushX = (dx / distance) * pushDistance
+    const pushY = (dy / distance) * pushDistance
+
+    return {
+      transform: `translate(${pushX}px, ${pushY}px) scale(${1 - pushFactor * 0.08})`,
+      transition: 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)'
+    }
+  }
 
   return (
     <main className="antigravity-hero-container">
@@ -114,33 +183,72 @@ function HomeHero() {
             </div>
 
             {/* 7 Floating Pink Glass Pod Capsules */}
-            {floatingPods.map((pod) => (
-              <div
-                key={pod.id}
-                className={`glass-pod-item ${pod.className}`}
-                style={pod.style}
-                onMouseEnter={() => setActiveTooltip(pod.label)}
-                onMouseLeave={() => setActiveTooltip('')}
-                onClick={() => navigate(pod.path)}
-                role="button"
-                tabIndex={0}
-                aria-label={`Navigate to ${pod.label}`}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    navigate(pod.path)
-                  }
-                }}
-              >
-                <div className="pod-glass-capsule">
-                  <img src={pod.img} alt={pod.label} className="pod-icon-img" />
-                  <div className="pod-specular-reflection"></div>
-                </div>
+            {floatingPods.map((pod) => {
+              const isActive = activePodId === pod.id
+              const repulsionStyle = getRepulsionStyle(pod)
 
-                {activeTooltip === pod.label && (
-                  <div className="pod-tooltip-badge">{pod.label}</div>
-                )}
-              </div>
-            ))}
+              return (
+                <div
+                  key={pod.id}
+                  className={`glass-pod-item ${pod.className} ${isActive ? 'is-active-hover' : ''}`}
+                  style={{
+                    top: `${pod.y}%`,
+                    left: `${pod.x}%`,
+                    ...repulsionStyle
+                  }}
+                  onMouseEnter={() => handleMouseEnter(pod.id)}
+                  onMouseMove={(e) => handleMouseMove(e, pod.id)}
+                  onMouseLeave={handleMouseLeave}
+                  onClick={() => navigate(pod.path)}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Navigate to ${pod.label}`}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      navigate(pod.path)
+                    }
+                  }}
+                >
+                  {/* Glass Capsule Pod Container with 3D Magnetic Tilt */}
+                  <div
+                    className="pod-glass-capsule"
+                    style={
+                      isActive
+                        ? { transform: `perspective(600px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(1.28)` }
+                        : {}
+                    }
+                  >
+                    <img src={pod.img} alt={pod.label} className="pod-icon-img" />
+                    <div className="pod-specular-reflection"></div>
+                    <div className="pod-chromatic-flare"></div>
+                  </div>
+
+                  {/* Persona 5 Strikers Kinetic Glass Capsule Label Reveal */}
+                  {isActive && (
+                    <div className="persona-glass-pill-label">
+                      <div className="persona-pill-highlight"></div>
+                      
+                      <div className="persona-title-row">
+                        <span className="persona-code">{pod.code}</span>
+                        <div className="persona-title-text">
+                          {pod.label.split('').map((char, index) => (
+                            <span
+                              key={index}
+                              className="persona-char"
+                              style={{ animationDelay: `${index * 0.022}s` }}
+                            >
+                              {char === ' ' ? '\u00A0' : char}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="persona-sublabel-row">{pod.subLabel}</div>
+                    </div>
+                  )}
+                </div>
+              )
+            })}
           </div>
         </div>
       </div>

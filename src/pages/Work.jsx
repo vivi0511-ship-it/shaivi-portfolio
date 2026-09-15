@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import TurntablePlayer from '../components/TurntablePlayer'
+import AvatarMenu from '../components/AvatarMenu'
 import './Work.css'
 
 const caseStudies = [
@@ -98,19 +99,9 @@ function Work() {
         <TurntablePlayer width="90px" />
       </div>
 
-      {/* Top Right Corner Floating 3D Avatar Head */}
-      <div
-        className="work-top-right"
-        onClick={() => navigate('/about')}
-        title="About Shaivi"
-        role="button"
-        tabIndex={0}
-      >
-        <img
-          src="/assets/head_3d_clean.png"
-          alt="Shaivi 3D Character"
-          className="avatar-corner-img"
-        />
+      {/* Top Right Corner Floating 3D Avatar Head with Interactive Menu */}
+      <div className="work-top-right">
+        <AvatarMenu size="115px" />
       </div>
 
       {/* Center Case Study Card Wrapper */}

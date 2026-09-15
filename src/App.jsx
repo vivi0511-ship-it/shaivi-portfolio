@@ -5,6 +5,7 @@ import Work from './pages/Work'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import SaathiCaseStudy from './pages/SaathiCaseStudy'
+import AgroVisionCaseStudy from './pages/AgroVisionCaseStudy'
 import './App.css'
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/work" element={<Work />} />
           <Route path="/work/saathi" element={<SaathiCaseStudy />} />
+          <Route path="/work/agri" element={<AgroVisionCaseStudy />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

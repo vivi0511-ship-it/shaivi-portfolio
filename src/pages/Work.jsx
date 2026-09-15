@@ -122,15 +122,17 @@ function Work() {
         </button>
 
         <div
-          className={`work-case-study-card ${activeProject.id === 'saathi' ? 'is-clickable' : ''}`}
+          className={`work-case-study-card ${activeProject.id === 'saathi' || activeProject.id === 'agri' ? 'is-clickable' : ''}`}
           style={{ background: activeProject.cardBackground }}
           onClick={() => {
             if (activeProject.id === 'saathi') {
               navigate('/work/saathi')
+            } else if (activeProject.id === 'agri') {
+              navigate('/work/agri')
             }
           }}
-          role={activeProject.id === 'saathi' ? 'button' : undefined}
-          tabIndex={activeProject.id === 'saathi' ? 0 : undefined}
+          role={activeProject.id === 'saathi' || activeProject.id === 'agri' ? 'button' : undefined}
+          tabIndex={activeProject.id === 'saathi' || activeProject.id === 'agri' ? 0 : undefined}
         >
           {/* Decorative Backgrounds */}
           {activeProject.hasGridBg && <div className="card-grid-bg"></div>}
@@ -177,14 +179,15 @@ function Work() {
               <p className="case-study-desc">{activeProject.description}</p>
             )}
 
-            {/* Read Case Study CTA Button for Saathi */}
-            {activeProject.id === 'saathi' && (
+            {/* Read Case Study CTA Button */}
+            {(activeProject.id === 'saathi' || activeProject.id === 'agri') && (
               <div style={{ marginBottom: '20px' }}>
                 <button
-                  className="read-case-study-btn"
+                  className={`read-case-study-btn ${activeProject.id === 'agri' ? 'btn-green' : ''}`}
                   onClick={(e) => {
                     e.stopPropagation()
-                    navigate('/work/saathi')
+                    if (activeProject.id === 'saathi') navigate('/work/saathi')
+                    else if (activeProject.id === 'agri') navigate('/work/agri')
                   }}
                 >
                   Read Full Case Study →

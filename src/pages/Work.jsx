@@ -15,6 +15,7 @@ const caseStudies = [
     mockupImg: '/assets/saathi_iphone_mockup.png',
     mockupType: 'iphone',
     cardBackground: 'linear-gradient(135deg, #2c1a67 0%, #1c1048 100%)',
+    hasWaveBg: true,
     tagClass: '',
     tags: [
       'Mobile App Design',
@@ -59,10 +60,10 @@ const caseStudies = [
     titleLine1: 'Goodreads Redesign',
     titleLine2Italic: 'Analysis &',
     titleLine3: 'Research Planning',
-    description: 'A comprehensive heuristic evaluation, user research, and modern UI redesign of Goodreads to streamline book discovery, reviews, and community reading lists.',
+    description: null,
     mockupImg: null,
     mockupType: 'none',
-    cardBackground: "linear-gradient(rgba(30, 15, 8, 0.84), rgba(20, 10, 5, 0.88)), url('/assets/goodreads_bookshelf_bg.png')",
+    cardBackground: "linear-gradient(rgba(20, 10, 5, 0.72), rgba(15, 8, 4, 0.82)), url('/assets/goodreads_bookshelf_clean.png')",
     tagClass: 'tag-pill-gold',
     tags: [
       'Website redesign',
@@ -145,14 +146,11 @@ function Work() {
           style={{ background: activeProject.cardBackground }}
         >
           {/* Decorative Backgrounds */}
-          {activeProject.hasGridBg ? (
-            <div className="card-grid-bg"></div>
-          ) : (
-            <div className="card-wave-bg"></div>
-          )}
+          {activeProject.hasGridBg && <div className="card-grid-bg"></div>}
+          {activeProject.hasWaveBg && <div className="card-wave-bg"></div>}
 
           {/* Left Column Content */}
-          <div className="card-left-content">
+          <div className={`card-left-content ${activeProject.mockupType === 'none' ? 'full-width' : ''}`}>
             <div className={`case-study-badge ${activeProject.badgeClass}`}>
               {activeProject.category}
             </div>
@@ -171,7 +169,7 @@ function Work() {
               <h1 className="case-study-title gold-serif">
                 {activeProject.titleLine1}
                 <br />
-                <span className="italic-accent">{activeProject.titleLine2Italic}</span>
+                <span className="italic-accent-gold">{activeProject.titleLine2Italic}</span>
                 <br />
                 {activeProject.titleLine3}
               </h1>
@@ -188,7 +186,9 @@ function Work() {
               </h1>
             )}
 
-            <p className="case-study-desc">{activeProject.description}</p>
+            {activeProject.description && (
+              <p className="case-study-desc">{activeProject.description}</p>
+            )}
 
             {/* Tools Used Section */}
             <div className="tools-used-group">

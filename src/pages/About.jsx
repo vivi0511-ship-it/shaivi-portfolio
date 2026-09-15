@@ -1,22 +1,34 @@
-import Header from '../components/Header'
+import { useState } from 'react'
 import AboutSection from '../components/About'
+import P5CornerRadialMenu from '../components/P5CornerRadialMenu'
+import Avatar3DCanvas from '../components/Avatar3DCanvas'
 import Footer from '../components/Footer'
 
 function About() {
+  const [activeCategory, setActiveCategory] = useState(null)
+
+  const handleEarringClick = (mode) => {
+    console.log('3D Earring clicked, current mode:', mode)
+  }
+
   return (
     <div className="about-page-wrapper" style={{ minHeight: '100vh', backgroundColor: '#FDFCFB', color: '#111111' }}>
-      {/* FIXED AVATAR — rendered at page level, outside any flex/overflow context */}
+      {/* Avatar radial menu (same as Work page) */}
+      <P5CornerRadialMenu />
+
+      {/* FIXED 3D AVATAR CANVAS CENTERPIECE — pinned to viewport center */}
       <div className="avatar-fixed-overlay">
-        <img
-          src="/assets/head_3d_clean.png"
-          alt="Shaivi 3D Avatar"
-          className="avatar-fixed-img"
+        <Avatar3DCanvas
+          activeCategory={activeCategory}
+          onEarringClick={handleEarringClick}
         />
       </div>
 
-      <Header />
       <main>
-        <AboutSection />
+        <AboutSection
+          onHoverCategory={setActiveCategory}
+          onLeaveCategory={() => setActiveCategory(null)}
+        />
       </main>
       <Footer />
     </div>

@@ -31,7 +31,15 @@ const CHAPTERS = [
   }
 ]
 
-function About() {
+function About({ onHoverCategory, onLeaveCategory }) {
+  const handleEnter = (cat) => {
+    if (onHoverCategory) onHoverCategory(cat)
+  }
+
+  const handleLeave = () => {
+    if (onLeaveCategory) onLeaveCategory()
+  }
+
   return (
     <div className="about-editorial-wrapper">
 
@@ -64,7 +72,11 @@ function About() {
           ============================================================ */}
       <section className="editorial-section section-roles-display">
         <div className="roles-flow-container">
-          <div className="role-group role-center">
+          <div
+            className="role-group role-center interactive-role-group"
+            onMouseEnter={() => handleEnter('product-design')}
+            onMouseLeave={handleLeave}
+          >
             <span className="role-title">Product Design</span>
             <span className="role-item">Interaction Architecture</span>
             <span className="role-item">Design Strategy</span>
@@ -73,7 +85,11 @@ function About() {
           </div>
 
           <div className="role-split-row">
-            <div className="role-group role-align-right">
+            <div
+              className="role-group role-align-right interactive-role-group"
+              onMouseEnter={() => handleEnter('ux-research')}
+              onMouseLeave={handleLeave}
+            >
               <span className="role-title">UX Research</span>
               <span className="role-item">User Research &amp; Testing</span>
               <span className="role-item">Empathy Mapping</span>
@@ -81,8 +97,14 @@ function About() {
               <span className="role-item">Information Architecture</span>
               <span className="role-item">Wireframing</span>
             </div>
+
             <div className="role-avatar-gap" />
-            <div className="role-group role-align-left">
+
+            <div
+              className="role-group role-align-left interactive-role-group"
+              onMouseEnter={() => handleEnter('ui-design')}
+              onMouseLeave={handleLeave}
+            >
               <span className="role-title">UI Design</span>
               <span className="role-item">Visual Systems</span>
               <span className="role-item">Micro-animations</span>
@@ -92,7 +114,11 @@ function About() {
             </div>
           </div>
 
-          <div className="role-group role-center">
+          <div
+            className="role-group role-center interactive-role-group"
+            onMouseEnter={() => handleEnter('digital-spatial')}
+            onMouseLeave={handleLeave}
+          >
             <span className="role-title">Digital &amp; Spatial</span>
             <span className="role-item">Spatial UI / XR</span>
             <span className="role-item">AI Integration</span>
@@ -112,12 +138,20 @@ function About() {
           </div>
 
           <div className="role-split-row">
-            <div className="role-group role-align-right">
+            <div
+              className="role-group role-align-right interactive-role-group"
+              onMouseEnter={() => handleEnter('contact-left')}
+              onMouseLeave={handleLeave}
+            >
               <a href="https://www.linkedin.com/in/connectwithshaivi/" target="_blank" rel="noopener noreferrer" className="role-item role-link">LinkedIn</a>
               <a href="https://www.behance.net/shaivilavhe11" target="_blank" rel="noopener noreferrer" className="role-item role-link">Behance</a>
             </div>
             <div className="role-avatar-gap" />
-            <div className="role-group role-align-left">
+            <div
+              className="role-group role-align-left interactive-role-group"
+              onMouseEnter={() => handleEnter('contact-right')}
+              onMouseLeave={handleLeave}
+            >
               <a href="mailto:shaivilavhe@gmail.com" className="role-item role-link">Email</a>
               <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" download className="role-item role-link">Download CV</a>
             </div>
@@ -141,11 +175,19 @@ function About() {
 
           {/* Left & Right text columns wrapping around avatar gap */}
           <div className="chapter-columns-wrap">
-            <div className="chapter-text-column column-left">
+            <div
+              className="chapter-text-column column-left interactive-role-group"
+              onMouseEnter={() => handleEnter('chapter-left')}
+              onMouseLeave={handleLeave}
+            >
               <p>{ch.leftText}</p>
             </div>
             <div className="chapter-center-spacer" />
-            <div className="chapter-text-column column-right">
+            <div
+              className="chapter-text-column column-right interactive-role-group"
+              onMouseEnter={() => handleEnter('chapter-right')}
+              onMouseLeave={handleLeave}
+            >
               <p>{ch.rightText}</p>
             </div>
           </div>

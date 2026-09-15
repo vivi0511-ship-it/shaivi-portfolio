@@ -17,22 +17,6 @@
   background-color: #FDFCFB !important;
   color: #111111 !important;
 }
-.about-page-wrapper .site-header {
-  background-color: rgba(253, 252, 251, 0.88) !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-.about-page-wrapper .brand-link { color: #111111 !important; }
-.about-page-wrapper .nav-link { color: rgba(17, 17, 17, 0.6) !important; }
-.about-page-wrapper .nav-link:hover:not(.active) { color: #111111 !important; }
-.about-page-wrapper .nav-link.active {
-  color: #111111 !important;
-  background-color: rgba(0, 0, 0, 0.05) !important;
-  border-color: rgba(0, 0, 0, 0.15) !important;
-}
-.about-page-wrapper .p5-corner-menu-container,
-.about-page-wrapper .p5-corner-banner { display: none !important; }
 .about-page-wrapper .site-footer {
   background-color: #F7F6F2 !important;
   color: #111111 !important;
@@ -180,6 +164,19 @@
   align-items: center;
   gap: 0.35rem;
 }
+
+.interactive-role-group {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  cursor: pointer;
+}
+.interactive-role-group:hover {
+  transform: scale(1.025);
+}
+.interactive-role-group:hover .role-title {
+  color: #0055ff;
+  transition: color 0.2s ease;
+}
+
 
 .role-center { text-align: center; }
 .role-align-right { align-items: flex-end; text-align: right; }

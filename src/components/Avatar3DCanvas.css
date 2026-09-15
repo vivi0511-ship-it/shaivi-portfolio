@@ -1,0 +1,87 @@
+/* ==========================================================================
+   AVATAR 3D CANVAS STYLES
+   ========================================================================== */
+
+.avatar-3d-canvas-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: auto; /* Enable raycasting & pointer clicks */
+}
+
+.avatar-3d-canvas-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  outline: none;
+  touch-action: none;
+}
+
+/* Dynamic Easter Egg Toast Notification */
+.avatar-easter-egg-toast {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(17, 24, 39, 0.92);
+  color: #ffffff;
+  padding: 0.6rem 1.4rem;
+  border-radius: 9999px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  box-shadow: 0 10px 25px -5px rgba(0, 85, 255, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 102, 255, 0.4);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+  white-space: nowrap;
+  animation: toastFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+@keyframes toastFadeIn {
+  from { opacity: 0; transform: translate(-50%, -10px) scale(0.95); }
+  to { opacity: 1; transform: translate(-50%, 0) scale(1); }
+}
+
+/* Subtle Interactive Hotspot Hint */
+.avatar-interaction-hint {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.82);
+  color: #444444;
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  border: 1px solid rgba(0, 85, 255, 0.18);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  pointer-events: none;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.hint-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #0055ff;
+  box-shadow: 0 0 8px #0055ff;
+  animation: hintPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes hintPulse {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.4); opacity: 1; box-shadow: 0 0 12px #3388ff; }
+}

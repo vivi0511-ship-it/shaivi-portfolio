@@ -33,7 +33,7 @@ function TurntablePlayer({ width = '100px', className = '' }) {
         </div>
       )}
 
-      {/* Main Turntable Body */}
+      {/* Main Clean 3D Turntable Body */}
       <div className="turntable-pod-body">
         <img
           src="/assets/turntable_transparent.png"
@@ -41,22 +41,6 @@ function TurntablePlayer({ width = '100px', className = '' }) {
           className="turntable-img-base"
           style={{ width: '100%' }}
         />
-
-        {/* Animated Vinyl Disc Center Overlay */}
-        <div className="vinyl-disc-overlay">
-          <div className="vinyl-grooves-shine"></div>
-          <div className="vinyl-center-label">
-            <div className="vinyl-center-hole"></div>
-          </div>
-        </div>
-
-        {/* Animated Tonearm Pivot */}
-        <div className="tonearm-pivot-wrapper">
-          <div className="tonearm-pivot-base"></div>
-          <div className="tonearm-rod">
-            <div className="tonearm-cartridge"></div>
-          </div>
-        </div>
       </div>
 
       {/* Frosted Pink Glass Hover Tooltip */}

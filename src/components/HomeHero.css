@@ -246,9 +246,9 @@
 
 .radial-wrapper {
   position: relative;
-  width: 780px;
-  height: 780px;
-  margin-right: -440px;
+  width: 760px;
+  height: 760px;
+  margin-right: -120px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -257,8 +257,8 @@
 /* Translucent Donut Ring Background */
 .radial-ring-wrapper {
   position: absolute;
-  width: 800px;
-  height: 800px;
+  width: 780px;
+  height: 780px;
   pointer-events: none;
   z-index: 10;
   display: flex;
@@ -285,8 +285,8 @@
   z-index: 35;
   width: 440px;
   height: 460px;
-  left: 65%;
-  top: 50.5%;
+  left: 56%;
+  top: 50%;
   transform: translate(-50%, -50%);
   display: flex;
   align-items: center;

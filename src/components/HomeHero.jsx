@@ -12,7 +12,7 @@ function HomeHero() {
       title: 'HOME',
       path: '/',
       img: '/assets/pod_house_trans.png',
-      style: { top: '13.8%', left: '34.5%', transform: 'translate(-50%, -50%)' },
+      style: { top: '12.5%', left: '36%', transform: 'translate(-50%, -50%)' },
       bannerClip: 'polygon(0% 0%, 64% 0%, 71% 33%, 0% 46%)',
       textPos: { top: '10%', left: '8%', transform: 'rotate(-3deg)' }
     },
@@ -21,7 +21,7 @@ function HomeHero() {
       title: 'WORK',
       path: '/work',
       img: '/assets/pod_laptop_trans.png',
-      style: { top: '41.7%', left: '21.3%', transform: 'translate(-50%, -50%)' },
+      style: { top: '41.5%', left: '21%', transform: 'translate(-50%, -50%)' },
       bannerClip: 'polygon(0% 20%, 57% 38%, 62% 62%, 0% 82%)',
       textPos: { top: '38%', left: '7%', transform: 'rotate(-4deg)' }
     },
@@ -30,7 +30,7 @@ function HomeHero() {
       title: 'RESUME',
       path: '/about',
       img: '/assets/pod_resume_trans.png',
-      style: { top: '77.9%', left: '33.8%', transform: 'translate(-50%, -50%)' },
+      style: { top: '77.5%', left: '34%', transform: 'translate(-50%, -50%)' },
       bannerClip: 'polygon(0% 36%, 68% 66%, 52% 100%, 0% 100%)',
       textPos: { top: '54%', left: '9%', transform: 'rotate(-3deg)' }
     },
@@ -39,7 +39,7 @@ function HomeHero() {
       title: 'HOBBIES',
       path: '/contact',
       img: '/assets/pod_console_trans.png',
-      style: { top: '85.3%', left: '66.5%', transform: 'translate(-50%, -50%)' },
+      style: { top: '86.5%', left: '67%', transform: 'translate(-50%, -50%)' },
       bannerClip: 'polygon(0% 36%, 86% 68%, 76% 100%, 0% 100%)',
       textPos: { top: '52%', left: '9%', transform: 'rotate(-4deg)' }
     },

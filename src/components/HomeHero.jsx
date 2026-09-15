@@ -129,11 +129,11 @@ function HomeHero() {
         {/* Right Column: Radial Menu Nodes around 3D Bronze Head */}
         <div className="right-radial-column">
           <div className="radial-wrapper">
-            {/* 3D Purple Donut Ring Background */}
+            {/* Translucent Donut Ring Background */}
             <div className="radial-ring-wrapper">
               <img
-                src="/assets/purple_ring_3d.png"
-                alt="3D Purple Ring"
+                src="/assets/purple_ring_translucent.png"
+                alt="Translucent Ring"
                 className="radial-ring-img"
               />
             </div>

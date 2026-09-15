@@ -1,0 +1,324 @@
+.work-page-container {
+  min-height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  background-color: #fdd0da;
+  background-image: 
+    radial-gradient(circle at 80% 20%, rgba(255, 242, 246, 0.8) 0%, rgba(253, 208, 218, 0.35) 50%, transparent 80%),
+    linear-gradient(135deg, #fba8be 0%, #fdd0da 45%, #fb9ac0 80%, #f398bd 100%),
+    url('/assets/bg_pink.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+/* Floating Corner Icons */
+.work-top-left {
+  position: absolute;
+  top: 35px;
+  left: 45px;
+  z-index: 30;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.work-top-left:hover {
+  transform: scale(1.1) rotate(-4deg);
+}
+
+.turntable-corner-img {
+  width: 90px;
+  height: auto;
+  filter: drop-shadow(0 10px 18px rgba(180, 80, 120, 0.22));
+}
+
+.work-top-right {
+  position: absolute;
+  top: 35px;
+  right: 50px;
+  z-index: 30;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.work-top-right:hover {
+  transform: scale(1.12);
+}
+
+.avatar-corner-img {
+  width: 65px;
+  height: auto;
+  filter: drop-shadow(0 8px 16px rgba(180, 80, 120, 0.25));
+}
+
+/* Outer Card Container & Slider Layout */
+.work-card-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1060px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Main Dark Purple Case Study Card */
+.work-case-study-card {
+  position: relative;
+  width: 100%;
+  max-width: 980px;
+  min-height: 520px;
+  background: linear-gradient(135deg, #2c1a67 0%, #1c1048 100%);
+  border-radius: 44px;
+  padding: 48px 54px;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 
+    0 25px 50px -12px rgba(25, 10, 50, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.work-case-study-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 30px 60px -15px rgba(25, 10, 50, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+/* Concentric Decorative Wave Circles */
+.card-wave-bg {
+  position: absolute;
+  top: 50%;
+  right: -5%;
+  transform: translateY(-50%);
+  width: 600px;
+  height: 600px;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(circle, rgba(120, 60, 180, 0.18) 0%, rgba(80, 40, 140, 0.08) 50%, transparent 75%);
+  border-radius: 50%;
+}
+
+/* Card Left Column Content */
+.card-left-content {
+  position: relative;
+  z-index: 10;
+  flex: 1.25;
+  max-width: 530px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Category Badge */
+.case-study-badge {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: 'Space Mono', monospace;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #e8c478;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  border: 1px solid rgba(232, 196, 120, 0.55);
+  border-radius: 30px;
+  padding: 7px 20px;
+  margin-bottom: 24px;
+  background: rgba(232, 196, 120, 0.06);
+}
+
+/* Serif Main Title */
+.case-study-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 50px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 20px 0;
+  line-height: 1.08;
+  letter-spacing: -0.5px;
+}
+
+.case-study-title .italic-accent {
+  font-style: italic;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+/* Case Study Description */
+.case-study-desc {
+  font-family: 'Space Mono', monospace;
+  font-size: 13.5px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.65;
+  margin: 0 0 26px 0;
+  max-width: 480px;
+}
+
+/* Tools Used Group */
+.tools-used-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.tools-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.tools-badges-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tool-badge-square {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+}
+
+.tool-badge-square:hover {
+  transform: translateY(-2px) scale(1.05);
+}
+
+/* Tag Pills Group */
+.case-study-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 500px;
+}
+
+.tag-pill {
+  font-family: 'Space Mono', monospace;
+  font-size: 11.5px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  padding: 6px 16px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.tag-pill:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+/* Card Right Column (3D Phone Mockup) */
+.card-right-content {
+  position: relative;
+  z-index: 10;
+  flex: 0.85;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.iphone-mockup-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iphone-mockup-img {
+  width: 250px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(15px 25px 35px rgba(10, 5, 30, 0.45));
+  animation: floatPhoneMockup 6s ease-in-out infinite;
+}
+
+@keyframes floatPhoneMockup {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* Right Navigation Chevron Button */
+.nav-chevron-btn {
+  position: absolute;
+  right: -32px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 25;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 12px;
+  outline: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-chevron-btn:hover {
+  transform: translateY(-50%) scale(1.18);
+}
+
+.nav-chevron-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* Bottom Centered Title */
+.bottom-project-title-group {
+  margin-top: 36px;
+  text-align: center;
+}
+
+.bottom-project-title {
+  font-family: 'Space Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 30px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.3;
+  letter-spacing: -0.2px;
+  text-shadow: 0 2px 10px rgba(180, 80, 120, 0.3);
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1024px) {
+  .work-case-study-card {
+    flex-direction: column;
+    padding: 36px 30px;
+    gap: 30px;
+  }
+
+  .card-left-content {
+    max-width: 100%;
+  }
+
+  .nav-chevron-btn {
+    right: 10px;
+    top: 50%;
+  }
+
+  .case-study-title {
+    font-size: 38px;
+  }
+}

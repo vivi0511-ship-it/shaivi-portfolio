@@ -6,12 +6,16 @@ const caseStudies = [
   {
     id: 'saathi',
     category: 'UX / PRODUCT DESIGN CASE STUDY',
+    badgeClass: 'badge-gold',
+    titleType: 'serif',
     titleLine1: 'Saathi',
     titleLine2Italic: 'Navigate Safely',
     titleLine3: 'Together.',
     description: "A women's safety navigation app that replaces anxiety with community-powered confidence — verified safe routes, real-time support, and a network of trusted saathis.",
     mockupImg: '/assets/saathi_iphone_mockup.png',
+    mockupType: 'iphone',
     cardBackground: 'linear-gradient(135deg, #2c1a67 0%, #1c1048 100%)',
+    tagClass: '',
     tags: [
       'Mobile App Design',
       'User Testing',
@@ -25,41 +29,49 @@ const caseStudies = [
   },
   {
     id: 'agri',
-    category: 'ENTERPRISE UX / DATA DESIGN',
-    titleLine1: 'AgriPulse',
-    titleLine2Italic: 'Smart Farming',
-    titleLine3: 'Insights.',
-    description: 'An intuitive agricultural monitoring dashboard designed for government officials to effortlessly visualize crop health, yield metrics, and regional data.',
-    mockupImg: '/work/02.jpg',
-    cardBackground: 'linear-gradient(135deg, #0f3d36 0%, #082622 100%)',
+    category: 'AGRICULTURE DASHBOARD',
+    badgeClass: 'badge-green',
+    titleType: 'tech',
+    titleLine1: 'Unified',
+    titleLine2: 'Data &',
+    titleLine3Accent: 'Monitoring',
+    titleLine4: 'System',
+    description: 'A role-based agricultural intelligence dashboard designed to centralize crop health, pest alerts, weather data, and field analytics — replacing scattered tools with one coherent interface.',
+    mockupImg: '/assets/agri_dashboard_mockup.png',
+    mockupType: 'dashboard',
+    cardBackground: 'linear-gradient(135deg, #072a1e 0%, #031710 100%)',
+    hasGridBg: true,
+    tagClass: 'tag-pill-green',
     tags: [
-      'Dashboard Design',
-      'Data Visualization',
+      'UI/UX Design',
+      'Web Design',
       'User Research',
-      'Enterprise UX',
-      'Agritech'
+      'Information Architecture'
     ],
-    bottomTitleLine1: 'AgriPulse: Smart Agriculture',
-    bottomTitleLine2: 'Dashboard'
+    bottomTitleLine1: 'AgroVision:',
+    bottomTitleLine2: 'Agriculture Dashboard'
   },
   {
     id: 'goodreads',
-    category: 'UX REDESIGN & USER TESTING',
-    titleLine1: 'Goodreads',
-    titleLine2Italic: 'Rediscover Reading',
-    titleLine3: 'Together.',
-    description: 'A comprehensive heuristic evaluation, user testing, and modern UI redesign of the Goodreads mobile experience to streamline book discovery.',
-    mockupImg: '/work/03.jpg',
-    cardBackground: 'linear-gradient(135deg, #4d1836 0%, #2b0b1e 100%)',
+    category: 'UX / PRODUCT DESIGN CASE STUDY',
+    badgeClass: 'badge-gold',
+    titleType: 'serif-gold',
+    titleLine1: 'Goodreads Redesign',
+    titleLine2Italic: 'Analysis &',
+    titleLine3: 'Research Planning',
+    description: 'A comprehensive heuristic evaluation, user research, and modern UI redesign of Goodreads to streamline book discovery, reviews, and community reading lists.',
+    mockupImg: null,
+    mockupType: 'none',
+    cardBackground: "linear-gradient(rgba(30, 15, 8, 0.84), rgba(20, 10, 5, 0.88)), url('/assets/goodreads_bookshelf_bg.png')",
+    tagClass: 'tag-pill-gold',
     tags: [
-      'Heuristic Evaluation',
+      'Website redesign',
       'User Testing',
-      'Mobile UX Redesign',
-      'Prototyping',
-      'Design Systems'
+      'User Research',
+      'Information Architecture'
     ],
-    bottomTitleLine1: 'Goodreads: Mobile UX',
-    bottomTitleLine2: 'Redesign'
+    bottomTitleLine1: 'Goodreads Redesign Analysis',
+    bottomTitleLine2: '& Research Planning'
   }
 ]
 
@@ -73,9 +85,13 @@ function Work() {
     setProjectIndex((prev) => (prev + 1) % caseStudies.length)
   }
 
+  const handlePrevProject = () => {
+    setProjectIndex((prev) => (prev - 1 + caseStudies.length) % caseStudies.length)
+  }
+
   return (
     <div className="work-page-container">
-      {/* Top Left Corner Floating Turntable Music Player */}
+      {/* Top Left Corner Floating Record Player */}
       <div
         className="work-top-left"
         onClick={() => navigate('/')}
@@ -107,24 +123,70 @@ function Work() {
 
       {/* Center Case Study Card Wrapper */}
       <div className="work-card-wrapper">
+        {/* Floating Left Chevron Navigation Button */}
+        <button
+          className="nav-chevron-btn prev-btn"
+          onClick={handlePrevProject}
+          aria-label="Previous Case Study"
+        >
+          <svg width="28" height="48" viewBox="0 0 28 48" fill="none">
+            <path
+              d="M24 4L4 24L24 44"
+              stroke="#e6428c"
+              strokeWidth="7"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+
         <div
           className="work-case-study-card"
           style={{ background: activeProject.cardBackground }}
         >
-          {/* Decorative Wave BG */}
-          <div className="card-wave-bg"></div>
+          {/* Decorative Backgrounds */}
+          {activeProject.hasGridBg ? (
+            <div className="card-grid-bg"></div>
+          ) : (
+            <div className="card-wave-bg"></div>
+          )}
 
           {/* Left Column Content */}
           <div className="card-left-content">
-            <div className="case-study-badge">{activeProject.category}</div>
+            <div className={`case-study-badge ${activeProject.badgeClass}`}>
+              {activeProject.category}
+            </div>
 
-            <h1 className="case-study-title">
-              {activeProject.titleLine1}
-              <br />
-              <span className="italic-accent">{activeProject.titleLine2Italic}</span>
-              <br />
-              {activeProject.titleLine3}
-            </h1>
+            {activeProject.titleType === 'serif' && (
+              <h1 className="case-study-title">
+                {activeProject.titleLine1}
+                <br />
+                <span className="italic-accent">{activeProject.titleLine2Italic}</span>
+                <br />
+                {activeProject.titleLine3}
+              </h1>
+            )}
+
+            {activeProject.titleType === 'serif-gold' && (
+              <h1 className="case-study-title gold-serif">
+                {activeProject.titleLine1}
+                <br />
+                <span className="italic-accent">{activeProject.titleLine2Italic}</span>
+                <br />
+                {activeProject.titleLine3}
+              </h1>
+            )}
+
+            {activeProject.titleType === 'tech' && (
+              <h1 className="case-study-title-tech">
+                {activeProject.titleLine1}
+                <br />
+                {activeProject.titleLine2}{' '}
+                <span className="lime-green">{activeProject.titleLine3Accent}</span>
+                <br />
+                {activeProject.titleLine4}
+              </h1>
+            )}
 
             <p className="case-study-desc">{activeProject.description}</p>
 
@@ -178,28 +240,38 @@ function Work() {
             {/* Tag Pills */}
             <div className="case-study-tags">
               {activeProject.tags.map((tag) => (
-                <span key={tag} className="tag-pill">
+                <span key={tag} className={`tag-pill ${activeProject.tagClass}`}>
                   {tag}
                 </span>
               ))}
             </div>
           </div>
 
-          {/* Right Column (3D Mockup) */}
-          <div className="card-right-content">
-            <div className="iphone-mockup-wrapper">
-              <img
-                src={activeProject.mockupImg}
-                alt={activeProject.titleLine1}
-                className="iphone-mockup-img"
-              />
+          {/* Right Column (3D Phone / Dashboard Mockup) */}
+          {activeProject.mockupType !== 'none' && (
+            <div className="card-right-content">
+              {activeProject.mockupType === 'iphone' ? (
+                <div className="iphone-mockup-wrapper">
+                  <img
+                    src={activeProject.mockupImg}
+                    alt={activeProject.titleLine1}
+                    className="iphone-mockup-img"
+                  />
+                </div>
+              ) : (
+                <img
+                  src={activeProject.mockupImg}
+                  alt={activeProject.titleLine1}
+                  className="dashboard-mockup-img"
+                />
+              )}
             </div>
-          </div>
+          )}
         </div>
 
         {/* Floating Right Chevron Navigation Button */}
         <button
-          className="nav-chevron-btn"
+          className="nav-chevron-btn next-btn"
           onClick={handleNextProject}
           aria-label="Next Case Study"
         >

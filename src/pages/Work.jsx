@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import TurntablePlayer from '../components/TurntablePlayer'
-import AvatarMenu from '../components/AvatarMenu'
+import P5CornerRadialMenu from '../components/P5CornerRadialMenu'
 import './Work.css'
 
 const caseStudies = [
@@ -99,10 +99,8 @@ function Work() {
         <TurntablePlayer width="90px" />
       </div>
 
-      {/* Top Right Corner Floating 3D Avatar Head with Interactive Menu */}
-      <div className="work-top-right">
-        <AvatarMenu size="115px" />
-      </div>
+      {/* Top Right Persona 5 Radial Menu & Kinetic Projection Banners */}
+      <P5CornerRadialMenu />
 
       {/* Center Case Study Card Wrapper */}
       <div className="work-card-wrapper">

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import Nav from './Nav'
 import TurntablePlayer from './TurntablePlayer'
+import P5CornerRadialMenu from './P5CornerRadialMenu'
 import { Button } from '@/components/ui/button'
 import './Header.css'
 
@@ -19,6 +20,8 @@ function Header() {
           <a href="mailto:shaivi0511@gmail.com">Book a call</a>
         </Button>
       </div>
+
+      <P5CornerRadialMenu />
     </header>
   )
 }

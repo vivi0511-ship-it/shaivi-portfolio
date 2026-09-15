@@ -60,7 +60,7 @@ function About() {
 
   return (
     <div className="about-editorial-wrapper">
-      {/* CENTERED STICKY 3D AVATAR HEAD - PERFECT DEAD-CENTER AT (50vw, 50vh) */}
+      {/* CENTERED STICKY 3D AVATAR HEAD - FIXED AT CENTER OF SCREEN (50vw, 50vh) */}
       <div className="avatar-center-stage">
         <div
           className="avatar-head-wrapper"

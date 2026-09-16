@@ -4,7 +4,7 @@
   max-width: 100%;
   background-color: #f7c5d8;
   background-image: 
-    radial-gradient(circle at 50% 50%, rgba(255, 240, 245, 0.75) 0%, rgba(247, 197, 216, 0.4) 60%, rgba(243, 175, 200, 0.85) 100%),
+    radial-gradient(circle at 50% 45%, rgba(255, 240, 245, 0.8) 0%, rgba(247, 197, 216, 0.45) 60%, rgba(243, 175, 200, 0.85) 100%),
     url('/assets/bg_pink.png');
   background-size: cover;
   background-position: center;
@@ -33,53 +33,51 @@
   transform: scale(1.08) rotate(-2deg);
 }
 
-/* Decoupled Main Hero Interaction Zone */
+/* Interaction Zone */
 .hero-interaction-zone {
   position: relative;
-  width: 94%;
-  max-width: 1280px;
-  min-height: 540px;
+  width: 92%;
+  max-width: 1050px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   box-sizing: border-box;
 }
 
 /* Glassmorphic Hero Card */
 .hero-glass-card {
   position: relative;
-  width: 72%;
-  max-width: 860px;
-  min-height: 450px;
-  background: rgba(248, 195, 218, 0.4);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-radius: 46px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  width: 100%;
+  min-height: 440px;
+  background: rgba(248, 195, 218, 0.42);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
   box-shadow: 
-    0 20px 45px rgba(210, 110, 150, 0.15),
-    inset 0 1px 2px rgba(255, 255, 255, 0.5);
+    0 20px 50px rgba(210, 110, 150, 0.18),
+    inset 0 1px 2px rgba(255, 255, 255, 0.6);
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  padding: 60px 65px;
+  justify-content: space-between;
+  padding: 50px 60px;
   box-sizing: border-box;
   z-index: 5;
   transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .hero-interaction-zone.is-zone-hovered .hero-glass-card {
-  border-color: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.65);
   box-shadow: 
-    0 25px 55px rgba(210, 100, 145, 0.22),
-    inset 0 1px 3px rgba(255, 255, 255, 0.6);
+    0 25px 60px rgba(210, 100, 145, 0.24),
+    inset 0 1px 3px rgba(255, 255, 255, 0.7);
 }
 
 /* Left Bio Column */
 .card-bio-content {
   flex: 1;
-  max-width: 540px;
-  z-index: 15;
+  max-width: 480px;
+  z-index: 10;
   display: flex;
   flex-direction: column;
 }
@@ -89,7 +87,7 @@
 }
 
 .pixel-hi-img {
-  height: 80px;
+  height: 75px;
   width: auto;
   display: block;
   image-rendering: pixelated;
@@ -104,7 +102,7 @@
 
 .headline-line {
   font-family: 'Space Mono', 'Fira Code', 'Courier New', monospace;
-  font-size: 34px;
+  font-size: 32px;
   font-weight: 700;
   color: #ffffff;
   margin: 0;
@@ -115,32 +113,41 @@
 
 .bio-subtext {
   font-family: 'Space Mono', 'Fira Code', 'Courier New', monospace;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.92);
   line-height: 1.6;
-  margin-top: 32px;
+  margin-top: 28px;
   margin-bottom: 0;
-  max-width: 480px;
+  max-width: 460px;
   letter-spacing: -0.1px;
   text-shadow: 0 2px 8px rgba(180, 80, 120, 0.2);
 }
 
-/* Decoupled 3D Avatar Head (Far Right Screen Edge) */
+/* Right Avatar & Pods Area */
+.card-avatar-area {
+  position: relative;
+  width: 360px;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: -10px;
+}
+
+/* Avatar Head Wrapper */
 .avatar-head-wrapper {
-  position: absolute;
-  right: 2vw;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 380px;
-  z-index: 10;
-  pointer-events: none;
+  position: relative;
+  width: 340px;
+  z-index: 15;
+  cursor: pointer;
   outline: none;
   transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
 }
 
 .avatar-head-wrapper:hover {
-  transform: translateY(-50%) scale(1.04);
+  transform: scale(1.04);
 }
 
 .avatar-head-img {
@@ -148,26 +155,21 @@
   height: auto;
   display: block;
   pointer-events: auto;
-  cursor: pointer;
-  filter: drop-shadow(-12px 20px 32px rgba(160, 70, 110, 0.28));
+  filter: drop-shadow(-10px 18px 30px rgba(160, 70, 110, 0.25));
 }
 
-.avatar-head-wrapper:hover .avatar-head-img {
-  filter: drop-shadow(-15px 25px 40px rgba(180, 70, 120, 0.38));
-}
-
-/* Independent Decoupled Menu Pods Container */
+/* Hover Pods Container */
 .hover-pods-container {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 20;
+  z-index: 25;
 }
 
-/* Individual Menu Pod Item - Higher z-index than avatar head */
+/* Individual Pod Item */
 .menu-pod-item {
   position: absolute;
-  z-index: 20;
+  z-index: 25;
   cursor: pointer;
   pointer-events: none;
   opacity: 0;
@@ -176,9 +178,6 @@
     opacity 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
     transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
   will-change: transform, opacity;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 /* Pod Visible State */
@@ -205,116 +204,75 @@
   transition-delay: 150ms;
 }
 
-/* Exact Hard Position Offsets Clear of Avatar Silhouette Boundary */
+/* Pod Relative Positions matching Home page 3.0 Hover.png */
 .pod-house {
-  top: 6%;
-  right: 380px;
-  bottom: auto;
+  top: -45px;
+  left: 20px;
 }
 
 .pod-laptop {
-  top: 32%;
-  right: 460px;
-  bottom: auto;
+  top: 70px;
+  left: -90px;
 }
 
 .pod-resume {
-  top: 58%;
-  right: 360px;
-  bottom: auto;
+  top: 215px;
+  left: -90px;
 }
 
 .pod-console {
-  bottom: 6%;
-  right: 180px;
-  top: auto;
+  top: 300px;
+  left: 30px;
 }
 
-/* Pod Bubble Circle - Solid/Frosted Lavender-Pink Fill without White Borders */
+/* Pod Bubble Circle */
 .pod-bubble {
   position: relative;
-  width: 130px;
-  height: 130px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, rgba(245, 170, 215, 0.95) 0%, rgba(225, 135, 190, 0.88) 100%);
-  border: none;
-  box-shadow: 0 12px 30px rgba(180, 70, 120, 0.25);
+  background: radial-gradient(circle at 35% 35%, rgba(245, 170, 215, 0.92) 0%, rgba(225, 135, 190, 0.82) 100%);
+  box-shadow: 0 10px 25px rgba(180, 70, 120, 0.22);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.25s ease;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.25s ease, box-shadow 0.25s ease;
 }
 
 .pod-icon-img {
-  width: 78%;
-  height: 78%;
+  width: 76%;
+  height: 76%;
   object-fit: contain;
-  filter: drop-shadow(0 6px 12px rgba(150, 50, 90, 0.2));
+  filter: drop-shadow(0 5px 10px rgba(140, 40, 80, 0.18));
   transition: transform 0.25s ease;
 }
 
-.pod-shine-ring {
-  display: none;
-}
-
-/* Pod Hover State - Scales Outward within Orbital Zone */
-.menu-pod-item.is-pod-active {
-  z-index: 35 !important;
-  transform: scale(1.2) translateY(-4px) !important;
-}
-
+/* Pod Hover State */
 .menu-pod-item.is-pod-active .pod-bubble {
-  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 195, 220, 0.88) 100%);
-  border-color: #ffffff;
+  transform: scale(1.15);
+  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.96) 0%, rgba(255, 190, 220, 0.92) 100%);
   box-shadow: 
     0 0 30px rgba(255, 180, 220, 0.85),
-    0 15px 35px rgba(190, 60, 115, 0.35);
+    0 14px 32px rgba(190, 60, 115, 0.35);
 }
 
 .menu-pod-item.is-pod-active .pod-icon-img {
   transform: scale(1.08);
 }
 
-/* Tooltip Label */
-.pod-tooltip-label {
-  margin-top: 8px;
-  font-family: 'Space Mono', monospace;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  color: #ffffff;
-  background: rgba(160, 60, 110, 0.75);
-  padding: 3px 10px;
-  border-radius: 12px;
-  backdrop-filter: blur(6px);
-  white-space: nowrap;
-  opacity: 0;
-  transform: translateY(-4px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  pointer-events: none;
-}
-
-.menu-pod-item.is-pod-active .pod-tooltip-label {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 /* Responsive Rules */
 @media (max-width: 1024px) {
   .hero-glass-card {
-    width: 95%;
-    padding: 50px 40px;
-    min-height: 420px;
+    padding: 40px 40px;
   }
 
-  .card-avatar-section {
-    right: -20px;
-    top: -40px;
-    width: 300px;
+  .card-avatar-area {
+    width: 280px;
+    height: 300px;
   }
 
   .avatar-head-wrapper {
-    width: 290px;
+    width: 260px;
   }
 
   .pod-bubble {
@@ -322,23 +280,21 @@
     height: 90px;
   }
 
-  .pod-house { top: -60px; right: 180px; }
-  .pod-laptop { top: 60px; right: 200px; }
-  .pod-resume { top: 200px; right: 140px; }
-  .pod-console { top: 230px; right: -20px; }
+  .pod-house { top: -35px; left: 15px; }
+  .pod-laptop { top: 50px; left: -65px; }
+  .pod-resume { top: 160px; left: -65px; }
+  .pod-console { top: 230px; left: 20px; }
 }
 
 @media (max-width: 768px) {
-  .hero-turntable-container {
-    top: 20px;
-    left: 20px;
-  }
-
   .hero-glass-card {
     flex-direction: column;
     align-items: flex-start;
-    padding: 40px 30px 180px 30px;
-    margin-top: 60px;
+    padding: 40px 30px 200px 30px;
+  }
+
+  .card-bio-content {
+    max-width: 100%;
   }
 
   .headline-line {
@@ -349,23 +305,26 @@
     font-size: 15px;
   }
 
-  .card-avatar-section {
+  .card-avatar-area {
+    position: absolute;
+    bottom: -60px;
     right: 50%;
     transform: translateX(50%);
-    bottom: -80px;
-    top: auto;
-    width: 260px;
-    height: 260px;
+    width: 240px;
+    height: 250px;
   }
 
   .avatar-head-wrapper {
-    width: 240px;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 220px;
   }
 
-  .pod-house { top: -40px; right: 190px; }
-  .pod-laptop { top: 40px; right: 200px; }
-  .pod-resume { top: 160px; right: 160px; }
-  .pod-console { top: 180px; right: -10px; }
+  .pod-bubble {
+    width: 75px;
+    height: 75px;
+  }
+
+  .pod-house { top: -35px; left: 10px; }
+  .pod-laptop { top: 35px; left: -50px; }
+  .pod-resume { top: 130px; left: -50px; }
+  .pod-console { top: 195px; left: 15px; }
 }

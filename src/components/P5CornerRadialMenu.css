@@ -118,7 +118,7 @@
   position: fixed;
   width: 460px;
   height: 150px;
-  z-index: 850;
+  z-index: 1200;
   background: linear-gradient(135deg, rgba(255, 205, 225, 0.96) 0%, rgba(245, 170, 205, 0.94) 100%);
   transform-origin: 100% 50%;
   transform: scaleX(0) scaleY(0.4);
@@ -148,7 +148,7 @@
 /* Kinetic Title inside Angled Banner */
 .p5-corner-banner-text {
   position: absolute;
-  z-index: 860;
+  z-index: 1210;
   opacity: 0;
   transform: translateX(40px) scale(0.9);
   transition: transform 160ms ease, opacity 160ms ease;

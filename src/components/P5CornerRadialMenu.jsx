@@ -16,8 +16,8 @@ function P5CornerRadialMenu() {
       path: '/',
       img: '/assets/pod_house_trans.png',
       style: { top: '15px', right: '185px' },
-      bannerClip: 'polygon(38% 0%, 90% 8%, 86% 40%, 40% 68%)',
-      textPos: { top: '22%', left: '50%', transform: 'rotate(-12deg)' }
+      bannerClip: 'polygon(55% 4%, 86% 10%, 82% 28%, 52% 26%)',
+      textPos: { top: '12%', left: '60%', transform: 'rotate(-12deg)' }
     },
     {
       id: 'laptop',
@@ -25,8 +25,8 @@ function P5CornerRadialMenu() {
       path: '/work',
       img: '/assets/pod_laptop_trans.png',
       style: { top: '105px', right: '220px' },
-      bannerClip: 'polygon(40% 12%, 88% 30%, 84% 62%, 44% 82%)',
-      textPos: { top: '34%', left: '50%', transform: 'rotate(-12deg)' }
+      bannerClip: 'polygon(54% 16%, 85% 26%, 80% 42%, 50% 40%)',
+      textPos: { top: '23%', left: '59%', transform: 'rotate(-12deg)' }
     },
     {
       id: 'resume',
@@ -34,8 +34,8 @@ function P5CornerRadialMenu() {
       path: '/about',
       img: '/assets/pod_resume_trans.png',
       style: { top: '195px', right: '175px' },
-      bannerClip: 'polygon(42% 25%, 86% 45%, 82% 76%, 45% 95%)',
-      textPos: { top: '42%', left: '50%', transform: 'rotate(-12deg)' }
+      bannerClip: 'polygon(54% 32%, 84% 46%, 78% 64%, 48% 58%)',
+      textPos: { top: '40%', left: '59%', transform: 'rotate(-12deg)' }
     },
     {
       id: 'console',
@@ -43,15 +43,15 @@ function P5CornerRadialMenu() {
       path: '/contact',
       img: '/assets/pod_console_trans.png',
       style: { top: '225px', right: '70px' },
-      bannerClip: 'polygon(42% 35%, 92% 55%, 88% 85%, 45% 100%)',
-      textPos: { top: '48%', left: '50%', transform: 'rotate(-12deg)' }
+      bannerClip: 'polygon(54% 42%, 92% 56%, 86% 76%, 48% 68%)',
+      textPos: { top: '50%', left: '60%', transform: 'rotate(-12deg)' }
     },
     {
       id: 'avatar',
       title: 'ABOUT ME',
       path: '/about',
-      bannerClip: 'polygon(38% 10%, 92% 18%, 88% 50%, 42% 78%)',
-      textPos: { top: '32%', left: '48%', transform: 'rotate(-12deg)' }
+      bannerClip: 'polygon(52% 10%, 92% 18%, 86% 48%, 46% 72%)',
+      textPos: { top: '30%', left: '58%', transform: 'rotate(-12deg)' }
     }
   ]
 

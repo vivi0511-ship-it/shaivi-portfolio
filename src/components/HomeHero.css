@@ -160,10 +160,10 @@
   pointer-events: none;
 }
 
-/* Individual Menu Pod Item - IN FRONT of Avatar Head */
+/* Individual Menu Pod Item */
 .menu-pod-item {
   position: absolute;
-  z-index: 35;
+  z-index: 20;
   cursor: pointer;
   pointer-events: none;
   opacity: 0;
@@ -201,25 +201,25 @@
   transition-delay: 150ms;
 }
 
-/* Left-side Pod Positions completely clear of Avatar Head */
+/* Precise Pod Positions Matching Home page 2.0 click.png */
 .pod-house {
   top: -65px;
-  right: 285px;
+  right: 250px;
 }
 
 .pod-laptop {
-  top: 45px;
-  right: 325px;
+  top: 75px;
+  right: 275px;
 }
 
 .pod-resume {
-  top: 175px;
-  right: 305px;
+  top: 245px;
+  right: 170px;
 }
 
 .pod-console {
   top: 285px;
-  right: 255px;
+  right: -20px;
 }
 
 /* Pod Bubble Circle */

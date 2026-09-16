@@ -71,81 +71,80 @@ function HomeHero() {
         <TurntablePlayer width="110px" className="hero-turntable-player" />
       </div>
 
-      {/* Main Glassmorphic Hero Card */}
+      {/* Main Decoupled Interaction Zone */}
       <div 
-        className={`hero-glass-card ${isHovered ? 'is-card-hovered' : ''}`}
+        className={`hero-interaction-zone ${isHovered ? 'is-zone-hovered' : ''}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {/* Left Text Bio Group */}
-        <div className="card-bio-content">
-          <div className="pixel-hi-wrapper">
-            <img src="/assets/hi_font_white.svg" alt="hi!" className="pixel-hi-img" />
-          </div>
+        {/* Main Glassmorphic Bio Card */}
+        <div className="hero-glass-card">
+          <div className="card-bio-content">
+            <div className="pixel-hi-wrapper">
+              <img src="/assets/hi_font_white.svg" alt="hi!" className="pixel-hi-img" />
+            </div>
 
-          <div className="headline-text-group">
-            <h1 className="headline-line">I am Shaivi,</h1>
-            <h1 className="headline-line">I am a UI/UX designer.</h1>
-          </div>
+            <div className="headline-text-group">
+              <h1 className="headline-line">I am Shaivi,</h1>
+              <h1 className="headline-line">I am a UI/UX designer.</h1>
+            </div>
 
-          <p className="bio-subtext">
-            I love to research, get to the bottom of the problems and make stuff that actually works.
-          </p>
+            <p className="bio-subtext">
+              I love to research, get to the bottom of the problems and make stuff that actually works.
+            </p>
+          </div>
         </div>
 
-        {/* Right Avatar & Hover Menu Pods Section */}
-        <div className="card-avatar-section">
-          {/* Central 3D Avatar Head */}
-          <div
-            className="avatar-head-wrapper"
-            onMouseEnter={handleMouseEnterHead}
-            onClick={() => handlePodClick('/about')}
-            role="button"
-            tabIndex={0}
-            aria-label="About Shaivi"
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                handlePodClick('/about')
-              }
-            }}
-          >
-            <img
-              src="/assets/head_3d_clean.png"
-              alt="Shaivi 3D Avatar"
-              className="avatar-head-img"
-            />
-          </div>
+        {/* Independent 3D Avatar Head (Far Right) */}
+        <div
+          className="avatar-head-wrapper"
+          onMouseEnter={handleMouseEnterHead}
+          onClick={() => handlePodClick('/about')}
+          role="button"
+          tabIndex={0}
+          aria-label="About Shaivi"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              handlePodClick('/about')
+            }
+          }}
+        >
+          <img
+            src="/assets/head_3d_clean.png"
+            alt="Shaivi 3D Avatar"
+            className="avatar-head-img"
+          />
+        </div>
 
-          {/* 4 Interactive Hover Menu Pods */}
-          <div className={`hover-pods-container ${isHovered ? 'is-visible' : ''}`}>
-            {pods.map((pod) => {
-              const isPodActive = activePod === pod.id
+        {/* Independent Menu Pods Container (Decoupled Viewport Offsets) */}
+        <div className={`hover-pods-container ${isHovered ? 'is-visible' : ''}`}>
+          {pods.map((pod) => {
+            const isPodActive = activePod === pod.id
 
-              return (
-                <div
-                  key={pod.id}
-                  className={`menu-pod-item ${pod.className} ${isPodActive ? 'is-pod-active' : ''}`}
-                  onMouseEnter={() => handlePodMouseEnter(pod.id)}
-                  onMouseLeave={handlePodMouseLeave}
-                  onClick={() => handlePodClick(pod.path)}
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`Navigate to ${pod.title}`}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      handlePodClick(pod.path)
-                    }
-                  }}
-                >
-                  <div className="pod-bubble">
-                    <img src={pod.img} alt={pod.title} className="pod-icon-img" />
-                    <div className="pod-shine-ring"></div>
-                  </div>
-                  <span className="pod-tooltip-label">{pod.title}</span>
+            return (
+              <div
+                key={pod.id}
+                className={`menu-pod-item ${pod.className} ${isPodActive ? 'is-pod-active' : ''}`}
+                onMouseEnter={() => handlePodMouseEnter(pod.id)}
+                onMouseLeave={handlePodMouseLeave}
+                onClick={() => handlePodClick(pod.path)}
+                role="button"
+                tabIndex={0}
+                aria-label={`Navigate to ${pod.title}`}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    handlePodClick(pod.path)
+                  }
+                }}
+              >
+                <div className="pod-bubble">
+                  <img src={pod.img} alt={pod.title} className="pod-icon-img" />
+                  <div className="pod-shine-ring"></div>
                 </div>
-              )
-            })}
-          </div>
+                <span className="pod-tooltip-label">{pod.title}</span>
+              </div>
+            )
+          })}
         </div>
       </div>
     </main>

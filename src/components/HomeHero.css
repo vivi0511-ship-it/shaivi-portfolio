@@ -34,79 +34,19 @@
   transform: scale(1.08) rotate(-2deg);
 }
 
-/* Dynamic Angled Projector Banners Layer (z-index: 20) */
-.home-projector-banner {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 20;
-  background: linear-gradient(135deg, rgba(249, 175, 214, 0.96) 0%, rgba(243, 150, 198, 0.94) 100%);
-  transform-origin: 85% 50%;
-  transform: scaleX(0) scaleY(0.4);
-  opacity: 0;
-  pointer-events: none;
-  box-shadow: 0 15px 45px rgba(210, 80, 130, 0.22);
-  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), opacity 180ms ease;
-  will-change: transform, opacity;
-}
-
-.home-projector-banner.is-active {
-  transform: scaleX(1) scaleY(1);
-  opacity: 1;
-  transition: transform 220ms cubic-bezier(0.05, 0.9, 0.1, 1.0), opacity 200ms ease;
-}
-
-.projector-banner-shine {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 35%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 100%);
-  pointer-events: none;
-}
-
-/* Kinetic Title inside Angled Banner */
-.banner-kinetic-wrapper {
-  position: absolute;
-  z-index: 22;
-  opacity: 0;
-  transform: translateX(-40px) scale(0.9);
-  transition: transform 180ms ease, opacity 180ms ease;
-}
-
-.banner-kinetic-wrapper.is-entered {
-  opacity: 1;
-  transform: translateX(0px) scale(1);
-  transition: transform 200ms cubic-bezier(0.05, 0.9, 0.1, 1.0) 40ms, opacity 180ms ease 40ms;
-}
-
-.banner-kinetic-title {
-  font-family: 'Anton', 'Bebas Neue', 'Space Mono', sans-serif;
-  font-size: 64px;
-  font-weight: 400;
-  color: #ffffff;
-  letter-spacing: 2px;
-  margin: 0;
-  line-height: 0.9;
-  text-transform: uppercase;
-  text-shadow: 0 4px 16px rgba(180, 50, 100, 0.3), 0 2px 4px rgba(0, 0, 0, 0.15);
-  white-space: nowrap;
-}
-
-/* Interaction Zone */
+/* Main Interaction Zone (Root container for unconstrained z-index stacking) */
 .hero-interaction-zone {
   position: relative;
   width: 92%;
   max-width: 1050px;
+  min-height: 480px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   box-sizing: border-box;
 }
 
-/* Glassmorphic Hero Card (z-index: 5) */
+/* 1. Base Glassmorphic Hero Card (z-index: 1) */
 .hero-glass-card {
   position: relative;
   width: 100%;
@@ -121,33 +61,26 @@
     inset 0 1px 2px rgba(255, 255, 255, 0.6);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 50px 60px;
   box-sizing: border-box;
-  z-index: 5;
+  z-index: 1;
   transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.hero-interaction-zone.is-zone-hovered .hero-glass-card {
-  border-color: rgba(255, 255, 255, 0.65);
-  box-shadow: 
-    0 25px 60px rgba(210, 100, 145, 0.24),
-    inset 0 1px 3px rgba(255, 255, 255, 0.7);
-}
-
-/* Left Bio Column (dims when a pod or avatar is active) */
+/* Glass Bio Card Content (dims to 0.25 opacity when hovering a pod) */
 .card-bio-content {
   flex: 1;
   max-width: 480px;
-  z-index: 10;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   transition: opacity 0.3s ease, filter 0.3s ease;
 }
 
 .card-bio-content.is-dimmed {
-  opacity: 0.18;
-  filter: blur(1px);
+  opacity: 0.25;
+  filter: blur(0.8px);
 }
 
 .pixel-hi-wrapper {
@@ -192,31 +125,47 @@
   text-shadow: 0 2px 8px rgba(180, 80, 120, 0.2);
 }
 
-/* Right Avatar & Pods Area */
-.card-avatar-area {
-  position: relative;
-  width: 360px;
-  height: 380px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  margin-right: -10px;
+/* 2. Background Dimming Overlay (z-index: 5) */
+.bg-dimming-overlay {
+  position: absolute;
+  inset: -30px;
+  background: rgba(140, 70, 110, 0.22);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border-radius: 54px;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-/* Avatar Head Wrapper (z-index: 15 / 22) */
+.bg-dimming-overlay.is-active {
+  opacity: 1;
+}
+
+/* 3. Inactive Elements - 3D Avatar Head (z-index: 10 default, z-index: 30 when hovered) */
 .avatar-head-wrapper {
-  position: relative;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  margin-top: -190px;
   width: 340px;
-  z-index: 22;
+  z-index: 10;
   cursor: pointer;
   outline: none;
-  transition: filter 0.3s ease;
+  transition: filter 0.3s ease, opacity 0.3s ease;
   will-change: transform;
 }
 
+.avatar-head-wrapper.is-dimmed {
+  filter: brightness(0.85) contrast(0.95);
+  opacity: 0.9;
+}
+
 .avatar-head-wrapper.is-avatar-active {
-  filter: drop-shadow(-15px 25px 45px rgba(220, 70, 130, 0.45));
+  z-index: 30 !important;
+  filter: brightness(1.05) drop-shadow(-15px 25px 45px rgba(220, 70, 130, 0.45)) !important;
+  opacity: 1 !important;
 }
 
 .avatar-head-img {
@@ -227,18 +176,83 @@
   filter: drop-shadow(-10px 18px 30px rgba(160, 70, 110, 0.25));
 }
 
-/* Hover Pods Container (z-index: 25) */
-.hover-pods-container {
+/* 4. Angled Pink Projector Banners Layer (z-index: 20) */
+.home-projector-banner {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  background: linear-gradient(135deg, rgba(249, 175, 214, 0.96) 0%, rgba(243, 150, 198, 0.94) 100%);
+  transform-origin: 85% 30%;
+  transform: scaleX(0) scaleY(0.4);
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 15px 45px rgba(210, 80, 130, 0.22);
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), opacity 180ms ease;
+  will-change: transform, opacity;
+}
+
+.home-projector-banner.is-active {
+  transform: scaleX(1) scaleY(1);
+  opacity: 1;
+  transition: transform 220ms cubic-bezier(0.05, 0.9, 0.1, 1.0), opacity 200ms ease;
+}
+
+.projector-banner-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 35%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+}
+
+/* Kinetic Title inside Angled Banner (z-index: 21) */
+.banner-kinetic-wrapper {
+  position: absolute;
+  z-index: 21;
+  opacity: 0;
+  transform: translateX(-40px) scale(0.9);
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.banner-kinetic-wrapper.is-entered {
+  opacity: 1;
+  transform: translateX(0px) scale(1);
+  transition: transform 200ms cubic-bezier(0.05, 0.9, 0.1, 1.0) 40ms, opacity 180ms ease 40ms;
+}
+
+.banner-kinetic-title {
+  font-family: 'Anton', 'Bebas Neue', 'Space Mono', sans-serif;
+  font-size: 64px;
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 2px;
+  margin: 0;
+  line-height: 0.9;
+  text-transform: uppercase;
+  text-shadow: 0 4px 16px rgba(180, 50, 100, 0.3), 0 2px 4px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+}
+
+/* Hover Pods Container */
+.hover-pods-container {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  margin-top: -190px;
+  width: 360px;
+  height: 380px;
   pointer-events: none;
   z-index: 25;
 }
 
-/* Individual Pod Item */
+/* Individual Pod Item (z-index: 10 default) */
 .menu-pod-item {
   position: absolute;
-  z-index: 25;
+  z-index: 10;
   cursor: pointer;
   pointer-events: none;
   opacity: 0;
@@ -269,10 +283,11 @@
 .pod-resume { top: 215px; left: -90px; }
 .pod-console { top: 300px; left: 30px; }
 
-/* Dimmed Inactive Pods State (~30% opacity) */
+/* 3. Inactive Nodes Dimming Rule (35% opacity + soft blur/desaturation filter) */
 .menu-pod-item.is-pod-dimmed {
-  opacity: 0.3 !important;
-  filter: blur(0.5px);
+  z-index: 10 !important;
+  opacity: 0.35 !important;
+  filter: blur(0.5px) grayscale(0.2);
   transform: scale(0.92) !important;
 }
 
@@ -298,10 +313,11 @@
   transition: transform 0.25s ease;
 }
 
-/* Active Hover Pod State (1.25x scale, opaque & bright pink) */
+/* 5. Active Hover Pod State (MUST sit at z-index: 30 completely above banner z-index: 20) */
 .menu-pod-item.is-pod-active {
   z-index: 30 !important;
   opacity: 1 !important;
+  filter: none !important;
   transform: scale(1.25) !important;
 }
 
@@ -322,13 +338,11 @@
     padding: 40px 40px;
   }
 
-  .card-avatar-area {
+  .avatar-head-wrapper,
+  .hover-pods-container {
     width: 280px;
     height: 300px;
-  }
-
-  .avatar-head-wrapper {
-    width: 260px;
+    margin-top: -150px;
   }
 
   .pod-bubble {
@@ -361,17 +375,16 @@
     font-size: 15px;
   }
 
-  .card-avatar-area {
+  .avatar-head-wrapper,
+  .hover-pods-container {
     position: absolute;
     bottom: -60px;
     right: 50%;
-    transform: translateX(50%);
+    margin-right: -120px;
+    top: auto;
+    margin-top: 0;
     width: 240px;
     height: 250px;
-  }
-
-  .avatar-head-wrapper {
-    width: 220px;
   }
 
   .pod-bubble {

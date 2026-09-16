@@ -95,15 +95,6 @@ function HomeHero() {
 
         {/* Right Avatar & Hover Menu Pods Section */}
         <div className="card-avatar-section">
-          {/* Translucent Donut Ring Backdrop */}
-          <div className={`avatar-ring-backdrop ${isHovered ? 'is-visible' : ''}`}>
-            <img
-              src="/assets/purple_ring_translucent.png"
-              alt="Translucent Ring"
-              className="avatar-ring-img"
-            />
-          </div>
-
           {/* Central 3D Avatar Head */}
           <div
             className="avatar-head-wrapper"

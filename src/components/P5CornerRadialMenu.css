@@ -55,7 +55,7 @@
 .corner-head-wrapper:hover,
 .corner-head-wrapper.is-hovered {
   transform: scale(1.15);
-  z-index: 45 !important;
+  z-index: 40 !important;
 }
 
 .corner-head-img {
@@ -84,6 +84,12 @@
   transform: scale(1);
 }
 
+/* Active Hovered Pod (House/Laptop/Resume/Console) sits at z-index: 40 !important */
+.corner-node-item:hover,
+.corner-node-item.is-hovered {
+  z-index: 40 !important;
+}
+
 .corner-node-bubble {
   position: relative;
   width: 70px;
@@ -100,10 +106,12 @@
 
 .corner-node-item:hover .corner-node-bubble,
 .corner-node-item.is-hovered .corner-node-bubble {
-  background: rgba(230, 66, 140, 0.9);
+  background: rgba(230, 66, 140, 0.95);
   border-color: #ffffff;
-  transform: scale(1.15);
+  transform: scale(1.18);
   box-shadow: 0 12px 28px rgba(220, 50, 120, 0.45);
+  opacity: 1 !important;
+  filter: none !important;
 }
 
 .corner-node-icon {
@@ -113,12 +121,12 @@
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
 }
 
-/* Persona 5 Projection Banner Layers - Pinned to Active Node */
+/* Persona 5 Projection Banner Layers - Pinned BEHIND Nodes at z-index: 20 */
 .p5-corner-banner {
   position: fixed;
   width: 460px;
   height: 150px;
-  z-index: 1200;
+  z-index: 20;
   background: linear-gradient(135deg, rgba(255, 205, 225, 0.96) 0%, rgba(245, 170, 205, 0.94) 100%);
   transform-origin: 100% 50%;
   transform: scaleX(0) scaleY(0.4);
@@ -148,7 +156,7 @@
 /* Kinetic Title inside Angled Banner */
 .p5-corner-banner-text {
   position: absolute;
-  z-index: 1210;
+  z-index: 21;
   opacity: 0;
   transform: translateX(40px) scale(0.9);
   transition: transform 160ms ease, opacity 160ms ease;
@@ -157,7 +165,7 @@
 .p5-corner-banner-text.is-text-entered {
   opacity: 1;
   transform: translateX(0px) scale(1);
-  transition: transform 180ms cubic-bezier(0.05, 0.9, 0.1, 1.0) 40ms, opacity 160ms ease 40ms;
+  transition: transform 180ms cubic-bezier(0.05, 0.9, 0.1, 1.0) 40ms, opacity 180ms ease 40ms;
 }
 
 .corner-banner-title {

@@ -16,7 +16,7 @@ function P5CornerRadialMenu() {
       path: '/',
       img: '/assets/pod_house_trans.png',
       style: { top: '15px', right: '185px' },
-      bannerStyle: { top: '-25px', right: '210px' },
+      bannerStyle: { top: '-25px', right: '205px' },
       bannerClip: 'polygon(0% 5%, 100% 30%, 100% 70%, 0% 95%)',
       textPos: { right: '90px', top: '46px', transform: 'rotate(-10deg)' }
     },
@@ -26,7 +26,7 @@ function P5CornerRadialMenu() {
       path: '/work',
       img: '/assets/pod_laptop_trans.png',
       style: { top: '105px', right: '220px' },
-      bannerStyle: { top: '65px', right: '245px' },
+      bannerStyle: { top: '65px', right: '240px' },
       bannerClip: 'polygon(0% 5%, 100% 30%, 100% 70%, 0% 95%)',
       textPos: { right: '90px', top: '46px', transform: 'rotate(-10deg)' }
     },
@@ -36,7 +36,7 @@ function P5CornerRadialMenu() {
       path: '/about',
       img: '/assets/pod_resume_trans.png',
       style: { top: '195px', right: '175px' },
-      bannerStyle: { top: '155px', right: '200px' },
+      bannerStyle: { top: '155px', right: '195px' },
       bannerClip: 'polygon(0% 5%, 100% 30%, 100% 70%, 0% 95%)',
       textPos: { right: '90px', top: '46px', transform: 'rotate(-10deg)' }
     },
@@ -46,7 +46,7 @@ function P5CornerRadialMenu() {
       path: '/contact',
       img: '/assets/pod_console_trans.png',
       style: { top: '225px', right: '70px' },
-      bannerStyle: { top: '185px', right: '95px' },
+      bannerStyle: { top: '185px', right: '90px' },
       bannerClip: 'polygon(0% 5%, 100% 30%, 100% 70%, 0% 95%)',
       textPos: { right: '90px', top: '46px', transform: 'rotate(-10deg)' }
     },
@@ -87,7 +87,7 @@ function P5CornerRadialMenu() {
 
   return (
     <>
-      {/* Persona 5 Projection Banner Layers shooting across screen on hover */}
+      {/* Persona 5 Projection Banner Layers - Pinned BEHIND nodes at z-index: 20 */}
       {radialNodes.map((node) => {
         const isActive = isContainerHovered && activeHoverNode === node.id
 
@@ -114,13 +114,13 @@ function P5CornerRadialMenu() {
         )
       })}
 
-      {/* Top Right Radial Menu Container */}
+      {/* Top Right Radial Menu Container (z-index: 900, sits above banner) */}
       <div
         className={`p5-corner-menu-container ${isContainerHovered ? 'is-expanded' : ''}`}
         onMouseEnter={handleContainerMouseEnter}
         onMouseLeave={handleContainerMouseLeave}
       >
-        {/* Translucent Donut Ring Background (Visible on Hover) */}
+        {/* Translucent Donut Ring Background (z-index: 10) */}
         <div className="corner-ring-wrapper">
           <img
             src="/assets/purple_ring_translucent.png"
@@ -129,7 +129,7 @@ function P5CornerRadialMenu() {
           />
         </div>
 
-        {/* Central 3D Bronze Female Head (Default Avatar Trigger & ABOUT ME) */}
+        {/* Central 3D Bronze Female Head (z-index: 30) */}
         <div
           className={`corner-head-wrapper ${activeHoverNode === 'avatar' ? 'is-hovered' : ''}`}
           onMouseEnter={() => handleNodeMouseEnter('avatar')}
@@ -151,7 +151,7 @@ function P5CornerRadialMenu() {
           />
         </div>
 
-        {/* 4 Radial Menu Nodes (Visible on Hover) */}
+        {/* 4 Radial Menu Nodes (z-index: 25 default, z-index: 40 !important when hovered) */}
         {radialNodes
           .filter((node) => node.id !== 'avatar')
           .map((node) => {

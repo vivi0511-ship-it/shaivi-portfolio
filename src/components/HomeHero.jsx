@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAudio } from '../context/AudioContext'
 import TurntablePlayer from './TurntablePlayer'
@@ -10,49 +10,94 @@ function HomeHero() {
   const [isHovered, setIsHovered] = useState(false)
   const [activePod, setActivePod] = useState(null)
 
+  // lerp 0.08 micro-head tracking cursor state
+  const [headRot, setHeadRot] = useState({ rx: 0, ry: 0 })
+  const targetRot = useRef({ rx: 0, ry: 0 })
+  const currentRot = useRef({ rx: 0, ry: 0 })
+  const animFrameId = useRef(null)
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const { clientX, clientY } = e
+      const { innerWidth, innerHeight } = window
+      const nx = (clientX / innerWidth - 0.5) * 2
+      const ny = (clientY / innerHeight - 0.5) * 2
+      targetRot.current = {
+        rx: -ny * 12,
+        ry: nx * 18
+      }
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+
+    const updateLerp = () => {
+      currentRot.current.rx += (targetRot.current.rx - currentRot.current.rx) * 0.08
+      currentRot.current.ry += (targetRot.current.ry - currentRot.current.ry) * 0.08
+      setHeadRot({
+        rx: currentRot.current.rx,
+        ry: currentRot.current.ry
+      })
+      animFrameId.current = requestAnimationFrame(updateLerp)
+    }
+    animFrameId.current = requestAnimationFrame(updateLerp)
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove)
+      if (animFrameId.current) cancelAnimationFrame(animFrameId.current)
+    }
+  }, [])
+
   const pods = [
     {
       id: 'house',
       title: 'HOME',
       path: '/',
       img: '/assets/pod_house_trans.png',
-      className: 'pod-house'
+      className: 'pod-house',
+      clipPath: 'polygon(0% 0%, 100% 0%, 82% 38%, 0% 55%)',
+      textStyle: { top: '14%', left: '7%', transform: 'rotate(-5deg)' }
     },
     {
       id: 'laptop',
       title: 'WORK',
       path: '/work',
       img: '/assets/pod_laptop_trans.png',
-      className: 'pod-laptop'
+      className: 'pod-laptop',
+      clipPath: 'polygon(0% 16%, 66% 28%, 60% 64%, 0% 78%)',
+      textStyle: { top: '38%', left: '7%', transform: 'rotate(-4deg)' }
     },
     {
       id: 'resume',
       title: 'RESUME',
       path: '/about',
       img: '/assets/pod_resume_trans.png',
-      className: 'pod-resume'
+      className: 'pod-resume',
+      clipPath: 'polygon(0% 25%, 62% 52%, 60% 84%, 0% 95%)',
+      textStyle: { top: '52%', left: '7%', transform: 'rotate(-3deg)' }
     },
     {
       id: 'console',
       title: 'HOBBIES',
       path: '/contact',
       img: '/assets/pod_console_trans.png',
-      className: 'pod-console'
+      className: 'pod-console',
+      clipPath: 'polygon(0% 38%, 78% 68%, 75% 100%, 0% 100%)',
+      textStyle: { top: '64%', left: '7%', transform: 'rotate(-4deg)' }
+    },
+    {
+      id: 'avatar',
+      title: 'ABOUT ME',
+      path: '/about',
+      clipPath: 'polygon(0% 10%, 76% 22%, 70% 78%, 0% 100%)',
+      textStyle: { top: '44%', left: '7%', transform: 'rotate(-4deg)' }
     }
   ]
 
-  const handleMouseEnterHead = () => {
-    setIsHovered(true)
-    playSfx('hover')
-  }
-
-  const handleMouseLeaveHead = () => {
-    setIsHovered(false)
-  }
-
   const handlePodMouseEnter = (podId) => {
     setActivePod(podId)
+    setIsHovered(true)
     playSfx('hover')
+    playSfx('banner')
   }
 
   const handlePodMouseLeave = () => {
@@ -71,16 +116,40 @@ function HomeHero() {
         <TurntablePlayer width="110px" className="hero-turntable-player" />
       </div>
 
+      {/* Dynamic Angled Projector Banners Layer (z-index: 20) */}
+      {pods.map((bannerItem) => {
+        const isActiveBanner = activePod === bannerItem.id
+
+        return (
+          <div
+            key={`home-banner-${bannerItem.id}`}
+            className={`home-projector-banner ${isActiveBanner ? 'is-active' : ''}`}
+            style={{ clipPath: bannerItem.clipPath }}
+          >
+            <div className="projector-banner-shine"></div>
+            <div
+              className={`banner-kinetic-wrapper ${isActiveBanner ? 'is-entered' : ''}`}
+              style={bannerItem.textStyle}
+            >
+              <h1 className="banner-kinetic-title">{bannerItem.title}</h1>
+            </div>
+          </div>
+        )
+      })}
+
       {/* Main Interaction Zone */}
       <div 
         className={`hero-interaction-zone ${isHovered ? 'is-zone-hovered' : ''}`}
         onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseLeave={() => {
+          setIsHovered(false)
+          setActivePod(null)
+        }}
       >
-        {/* Main Glassmorphic Bio Card */}
+        {/* Main Glassmorphic Bio Card (z-index: 5) */}
         <div className="hero-glass-card">
-          {/* Bio Text Column */}
-          <div className="card-bio-content">
+          {/* Bio Text Column (dims when activePod is present) */}
+          <div className={`card-bio-content ${activePod ? 'is-dimmed' : ''}`}>
             <div className="pixel-hi-wrapper">
               <img src="/assets/hi_font_white.svg" alt="hi!" className="pixel-hi-img" />
             </div>
@@ -97,10 +166,14 @@ function HomeHero() {
 
           {/* Right Avatar & Pods Area */}
           <div className="card-avatar-area">
-            {/* 3D Avatar Head */}
+            {/* 3D Avatar Head (z-index: 15 / 22) */}
             <div
-              className="avatar-head-wrapper"
-              onMouseEnter={handleMouseEnterHead}
+              className={`avatar-head-wrapper ${activePod === 'avatar' ? 'is-avatar-active' : ''}`}
+              style={{
+                transform: `perspective(600px) rotateX(${headRot.rx}deg) rotateY(${headRot.ry}deg)`
+              }}
+              onMouseEnter={() => handlePodMouseEnter('avatar')}
+              onMouseLeave={handlePodMouseLeave}
               onClick={() => handlePodClick('/about')}
               role="button"
               tabIndex={0}
@@ -118,33 +191,38 @@ function HomeHero() {
               />
             </div>
 
-            {/* Arc Pod Bubbles (Visible on Hover) */}
+            {/* Arc Pod Bubbles (z-index: 25) */}
             <div className={`hover-pods-container ${isHovered ? 'is-visible' : ''}`}>
-              {pods.map((pod) => {
-                const isPodActive = activePod === pod.id
+              {pods
+                .filter((p) => p.id !== 'avatar')
+                .map((pod) => {
+                  const isPodActive = activePod === pod.id
+                  const isOtherPodActive = activePod && activePod !== pod.id
 
-                return (
-                  <div
-                    key={pod.id}
-                    className={`menu-pod-item ${pod.className} ${isPodActive ? 'is-pod-active' : ''}`}
-                    onMouseEnter={() => handlePodMouseEnter(pod.id)}
-                    onMouseLeave={handlePodMouseLeave}
-                    onClick={() => handlePodClick(pod.path)}
-                    role="button"
-                    tabIndex={0}
-                    aria-label={`Navigate to ${pod.title}`}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        handlePodClick(pod.path)
-                      }
-                    }}
-                  >
-                    <div className="pod-bubble">
-                      <img src={pod.img} alt={pod.title} className="pod-icon-img" />
+                  return (
+                    <div
+                      key={pod.id}
+                      className={`menu-pod-item ${pod.className} ${
+                        isPodActive ? 'is-pod-active' : ''
+                      } ${isOtherPodActive ? 'is-pod-dimmed' : ''}`}
+                      onMouseEnter={() => handlePodMouseEnter(pod.id)}
+                      onMouseLeave={handlePodMouseLeave}
+                      onClick={() => handlePodClick(pod.path)}
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`Navigate to ${pod.title}`}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          handlePodClick(pod.path)
+                        }
+                      }}
+                    >
+                      <div className="pod-bubble">
+                        <img src={pod.img} alt={pod.title} className="pod-icon-img" />
+                      </div>
                     </div>
-                  </div>
-                )
-              })}
+                  )
+                })}
             </div>
           </div>
         </div>
@@ -154,4 +232,3 @@ function HomeHero() {
 }
 
 export default HomeHero
-

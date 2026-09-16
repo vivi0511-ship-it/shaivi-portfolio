@@ -1,3 +1,4 @@
+/* Home Page Hero Main Container */
 .home-hero-page {
   min-height: 100vh;
   width: 100vw;
@@ -33,6 +34,67 @@
   transform: scale(1.08) rotate(-2deg);
 }
 
+/* Dynamic Angled Projector Banners Layer (z-index: 20) */
+.home-projector-banner {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  background: linear-gradient(135deg, rgba(249, 175, 214, 0.96) 0%, rgba(243, 150, 198, 0.94) 100%);
+  transform-origin: 85% 50%;
+  transform: scaleX(0) scaleY(0.4);
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 15px 45px rgba(210, 80, 130, 0.22);
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), opacity 180ms ease;
+  will-change: transform, opacity;
+}
+
+.home-projector-banner.is-active {
+  transform: scaleX(1) scaleY(1);
+  opacity: 1;
+  transition: transform 220ms cubic-bezier(0.05, 0.9, 0.1, 1.0), opacity 200ms ease;
+}
+
+.projector-banner-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 35%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+}
+
+/* Kinetic Title inside Angled Banner */
+.banner-kinetic-wrapper {
+  position: absolute;
+  z-index: 22;
+  opacity: 0;
+  transform: translateX(-40px) scale(0.9);
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.banner-kinetic-wrapper.is-entered {
+  opacity: 1;
+  transform: translateX(0px) scale(1);
+  transition: transform 200ms cubic-bezier(0.05, 0.9, 0.1, 1.0) 40ms, opacity 180ms ease 40ms;
+}
+
+.banner-kinetic-title {
+  font-family: 'Anton', 'Bebas Neue', 'Space Mono', sans-serif;
+  font-size: 64px;
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 2px;
+  margin: 0;
+  line-height: 0.9;
+  text-transform: uppercase;
+  text-shadow: 0 4px 16px rgba(180, 50, 100, 0.3), 0 2px 4px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+}
+
 /* Interaction Zone */
 .hero-interaction-zone {
   position: relative;
@@ -44,7 +106,7 @@
   box-sizing: border-box;
 }
 
-/* Glassmorphic Hero Card */
+/* Glassmorphic Hero Card (z-index: 5) */
 .hero-glass-card {
   position: relative;
   width: 100%;
@@ -73,13 +135,19 @@
     inset 0 1px 3px rgba(255, 255, 255, 0.7);
 }
 
-/* Left Bio Column */
+/* Left Bio Column (dims when a pod or avatar is active) */
 .card-bio-content {
   flex: 1;
   max-width: 480px;
   z-index: 10;
   display: flex;
   flex-direction: column;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.card-bio-content.is-dimmed {
+  opacity: 0.18;
+  filter: blur(1px);
 }
 
 .pixel-hi-wrapper {
@@ -136,18 +204,19 @@
   margin-right: -10px;
 }
 
-/* Avatar Head Wrapper */
+/* Avatar Head Wrapper (z-index: 15 / 22) */
 .avatar-head-wrapper {
   position: relative;
   width: 340px;
-  z-index: 15;
+  z-index: 22;
   cursor: pointer;
   outline: none;
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+  transition: filter 0.3s ease;
+  will-change: transform;
 }
 
-.avatar-head-wrapper:hover {
-  transform: scale(1.04);
+.avatar-head-wrapper.is-avatar-active {
+  filter: drop-shadow(-15px 25px 45px rgba(220, 70, 130, 0.45));
 }
 
 .avatar-head-img {
@@ -158,7 +227,7 @@
   filter: drop-shadow(-10px 18px 30px rgba(160, 70, 110, 0.25));
 }
 
-/* Hover Pods Container */
+/* Hover Pods Container (z-index: 25) */
 .hover-pods-container {
   position: absolute;
   inset: 0;
@@ -175,8 +244,9 @@
   opacity: 0;
   transform: scale(0.3);
   transition: 
-    opacity 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter 0.3s ease;
   will-change: transform, opacity;
 }
 
@@ -188,41 +258,22 @@
 }
 
 /* Staggered Entrance Animations */
-.hover-pods-container.is-visible .pod-house {
-  transition-delay: 0ms;
-}
+.hover-pods-container.is-visible .pod-house { transition-delay: 0ms; }
+.hover-pods-container.is-visible .pod-laptop { transition-delay: 40ms; }
+.hover-pods-container.is-visible .pod-resume { transition-delay: 80ms; }
+.hover-pods-container.is-visible .pod-console { transition-delay: 120ms; }
 
-.hover-pods-container.is-visible .pod-laptop {
-  transition-delay: 50ms;
-}
+/* Pod Positions */
+.pod-house { top: -45px; left: 20px; }
+.pod-laptop { top: 70px; left: -90px; }
+.pod-resume { top: 215px; left: -90px; }
+.pod-console { top: 300px; left: 30px; }
 
-.hover-pods-container.is-visible .pod-resume {
-  transition-delay: 100ms;
-}
-
-.hover-pods-container.is-visible .pod-console {
-  transition-delay: 150ms;
-}
-
-/* Pod Relative Positions matching Home page 3.0 Hover.png */
-.pod-house {
-  top: -45px;
-  left: 20px;
-}
-
-.pod-laptop {
-  top: 70px;
-  left: -90px;
-}
-
-.pod-resume {
-  top: 215px;
-  left: -90px;
-}
-
-.pod-console {
-  top: 300px;
-  left: 30px;
+/* Dimmed Inactive Pods State (~30% opacity) */
+.menu-pod-item.is-pod-dimmed {
+  opacity: 0.3 !important;
+  filter: blur(0.5px);
+  transform: scale(0.92) !important;
 }
 
 /* Pod Bubble Circle */
@@ -247,13 +298,18 @@
   transition: transform 0.25s ease;
 }
 
-/* Pod Hover State */
+/* Active Hover Pod State (1.25x scale, opaque & bright pink) */
+.menu-pod-item.is-pod-active {
+  z-index: 30 !important;
+  opacity: 1 !important;
+  transform: scale(1.25) !important;
+}
+
 .menu-pod-item.is-pod-active .pod-bubble {
-  transform: scale(1.15);
-  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.96) 0%, rgba(255, 190, 220, 0.92) 100%);
+  background: radial-gradient(circle at 35% 35%, rgba(255, 190, 230, 0.98) 0%, rgba(242, 130, 195, 0.95) 100%);
   box-shadow: 
-    0 0 30px rgba(255, 180, 220, 0.85),
-    0 14px 32px rgba(190, 60, 115, 0.35);
+    0 0 35px rgba(255, 160, 220, 0.85),
+    0 16px 36px rgba(190, 60, 115, 0.38);
 }
 
 .menu-pod-item.is-pod-active .pod-icon-img {

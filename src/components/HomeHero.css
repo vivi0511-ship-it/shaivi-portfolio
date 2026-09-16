@@ -163,7 +163,7 @@
 /* Individual Menu Pod Item */
 .menu-pod-item {
   position: absolute;
-  z-index: 35;
+  z-index: 20;
   cursor: pointer;
   pointer-events: none;
   opacity: 0;
@@ -201,25 +201,25 @@
   transition-delay: 150ms;
 }
 
-/* Precise Pod Positions Matching Image 3 */
+/* Precise Pod Positions Matching Home page 2.0.png (Behind Head Outer Arc) */
 .pod-house {
-  top: -75px;
-  right: 220px;
+  top: -70px;
+  right: 230px;
 }
 
 .pod-laptop {
-  top: 70px;
-  right: 255px;
+  top: 45px;
+  right: 270px;
 }
 
 .pod-resume {
-  top: 245px;
-  right: 175px;
+  top: 195px;
+  right: 215px;
 }
 
 .pod-console {
-  top: 285px;
-  right: -30px;
+  top: 245px;
+  right: -35px;
 }
 
 /* Pod Bubble Circle */

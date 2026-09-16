@@ -49,7 +49,7 @@ function About({ onHoverCategory, onLeaveCategory }) {
     if (!container) return
 
     let animId
-    const R = 210 // Avatar head exclusion radius in px (head radius + 40px clearance margin)
+    const R = 210 // Avatar head exclusion radius in px (head radius + clearance margin)
     
     const updatePretextLayout = () => {
       const headCY = window.innerHeight / 2
@@ -119,19 +119,34 @@ function About({ onHoverCategory, onLeaveCategory }) {
     <div className="about-editorial-wrapper" ref={editorialRef}>
 
       {/* ============================================================
-          SECTION 1: HERO TAGLINE WITH MONOSPACE TYPOGRAPHY & AVATAR SPLIT
+          SECTION 1: HERO TAGLINE WITH FULL PRETEXT AVATAR CONTOUR WRAPPING
           ============================================================ */}
       <section className="editorial-section section-hero-tagline">
         <div className="tagline-wrap-container">
-          <span className="tagline-line">I am Shaivi,</span>
+          <span className="tagline-line pretext-item" data-side="center">
+            I am Shaivi,
+          </span>
+
           <span className="tagline-line middle-split">
-            <span className="split-left">I am a</span>
+            <span className="split-left pretext-item" data-side="left">I am a</span>
             <span className="split-spacer" />
-            <span className="split-right">UI/UX designer.</span>
+            <span className="split-right pretext-item" data-side="right">UI/UX designer.</span>
           </span>
-          <span className="tagline-subtext">
-            I love to research, get to the bottom of the problems and make stuff that actually works.
-          </span>
+
+          <div className="tagline-subtext-wrap">
+            <div className="subtext-split-row">
+              <span className="subtext-left pretext-item" data-side="left">
+                I love to research, get to the
+              </span>
+              <span className="subtext-spacer" />
+              <span className="subtext-right pretext-item" data-side="right">
+                bottom of the problems and
+              </span>
+            </div>
+            <span className="subtext-bottom pretext-item" data-side="center">
+              make stuff that actually works.
+            </span>
+          </div>
         </div>
 
         <div className="scroll-hint-indicator">

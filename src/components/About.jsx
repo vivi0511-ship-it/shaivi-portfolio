@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import './About.css'
 
 const CHAPTERS = [
@@ -32,6 +33,8 @@ const CHAPTERS = [
 ]
 
 function About({ onHoverCategory, onLeaveCategory }) {
+  const editorialRef = useRef(null)
+
   const handleEnter = (cat) => {
     if (onHoverCategory) onHoverCategory(cat)
   }
@@ -40,8 +43,80 @@ function About({ onHoverCategory, onLeaveCategory }) {
     if (onLeaveCategory) onLeaveCategory()
   }
 
+  // Pretext Dynamic Text Wrap Engine (chenglou.me/pretext dynamic contour wrapping)
+  useEffect(() => {
+    const container = editorialRef.current
+    if (!container) return
+
+    let animId
+    const R = 210 // Avatar head exclusion radius in px (head radius + 40px clearance margin)
+    
+    const updatePretextLayout = () => {
+      const headCY = window.innerHeight / 2
+      const items = container.querySelectorAll('.pretext-item')
+
+      items.forEach((el) => {
+        const rect = el.getBoundingClientRect()
+        const elCY = rect.top + rect.height / 2
+        const dy = elCY - headCY
+        const absDy = Math.abs(dy)
+        const side = el.dataset.side // 'left', 'right', or 'center'
+
+        if (absDy < R) {
+          // Inside the circular exclusion zone of the avatar head
+          // Compute clearance radius at this vertical level: sqrt(R^2 - dy^2)
+          const clearance = Math.sqrt(R * R - dy * dy)
+
+          if (side === 'left') {
+            // Push left item further left to contour along left curve of head
+            const extraShift = clearance - 75
+            const shiftX = Math.max(0, extraShift)
+            el.style.transform = `translateX(-${shiftX}px)`
+          } else if (side === 'right') {
+            // Push right item further right to contour along right curve of head
+            const extraShift = clearance - 75
+            const shiftX = Math.max(0, extraShift)
+            el.style.transform = `translateX(${shiftX}px)`
+          } else if (side === 'center') {
+            // Center element (e.g. single title) hitting face directly:
+            // Smoothly shift up or down to clear the head top/bottom
+            if (dy < 0) {
+              const pushY = (1 - absDy / R) * -45
+              el.style.transform = `translateY(${pushY}px)`
+            } else {
+              const pushY = (1 - absDy / R) * 45
+              el.style.transform = `translateY(${pushY}px)`
+            }
+          }
+        } else {
+          // Outside exclusion zone: return to natural position
+          el.style.transform = 'translate(0, 0)'
+        }
+      })
+    }
+
+    const onScroll = () => {
+      if (!animId) {
+        animId = requestAnimationFrame(() => {
+          updatePretextLayout()
+          animId = null
+        })
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll, { passive: true })
+    updatePretextLayout()
+
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+      if (animId) cancelAnimationFrame(animId)
+    }
+  }, [])
+
   return (
-    <div className="about-editorial-wrapper">
+    <div className="about-editorial-wrapper" ref={editorialRef}>
 
       {/* ============================================================
           SECTION 1: HERO TAGLINE WITH MONOSPACE TYPOGRAPHY & AVATAR SPLIT
@@ -66,73 +141,122 @@ function About({ onHoverCategory, onLeaveCategory }) {
       </section>
 
       {/* ============================================================
-          SECTION 2: ROLES — Floating plain text in monospace
+          SECTION 2: ROLES & SKILLS — PRETEXT DYNAMIC CONTOUR WRAPPING
           ============================================================ */}
       <section className="editorial-section section-roles-display">
         <div className="roles-flow-container">
-          <div
-            className="role-group role-center interactive-role-group"
-            onMouseEnter={() => handleEnter('product-design')}
-            onMouseLeave={handleLeave}
-          >
-            <span className="role-title">Product Design</span>
-            <span className="role-item">Interaction Architecture</span>
-            <span className="role-item">Design Strategy</span>
-            <span className="role-item">Product Vision</span>
-            <span className="role-item">Design Systems</span>
-          </div>
 
-          <div className="role-split-row">
+          {/* Category 1: Product Design */}
+          <div className="pretext-group">
             <div
-              className="role-group role-align-right interactive-role-group"
-              onMouseEnter={() => handleEnter('ux-research')}
+              className="role-group role-center interactive-role-group pretext-item"
+              data-side="center"
+              onMouseEnter={() => handleEnter('product-design')}
               onMouseLeave={handleLeave}
             >
-              <span className="role-title">UX Research</span>
-              <span className="role-item">User Research &amp; Testing</span>
-              <span className="role-item">Empathy Mapping</span>
-              <span className="role-item">Journey Mapping</span>
-              <span className="role-item">Information Architecture</span>
-              <span className="role-item">Wireframing</span>
+              <span className="role-title">PRODUCT DESIGN</span>
             </div>
 
-            <div className="role-avatar-gap" />
+            <div className="role-split-row">
+              <div
+                className="role-group role-align-right interactive-role-group"
+                onMouseEnter={() => handleEnter('product-design')}
+                onMouseLeave={handleLeave}
+              >
+                <span className="role-item pretext-item" data-side="left">Interaction Architecture</span>
+                <span className="role-item pretext-item" data-side="left">Design Strategy</span>
+              </div>
 
-            <div
-              className="role-group role-align-left interactive-role-group"
-              onMouseEnter={() => handleEnter('ui-design')}
-              onMouseLeave={handleLeave}
-            >
-              <span className="role-title">UI Design</span>
-              <span className="role-item">Visual Systems</span>
-              <span className="role-item">Micro-animations</span>
-              <span className="role-item">Interactive Prototyping</span>
-              <span className="role-item">Design Guidelines</span>
-              <span className="role-item">Responsive Design</span>
+              <div className="role-avatar-gap" />
+
+              <div
+                className="role-group role-align-left interactive-role-group"
+                onMouseEnter={() => handleEnter('product-design')}
+                onMouseLeave={handleLeave}
+              >
+                <span className="role-item pretext-item" data-side="right">Product Vision</span>
+                <span className="role-item pretext-item" data-side="right">Design Systems</span>
+              </div>
             </div>
           </div>
 
-          <div
-            className="role-group role-center interactive-role-group"
-            onMouseEnter={() => handleEnter('digital-spatial')}
-            onMouseLeave={handleLeave}
-          >
-            <span className="role-title">Digital &amp; Spatial</span>
-            <span className="role-item">Spatial UI / XR</span>
-            <span className="role-item">AI Integration</span>
-            <span className="role-item">Accessibility</span>
-            <span className="role-item">3D Design</span>
+          {/* Category 2: UX Research & UI Design */}
+          <div className="pretext-group">
+            <div className="role-split-row">
+              <div
+                className="role-group role-align-right interactive-role-group"
+                onMouseEnter={() => handleEnter('ux-research')}
+                onMouseLeave={handleLeave}
+              >
+                <span className="role-title pretext-item" data-side="left">UX RESEARCH</span>
+                <span className="role-item pretext-item" data-side="left">User Research &amp; Testing</span>
+                <span className="role-item pretext-item" data-side="left">Empathy Mapping</span>
+                <span className="role-item pretext-item" data-side="left">Journey Mapping</span>
+                <span className="role-item pretext-item" data-side="left">Information Architecture</span>
+                <span className="role-item pretext-item" data-side="left">Wireframing</span>
+              </div>
+
+              <div className="role-avatar-gap" />
+
+              <div
+                className="role-group role-align-left interactive-role-group"
+                onMouseEnter={() => handleEnter('ui-design')}
+                onMouseLeave={handleLeave}
+              >
+                <span className="role-title pretext-item" data-side="right">UI DESIGN</span>
+                <span className="role-item pretext-item" data-side="right">Visual Systems</span>
+                <span className="role-item pretext-item" data-side="right">Micro-animations</span>
+                <span className="role-item pretext-item" data-side="right">Interactive Prototyping</span>
+                <span className="role-item pretext-item" data-side="right">Design Guidelines</span>
+                <span className="role-item pretext-item" data-side="right">Responsive Design</span>
+              </div>
+            </div>
           </div>
+
+          {/* Category 3: Digital & Spatial */}
+          <div className="pretext-group">
+            <div
+              className="role-group role-center interactive-role-group pretext-item"
+              data-side="center"
+              onMouseEnter={() => handleEnter('digital-spatial')}
+              onMouseLeave={handleLeave}
+            >
+              <span className="role-title">DIGITAL &amp; SPATIAL</span>
+            </div>
+
+            <div className="role-split-row">
+              <div
+                className="role-group role-align-right interactive-role-group"
+                onMouseEnter={() => handleEnter('digital-spatial')}
+                onMouseLeave={handleLeave}
+              >
+                <span className="role-item pretext-item" data-side="left">Spatial UI / XR</span>
+                <span className="role-item pretext-item" data-side="left">AI Integration</span>
+              </div>
+
+              <div className="role-avatar-gap" />
+
+              <div
+                className="role-group role-align-left interactive-role-group"
+                onMouseEnter={() => handleEnter('digital-spatial')}
+                onMouseLeave={handleLeave}
+              >
+                <span className="role-item pretext-item" data-side="right">Accessibility</span>
+                <span className="role-item pretext-item" data-side="right">3D Design</span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
       {/* ============================================================
-          SECTION 3: CONTACT — Floating text, same style
+          SECTION 3: CONTACT — PRETEXT DYNAMIC CONTOUR WRAPPING
           ============================================================ */}
       <section className="editorial-section section-contact-display">
         <div className="roles-flow-container">
-          <div className="role-group role-center">
-            <span className="role-title">Contact</span>
+          <div className="role-group role-center pretext-item" data-side="center">
+            <span className="role-title">CONTACT</span>
           </div>
 
           <div className="role-split-row">
@@ -141,8 +265,8 @@ function About({ onHoverCategory, onLeaveCategory }) {
               onMouseEnter={() => handleEnter('contact-left')}
               onMouseLeave={handleLeave}
             >
-              <a href="https://www.linkedin.com/in/connectwithshaivi/" target="_blank" rel="noopener noreferrer" className="role-item role-link">LinkedIn</a>
-              <a href="https://www.behance.net/shaivilavhe11" target="_blank" rel="noopener noreferrer" className="role-item role-link">Behance</a>
+              <a href="https://www.linkedin.com/in/connectwithshaivi/" target="_blank" rel="noopener noreferrer" className="role-item role-link pretext-item" data-side="left">LinkedIn</a>
+              <a href="https://www.behance.net/shaivilavhe11" target="_blank" rel="noopener noreferrer" className="role-item role-link pretext-item" data-side="left">Behance</a>
             </div>
             <div className="role-avatar-gap" />
             <div
@@ -150,35 +274,31 @@ function About({ onHoverCategory, onLeaveCategory }) {
               onMouseEnter={() => handleEnter('contact-right')}
               onMouseLeave={handleLeave}
             >
-              <a href="mailto:shaivilavhe@gmail.com" className="role-item role-link">Email</a>
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" download className="role-item role-link">Download CV</a>
+              <a href="mailto:shaivilavhe@gmail.com" className="role-item role-link pretext-item" data-side="right">Email</a>
+              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" download className="role-item role-link pretext-item" data-side="right">Download CV</a>
             </div>
           </div>
         </div>
       </section>
 
       {/* ============================================================
-          SECTION 4: ALL CHAPTERS — displayed vertically in sequence
-          Each chapter: title row → left text + gap + right text
-          The fixed avatar sits in the gap as text scrolls past
+          SECTION 4: CHAPTERS — Monospace Text Wrapping around Fixed Avatar
           ============================================================ */}
       {CHAPTERS.map((ch) => (
         <section key={ch.num} className="chapter-scroll-section">
-          {/* Chapter title: "Ch. One    I    Feel" */}
-          <div className="chapter-title-row">
+          <div className="chapter-title-row pretext-item" data-side="center">
             <span className="chapter-num-name">Ch. {ch.numText}</span>
             <span className="roman-numeral-display">{ch.num}</span>
             <span className="chapter-title-name">{ch.title}</span>
           </div>
 
-          {/* Left & Right text columns wrapping around avatar gap */}
           <div className="chapter-columns-wrap">
             <div
               className="chapter-text-column column-left interactive-role-group"
               onMouseEnter={() => handleEnter('chapter-left')}
               onMouseLeave={handleLeave}
             >
-              <p>{ch.leftText}</p>
+              <p className="pretext-item" data-side="left">{ch.leftText}</p>
             </div>
             <div className="chapter-center-spacer" />
             <div
@@ -186,7 +306,7 @@ function About({ onHoverCategory, onLeaveCategory }) {
               onMouseEnter={() => handleEnter('chapter-right')}
               onMouseLeave={handleLeave}
             >
-              <p>{ch.rightText}</p>
+              <p className="pretext-item" data-side="right">{ch.rightText}</p>
             </div>
           </div>
         </section>

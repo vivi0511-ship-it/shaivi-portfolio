@@ -15,43 +15,43 @@ function P5CornerRadialMenu() {
       title: 'HOME',
       path: '/',
       img: '/assets/pod_house_trans.png',
-      style: { top: '18px', right: '175px' },
-      bannerClip: 'polygon(0% 0%, 100% 0%, 100% 65%, 0% 35%)',
-      textPos: { top: '35px', left: '15%', transform: 'rotate(-3deg)' }
+      style: { top: '15px', right: '185px' },
+      bannerClip: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 55%)',
+      textPos: { top: '25px', left: '30%', transform: 'rotate(-2deg)' }
     },
     {
       id: 'laptop',
       title: 'WORK',
       path: '/work',
       img: '/assets/pod_laptop_trans.png',
-      style: { top: '105px', right: '210px' },
-      bannerClip: 'polygon(0% 12%, 100% 25%, 100% 82%, 0% 55%)',
-      textPos: { top: '45px', left: '15%', transform: 'rotate(-4deg)' }
+      style: { top: '105px', right: '220px' },
+      bannerClip: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 55%)',
+      textPos: { top: '25px', left: '30%', transform: 'rotate(-2deg)' }
     },
     {
       id: 'resume',
       title: 'RESUME',
       path: '/about',
       img: '/assets/pod_resume_trans.png',
-      style: { top: '190px', right: '165px' },
-      bannerClip: 'polygon(0% 25%, 100% 48%, 100% 95%, 0% 72%)',
-      textPos: { top: '65px', left: '16%', transform: 'rotate(-3deg)' }
+      style: { top: '195px', right: '175px' },
+      bannerClip: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 55%)',
+      textPos: { top: '25px', left: '30%', transform: 'rotate(-2deg)' }
     },
     {
       id: 'console',
       title: 'HOBBIES',
       path: '/contact',
       img: '/assets/pod_console_trans.png',
-      style: { top: '220px', right: '65px' },
-      bannerClip: 'polygon(0% 35%, 100% 60%, 100% 100%, 0% 85%)',
-      textPos: { top: '75px', left: '16%', transform: 'rotate(-4deg)' }
+      style: { top: '225px', right: '70px' },
+      bannerClip: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 55%)',
+      textPos: { top: '25px', left: '30%', transform: 'rotate(-2deg)' }
     },
     {
       id: 'avatar',
       title: 'ABOUT ME',
       path: '/about',
-      bannerClip: 'polygon(0% 10%, 100% 0%, 100% 65%, 0% 45%)',
-      textPos: { top: '40px', left: '12%', transform: 'rotate(-3deg)' }
+      bannerClip: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 55%)',
+      textPos: { top: '25px', left: '28%', transform: 'rotate(-2deg)' }
     }
   ]
 

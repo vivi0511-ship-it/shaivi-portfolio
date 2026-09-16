@@ -118,8 +118,8 @@
   position: fixed;
   top: 0;
   right: 0;
-  width: 75vw;
-  height: 280px;
+  width: 70vw;
+  height: 180px;
   z-index: 850;
   background: linear-gradient(135deg, #f5a9ca 0%, #f193ba 100%);
   transform-origin: 100% 0%;

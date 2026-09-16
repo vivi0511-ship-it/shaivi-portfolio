@@ -131,7 +131,7 @@
   right: 0;
   top: 0;
   width: 350px;
-  z-index: 25;
+  z-index: 10;
   cursor: pointer;
   pointer-events: auto;
   outline: none;
@@ -139,7 +139,7 @@
 }
 
 .avatar-head-wrapper:hover {
-  transform: scale(1.05) translateY(-4px);
+  transform: scale(1.04) translateY(-3px);
 }
 
 .avatar-head-img {
@@ -160,7 +160,7 @@
   pointer-events: none;
 }
 
-/* Individual Menu Pod Item */
+/* Individual Menu Pod Item - Higher z-index than avatar head */
 .menu-pod-item {
   position: absolute;
   z-index: 20;
@@ -201,25 +201,25 @@
   transition-delay: 150ms;
 }
 
-/* Precise Pod Positions Matching Home page 2.0 click.png */
+/* Wide Crescent Arc Coordinates with Full Clearance around Avatar Head */
 .pod-house {
-  top: -65px;
-  right: 250px;
+  top: -70px;
+  right: 260px;
 }
 
 .pod-laptop {
-  top: 75px;
-  right: 275px;
+  top: 60px;
+  right: 300px;
 }
 
 .pod-resume {
-  top: 245px;
-  right: 170px;
+  top: 230px;
+  right: 230px;
 }
 
 .pod-console {
-  top: 285px;
-  right: -20px;
+  top: 280px;
+  right: 40px;
 }
 
 /* Pod Bubble Circle */
@@ -228,8 +228,8 @@
   width: 108px;
   height: 108px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, rgba(245, 175, 215, 0.85) 0%, rgba(225, 140, 190, 0.75) 100%);
-  border: 2.5px solid rgba(255, 255, 255, 0.85);
+  background: radial-gradient(circle at 35% 35%, rgba(245, 175, 215, 0.88) 0%, rgba(225, 140, 190, 0.78) 100%);
+  border: 2.5px solid rgba(255, 255, 255, 0.88);
   box-shadow: 0 10px 25px rgba(180, 70, 120, 0.25);
   display: flex;
   align-items: center;
@@ -253,10 +253,10 @@
   pointer-events: none;
 }
 
-/* Pod Hover State */
+/* Pod Hover State - Scales Outward within Orbital Zone */
 .menu-pod-item.is-pod-active {
-  z-index: 45 !important;
-  transform: scale(1.15) !important;
+  z-index: 35 !important;
+  transform: scale(1.2) translateY(-4px) !important;
 }
 
 .menu-pod-item.is-pod-active .pod-bubble {

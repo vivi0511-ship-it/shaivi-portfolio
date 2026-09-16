@@ -69,7 +69,7 @@ function HomeHero() {
     {
       id: 'resume',
       title: 'RESUME',
-      path: '/about',
+      path: '/resume',
       img: '/assets/pod_resume_trans.png',
       className: 'pod-resume',
       clipPath: 'polygon(0% 25%, 62% 52%, 58% 84%, 0% 95%)',

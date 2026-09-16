@@ -33,7 +33,7 @@ function P5CornerRadialMenu() {
     {
       id: 'resume',
       title: 'RESUME',
-      path: '/about',
+      path: '/resume',
       img: '/assets/pod_resume_trans.png',
       style: { top: '195px', right: '175px' },
       bannerStyle: { top: '155px', right: '195px' },

@@ -201,25 +201,25 @@
   transition-delay: 150ms;
 }
 
-/* Clear Circular Pod Positions around Avatar Head (In Front) */
+/* Left-side Pod Positions completely clear of Avatar Head */
 .pod-house {
-  top: -70px;
-  right: 215px;
+  top: -65px;
+  right: 285px;
 }
 
 .pod-laptop {
-  top: 55px;
-  right: 280px;
+  top: 45px;
+  right: 325px;
 }
 
 .pod-resume {
-  top: 215px;
-  right: 215px;
+  top: 175px;
+  right: 305px;
 }
 
 .pod-console {
-  top: 240px;
-  right: -25px;
+  top: 285px;
+  right: 255px;
 }
 
 /* Pod Bubble Circle */

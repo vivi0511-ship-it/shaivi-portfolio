@@ -113,23 +113,24 @@
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
 }
 
-/* Persona 5 Projection Banner Layers */
+/* Persona 5 Projection Banner Layers - Pinned to Active Node */
 .p5-corner-banner {
   position: fixed;
-  inset: 0;
+  width: 460px;
+  height: 150px;
   z-index: 850;
   background: linear-gradient(135deg, rgba(255, 205, 225, 0.96) 0%, rgba(245, 170, 205, 0.94) 100%);
-  transform-origin: 85% 30%;
-  transform: scale(0.3) rotate(6deg);
+  transform-origin: 100% 50%;
+  transform: scaleX(0) scaleY(0.4);
   opacity: 0;
   pointer-events: none;
   box-shadow: 0 15px 45px rgba(210, 80, 130, 0.25);
-  transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1), opacity 160ms ease;
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), opacity 180ms ease;
   will-change: transform, opacity;
 }
 
 .p5-corner-banner.is-banner-active {
-  transform: scale(1) rotate(0deg);
+  transform: scaleX(1) scaleY(1);
   opacity: 1;
   transition: transform 200ms cubic-bezier(0.05, 0.9, 0.1, 1.0), opacity 180ms ease;
 }
@@ -148,21 +149,20 @@
 .p5-corner-banner-text {
   position: absolute;
   z-index: 860;
-  transform: translateX(70px) scale(1.15);
   opacity: 0;
-  pointer-events: none;
-  transition: transform 140ms ease-in, opacity 140ms ease-in;
+  transform: translateX(40px) scale(0.9);
+  transition: transform 160ms ease, opacity 160ms ease;
 }
 
 .p5-corner-banner-text.is-text-entered {
-  transform: translateX(0px) scale(1);
   opacity: 1;
-  transition: transform 180ms cubic-bezier(0.05, 0.9, 0.1, 1.0) 30ms, opacity 140ms ease 30ms;
+  transform: translateX(0px) scale(1);
+  transition: transform 180ms cubic-bezier(0.05, 0.9, 0.1, 1.0) 40ms, opacity 160ms ease 40ms;
 }
 
 .corner-banner-title {
   font-family: 'Anton', 'Bebas Neue', 'Space Mono', sans-serif;
-  font-size: 54px;
+  font-size: 52px;
   font-weight: 400;
   color: #ffffff;
   letter-spacing: 2px;
@@ -170,4 +170,5 @@
   line-height: 0.9;
   text-transform: uppercase;
   text-shadow: 0 3px 14px rgba(180, 50, 100, 0.25);
+  white-space: nowrap;
 }

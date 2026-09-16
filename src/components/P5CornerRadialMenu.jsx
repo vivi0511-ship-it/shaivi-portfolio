@@ -16,8 +16,9 @@ function P5CornerRadialMenu() {
       path: '/',
       img: '/assets/pod_house_trans.png',
       style: { top: '15px', right: '185px' },
-      bannerClip: 'polygon(55% 4%, 86% 10%, 82% 28%, 52% 26%)',
-      textPos: { top: '12%', left: '60%', transform: 'rotate(-12deg)' }
+      bannerStyle: { top: '-25px', right: '210px' },
+      bannerClip: 'polygon(0% 5%, 100% 30%, 100% 70%, 0% 95%)',
+      textPos: { right: '90px', top: '46px', transform: 'rotate(-10deg)' }
     },
     {
       id: 'laptop',
@@ -25,8 +26,9 @@ function P5CornerRadialMenu() {
       path: '/work',
       img: '/assets/pod_laptop_trans.png',
       style: { top: '105px', right: '220px' },
-      bannerClip: 'polygon(54% 16%, 85% 26%, 80% 42%, 50% 40%)',
-      textPos: { top: '23%', left: '59%', transform: 'rotate(-12deg)' }
+      bannerStyle: { top: '65px', right: '245px' },
+      bannerClip: 'polygon(0% 5%, 100% 30%, 100% 70%, 0% 95%)',
+      textPos: { right: '90px', top: '46px', transform: 'rotate(-10deg)' }
     },
     {
       id: 'resume',
@@ -34,8 +36,9 @@ function P5CornerRadialMenu() {
       path: '/about',
       img: '/assets/pod_resume_trans.png',
       style: { top: '195px', right: '175px' },
-      bannerClip: 'polygon(54% 32%, 84% 46%, 78% 64%, 48% 58%)',
-      textPos: { top: '40%', left: '59%', transform: 'rotate(-12deg)' }
+      bannerStyle: { top: '155px', right: '200px' },
+      bannerClip: 'polygon(0% 5%, 100% 30%, 100% 70%, 0% 95%)',
+      textPos: { right: '90px', top: '46px', transform: 'rotate(-10deg)' }
     },
     {
       id: 'console',
@@ -43,15 +46,17 @@ function P5CornerRadialMenu() {
       path: '/contact',
       img: '/assets/pod_console_trans.png',
       style: { top: '225px', right: '70px' },
-      bannerClip: 'polygon(54% 42%, 92% 56%, 86% 76%, 48% 68%)',
-      textPos: { top: '50%', left: '60%', transform: 'rotate(-12deg)' }
+      bannerStyle: { top: '185px', right: '95px' },
+      bannerClip: 'polygon(0% 5%, 100% 30%, 100% 70%, 0% 95%)',
+      textPos: { right: '90px', top: '46px', transform: 'rotate(-10deg)' }
     },
     {
       id: 'avatar',
       title: 'ABOUT ME',
       path: '/about',
-      bannerClip: 'polygon(52% 10%, 92% 18%, 86% 48%, 46% 72%)',
-      textPos: { top: '30%', left: '58%', transform: 'rotate(-12deg)' }
+      bannerStyle: { top: '-10px', right: '90px' },
+      bannerClip: 'polygon(0% 5%, 100% 30%, 100% 70%, 0% 95%)',
+      textPos: { right: '85px', top: '46px', transform: 'rotate(-10deg)' }
     }
   ]
 
@@ -90,7 +95,11 @@ function P5CornerRadialMenu() {
           <div
             key={`banner-${node.id}`}
             className={`p5-corner-banner ${isActive ? 'is-banner-active' : ''}`}
-            style={{ clipPath: node.bannerClip }}
+            style={{
+              top: node.bannerStyle.top,
+              right: node.bannerStyle.right,
+              clipPath: node.bannerClip
+            }}
           >
             <div className="corner-banner-shine"></div>
 

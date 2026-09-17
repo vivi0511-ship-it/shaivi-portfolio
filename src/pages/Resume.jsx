@@ -231,7 +231,7 @@ export default function Resume() {
                   <span>https://www.behance.net/shaivilavhe11</span>
                 </a>
 
-                <a href="/resume.pdf" className="marquee-link" target="_blank" rel="noopener noreferrer">
+                <a href="/resume.pdf" className="marquee-link" target="_blank" rel="noopener noreferrer" download="Shaivi_Lavhe_Resume.pdf">
                   <svg className="ribbon-icon-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="12" r="10" />
                     <polyline points="8 12 12 16 16 12" />

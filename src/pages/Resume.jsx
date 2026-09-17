@@ -42,11 +42,8 @@ export default function Resume() {
       />
       <div className="resume-paper-texture" />
 
-      {/* Top Left Corner Floating Turntable (1.2x Parallax Speed) */}
-      <div
-        className="resume-turntable-fixed"
-        style={{ transform: `translateX(${scrollX * 0.1}px)` }}
-      >
+      {/* Top Left Corner Floating Turntable (Fixed) */}
+      <div className="resume-turntable-fixed">
         <TurntablePlayer width="95px" />
       </div>
 

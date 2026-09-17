@@ -152,7 +152,7 @@ function HomeHero() {
             activePod === 'avatar' ? 'is-avatar-active' : ''
           }`}
           style={{
-            transform: `translateY(-50%) perspective(600px) rotateX(${headRot.rx}deg) rotateY(${headRot.ry}deg)`
+            transform: `translateY(-50%) scale(0.82) perspective(600px) rotateX(${headRot.rx}deg) rotateY(${headRot.ry}deg)`
           }}
           onMouseEnter={() => handlePodMouseEnter('avatar')}
           onMouseLeave={handlePodMouseLeave}

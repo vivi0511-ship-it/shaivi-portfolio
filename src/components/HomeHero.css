@@ -148,10 +148,11 @@
 /* 3. Inactive Elements - 3D Avatar Head (z-index: 10 default, z-index: 30 when hovered) */
 .avatar-head-wrapper {
   position: absolute;
-  right: 5vw;
+  right: 3vw;
   top: 50%;
-  transform: translateY(-50%);
-  width: clamp(340px, 32vw, 460px);
+  transform: translateY(-50%) scale(0.82);
+  width: clamp(280px, 26vw, 380px);
+  max-height: 52vh;
   height: auto;
   z-index: 10;
   cursor: pointer;
@@ -175,6 +176,7 @@
 .avatar-head-img {
   width: 100% !important;
   height: auto !important;
+  max-height: 52vh !important;
   max-width: none !important;
   display: block;
   pointer-events: auto;
@@ -245,11 +247,11 @@
 /* Hover Pods Container */
 .hover-pods-container {
   position: absolute;
-  right: 5vw;
+  right: 3vw;
   top: 50%;
-  transform: translateY(-50%);
-  width: clamp(340px, 32vw, 460px);
-  height: clamp(340px, 32vw, 460px);
+  transform: translateY(-50%) scale(0.82);
+  width: clamp(280px, 26vw, 380px);
+  height: clamp(280px, 26vw, 380px);
   pointer-events: none;
   z-index: 25;
   overflow: visible !important;

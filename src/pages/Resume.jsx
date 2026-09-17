@@ -226,22 +226,11 @@ export default function Resume() {
                 onMouseLeave={() => setHoveredCard(null)}
                 style={{ transform: `translateX(${scrollX * 0.08}px)` }}
               >
-                <div className="lanyard-strap-ribbon" />
-                <div className="lanyard-clip-metal" />
-
-                <div className="id-card-body">
-                  <h3 className="education-card-title">Education</h3>
-
-                  <div className="edu-entry">
-                    <h4 className="school-name">Sandipani School</h4>
-                    <p className="school-details">2009–2021 | Nagpur</p>
-                  </div>
-
-                  <div className="edu-entry">
-                    <h4 className="school-name">Symbiosis Institute Of Design</h4>
-                    <p className="school-details">2021–2025 | Nagpur</p>
-                  </div>
-                </div>
+                <img
+                  src="/assets/pink_lanyard.png"
+                  alt="Education Lanyard Badge"
+                  className="lanyard-badge-img"
+                />
               </div>
 
               <div

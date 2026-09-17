@@ -52,7 +52,7 @@
   animation: floatHead 4.5s ease-in-out infinite;
 }
 
-.avatar-head-img {
+.resume-floating-avatar-head .avatar-head-img {
   width: 55px;
   height: auto;
   filter: drop-shadow(0 8px 16px rgba(135, 12, 70, 0.3));

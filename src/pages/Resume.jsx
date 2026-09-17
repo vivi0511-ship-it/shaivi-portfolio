@@ -237,11 +237,7 @@ export default function Resume() {
                 className={`scrapbook-item languages-starburst-card ${hoveredCard === 'lang' ? 'is-hovered' : ''}`}
                 onMouseEnter={() => setHoveredCard('lang')}
                 onMouseLeave={() => setHoveredCard(null)}
-                style={{ 
-                  transform: `translateX(${scrollX * 0.08}px)`,
-                  left: '420px',
-                  top: '220px'
-                }}
+                style={{ transform: `translateX(${scrollX * 0.08}px)` }}
               >
                 <img
                   src="/assets/languages_badge.png"

@@ -324,22 +324,22 @@
 }
 
 /* --------------------------------------------------------------------------
-   1. TOOLS OYSTER SHELL
+   1. TOOLS FRONT CLAMSHELL & SOFTWARE ICONS
    -------------------------------------------------------------------------- */
 .tools-shell-card {
   position: relative;
-  width: 440px;
+  width: 480px;
   flex-shrink: 0;
-  animation: floatTools 6.5s ease-in-out infinite alternate;
+  animation: floatTools 6s ease-in-out infinite alternate;
 }
 
 @keyframes floatTools {
-  0% { transform: translateY(0px) rotate(-1.5deg); }
-  100% { transform: translateY(-10px) rotate(1.5deg); }
+  0% { transform: translateY(0px) rotate(-1deg); }
+  100% { transform: translateY(-6px) rotate(1deg); }
 }
 
 .tools-shell-card.is-hovered {
-  transform: scale(1.05) rotate(0deg) translateY(-5px) !important;
+  transform: scale(1.04) rotate(0deg) translateY(-4px) !important;
 }
 
 .clamshell-container {
@@ -352,9 +352,10 @@
 
 .clamshell-3d-img {
   width: 100%;
-  max-width: 420px;
+  max-width: 460px;
   height: auto;
-  filter: drop-shadow(0 15px 30px rgba(145, 14, 78, 0.3));
+  display: block;
+  filter: drop-shadow(0 18px 36px rgba(145, 14, 78, 0.32));
 }
 
 .clamshell-inner-content {
@@ -363,81 +364,136 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding-top: 36px;
+  justify-content: flex-start;
+  padding-top: 55px;
   z-index: 10;
 }
 
 .tools-title-text {
   font-family: 'Space Mono', monospace;
-  font-size: 1.4rem;
+  font-size: 1.55rem;
   font-weight: 700;
-  color: #cf0063;
-  margin-bottom: 12px;
-  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+  color: #d10065;
+  margin-bottom: 30px;
+  text-shadow: 0 2px 6px rgba(255, 255, 255, 0.9);
+  letter-spacing: -0.01em;
 }
 
 .tools-badges-grid {
   display: flex;
   flex-direction: column;
-  gap: 12px;
   align-items: center;
+  position: relative;
+  margin-top: 5px;
 }
 
 .tools-row {
   display: flex;
-  gap: 16px;
+  gap: 10px;
   align-items: center;
+  position: relative;
+}
+
+.top-row {
+  z-index: 2;
+  margin-bottom: -6px;
+}
+
+.bottom-row {
+  z-index: 3;
 }
 
 /* App Badges */
 .tool-badge {
-  width: 50px;
-  height: 50px;
-  border-radius: 14px;
+  position: relative;
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-family: sans-serif;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  font-family: 'Space Mono', monospace, sans-serif;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
   user-select: none;
+  cursor: pointer;
 }
 
 .tool-badge:hover {
-  transform: translateY(-4px) scale(1.1);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+  transform: scale(1.08) translateY(-4px) !important;
+  z-index: 30 !important;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
 }
 
+/* Badge specific styles */
 .badge-starburst {
-  background: #ff5722;
-  color: #ffffff;
-  font-size: 1.6rem;
-  border: 2px solid #ffab91;
+  width: 56px;
+  height: 56px;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  margin-right: -6px;
 }
 
-.starburst-icon {
-  animation: spinStarburst 12s linear infinite;
-}
-
-@keyframes spinStarburst {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.starburst-sticker-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 8px rgba(180, 40, 0, 0.35));
 }
 
 .badge-ai {
-  background: #180300;
+  background: #1c0a00;
   color: #ff9a00;
   border: 2.5px solid #ff9a00;
-  font-size: 1.25rem;
+  font-size: 1.35rem;
 }
 
 .badge-unity {
-  background: #1e1e1e;
+  background: #1e232a;
   color: #ffffff;
-  border: 2px solid #555;
-  font-size: 1.4rem;
+  border: 2px solid #4a5260;
+}
+
+.unity-svg-logo {
+  width: 32px;
+  height: 32px;
+}
+
+.badge-spline {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  padding: 8px;
+}
+
+.spline-svg-logo {
+  width: 34px;
+  height: 34px;
+}
+
+.badge-ae {
+  background: #00005b;
+  color: #9999ff;
+  border: 2.5px solid #9999ff;
+  font-size: 1.35rem;
+}
+
+.badge-figma {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  padding: 10px;
+}
+
+.figma-svg-logo {
+  width: 28px;
+  height: 28px;
+}
+
+.badge-ps {
+  background: #001e36;
+  color: #31a8ff;
+  border: 2.5px solid #31a8ff;
+  font-size: 1.35rem;
 }
 
 .badge-ae {

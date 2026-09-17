@@ -162,74 +162,10 @@ export default function Resume() {
             >
               <div className="clamshell-container">
                 <img
-                  src="/assets/clamshell_front_clean.png"
-                  alt="3D Front Clamshell"
+                  src="/assets/clamshell_3d.png"
+                  alt="3D Front Clamshell Tools"
                   className="clamshell-3d-img"
-                  onError={(e) => {
-                    e.target.src = '/assets/clamshell_front.png'
-                  }}
                 />
-
-                <div className="clamshell-inner-content">
-                  <span className="tools-title-text">Tools</span>
-
-                  <div className="tools-badges-grid">
-                    {/* Top Row: Orange Starburst, Ai, Unity, Spline */}
-                    <div className="tools-row top-row">
-                      <div className="tool-badge badge-starburst" title="Creative Design">
-                        <svg className="starburst-sticker-svg" viewBox="0 0 40 40" fill="none">
-                          <path d="M20 0L23.5 6.5L30.5 2.5L30 10L37.5 10L34 16.5L40 20L34 23.5L37.5 30L30 30L30.5 37.5L23.5 33.5L20 40L16.5 33.5L9.5 37.5L10 30L2.5 30L6 23.5L0 20L6 16.5L2.5 10L10 10L9.5 2.5L16.5 6.5L20 0Z" fill="#ff5216"/>
-                          <path d="M20 9L23.2 15.5L30.5 16.5L25.2 21.6L26.5 28.8L20 25.4L13.5 28.8L14.8 21.6L9.5 16.5L16.8 15.5L20 9Z" fill="#ffffff"/>
-                        </svg>
-                      </div>
-
-                      <div className="tool-badge badge-ai" title="Adobe Illustrator">
-                        <span className="badge-text">Ai</span>
-                      </div>
-
-                      <div className="tool-badge badge-unity" title="Unity 3D">
-                        <svg className="unity-svg-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" fill="none" stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </div>
-
-                      <div className="tool-badge badge-spline" title="Spline 3D Design">
-                        <svg className="spline-svg-logo" viewBox="0 0 36 36" fill="none">
-                          <defs>
-                            <linearGradient id="splineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                              <stop offset="0%" stopColor="#00d2ff" />
-                              <stop offset="40%" stopColor="#9254de" />
-                              <stop offset="70%" stopColor="#f759ab" />
-                              <stop offset="100%" stopColor="#ff7a45" />
-                            </linearGradient>
-                          </defs>
-                          <path d="M6 26C6 26 10 10 18 10C26 10 30 26 30 26" stroke="url(#splineGrad)" strokeWidth="6" strokeLinecap="round" />
-                        </svg>
-                      </div>
-                    </div>
-
-                    {/* Bottom Row: Ae, Figma, Ps */}
-                    <div className="tools-row bottom-row">
-                      <div className="tool-badge badge-ae" title="Adobe After Effects">
-                        <span className="badge-text">Ae</span>
-                      </div>
-
-                      <div className="tool-badge badge-figma" title="Figma">
-                        <svg className="figma-svg-logo" viewBox="0 0 38 57" fill="none">
-                          <path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38C23.2533 38 19 33.7467 19 28.5Z" fill="#1ABCFE"/>
-                          <path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z" fill="#0ACF83"/>
-                          <path d="M19 0V19H28.5C33.7467 19 38 14.7467 38 9.5C38 4.25329 33.7467 0 28.5 0H19Z" fill="#FF7262"/>
-                          <path d="M0 9.5C0 14.7467 4.25329 19 9.5 19H19V0H9.5C4.25329 0 0 4.25329 0 9.5Z" fill="#F24E1E"/>
-                          <path d="M0 28.5C0 33.7467 4.25329 38 9.5 38H19V19H9.5C4.25329 19 0 23.2533 0 28.5Z" fill="#A259FF"/>
-                        </svg>
-                      </div>
-
-                      <div className="tool-badge badge-ps" title="Adobe Photoshop">
-                        <span className="badge-text">Ps</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
 

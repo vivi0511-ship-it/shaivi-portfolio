@@ -294,8 +294,9 @@
 .marquee-content-group {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  min-width: 100%;
+  gap: 48px;
+  padding-right: 48px;
+  flex-shrink: 0;
 }
 
 .marquee-label {
@@ -315,7 +316,6 @@
   color: #ffffff;
   text-decoration: none;
   transition: transform 0.2s ease, opacity 0.2s ease;
-  padding: 0 16px;
 }
 
 .marquee-link:hover {

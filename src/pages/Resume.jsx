@@ -102,8 +102,8 @@ export default function Resume() {
             <div className="contact-ribbon-wrapper">
               <div className="contact-ribbon-banner marquee-container">
                 <div className="marquee-track">
-                  {/* Duplicate the content twice for seamless infinite scrolling */}
-                  {[...Array(2)].map((_, i) => (
+                  {/* Duplicate the content 4 times for seamless infinite scrolling on ultrawide screens */}
+                  {[...Array(4)].map((_, i) => (
                     <div className="marquee-content-group" key={i}>
                       <span className="marquee-label">Contact me:</span>
 

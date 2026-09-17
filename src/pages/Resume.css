@@ -85,7 +85,7 @@
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE 10+ */
   position: relative;
-  z-index: 20;
+  z-index: 10;
   pointer-events: none;
 }
 
@@ -105,7 +105,7 @@
   padding-left: 4vw;
   padding-right: 6vw;
   position: relative;
-  z-index: 20;
+  z-index: 10;
   pointer-events: none;
 }
 
@@ -152,7 +152,7 @@
   align-items: center;
   flex-shrink: 0;
   will-change: transform;
-  z-index: 20;
+  z-index: 5;
   pointer-events: auto;
 }
 
@@ -183,7 +183,7 @@
 /* Shaivi Cutout Photo */
 .shaivi-cutout-wrapper {
   position: absolute;
-  z-index: 20;
+  z-index: 5;
   width: 420px;
   height: 640px;
   top: 15px;
@@ -290,6 +290,8 @@
   margin: 0;
   max-width: none;
   width: 100%;
+  position: relative;
+  z-index: 999;
 }
 
 .marquee-container {

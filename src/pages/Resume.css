@@ -266,14 +266,14 @@
 }
 
 .contact-ribbon-banner {
-  background: linear-gradient(90deg, #d10065 0%, #e60073 100%);
+  background: linear-gradient(90deg, #d364b6 0%, #da71c4 100%);
   transform: rotate(-0.8deg);
   padding: 12px 32px;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(153, 0, 66, 0.4);
   pointer-events: auto;
-  border-top: 2px solid #ff66b2;
-  border-bottom: 2px solid #990049;
+  border-top: 2px solid #ed89db;
+  border-bottom: 2px solid #b54798;
 }
 
 .marquee-container {
@@ -298,21 +298,34 @@
   min-width: 100%;
 }
 
-.marquee-word {
+.marquee-label {
   font-family: 'Space Mono', monospace;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #ffffff;
-  padding: 0 32px;
-  white-space: nowrap;
 }
 
-.terracotta-diamond {
-  width: 12px;
-  height: 12px;
-  background-color: #e07a5f;
-  transform: rotate(45deg);
-  flex-shrink: 0;
+.marquee-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  padding: 0 16px;
+}
+
+.marquee-link:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+  text-decoration: underline;
+}
+
+.ribbon-icon-svg {
+  display: block;
 }
 
 @keyframes marquee-scroll {

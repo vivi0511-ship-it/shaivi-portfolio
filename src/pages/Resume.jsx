@@ -50,17 +50,7 @@ export default function Resume() {
         <TurntablePlayer width="95px" />
       </div>
 
-      {/* Top Center Floating 3D Avatar Metallic Head (1.2x Parallax Speed) */}
-      <div
-        className="resume-floating-avatar-head"
-        style={{ transform: `translateX(calc(-50% + ${scrollX * 0.12}px))` }}
-      >
-        <img
-          src="/assets/head_3d_trans.png"
-          alt="3D Metallic Avatar Head"
-          className="avatar-head-img"
-        />
-      </div>
+
 
       {/* Top Right Corner P5 Radial Menu */}
       <P5CornerRadialMenu />

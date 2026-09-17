@@ -238,14 +238,11 @@ export default function Resume() {
                 onMouseEnter={() => setHoveredCard('lang')}
                 onMouseLeave={() => setHoveredCard(null)}
               >
-                <div className="starburst-sticker-body">
-                  <h3 className="starburst-title">Languages</h3>
-                  <ul className="languages-list">
-                    <li>English</li>
-                    <li>Hindi</li>
-                    <li>Marathi</li>
-                  </ul>
-                </div>
+                <img
+                  src="/assets/languages_badge.png"
+                  alt="Languages Badge"
+                  className="languages-badge-img"
+                />
               </div>
 
             </div>

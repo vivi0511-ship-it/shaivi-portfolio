@@ -273,7 +273,7 @@
   bottom: 16px;
   left: -2vw;
   width: 105vw;
-  z-index: 15;
+  z-index: 999;
   pointer-events: none;
   transform: rotate(-1.5deg);
   transform-origin: center center;

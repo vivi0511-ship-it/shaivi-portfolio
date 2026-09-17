@@ -567,8 +567,8 @@
    -------------------------------------------------------------------------- */
 .education-and-languages-group {
   position: relative;
-  width: 460px;
-  height: 480px;
+  width: 540px;
+  height: 520px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -577,9 +577,9 @@
 /* Education Lanyard Card */
 .education-lanyard-card {
   position: absolute;
-  left: -40px;
-  top: -10px;
-  width: 360px;
+  left: -50px;
+  top: -30px;
+  width: 480px;
   animation: floatLanyard 6s ease-in-out infinite alternate 0.3s;
   cursor: pointer;
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
@@ -597,15 +597,15 @@
 
 .lanyard-badge-img {
   width: 100%;
-  max-width: 360px;
+  max-width: 480px;
   height: auto;
   display: block;
-  filter: drop-shadow(0 15px 32px rgba(145, 14, 78, 0.3));
+  filter: drop-shadow(0 18px 36px rgba(145, 14, 78, 0.35));
   transition: filter 0.3s ease;
 }
 
 .education-lanyard-card:hover .lanyard-badge-img {
-  filter: drop-shadow(0 22px 42px rgba(185, 14, 98, 0.42));
+  filter: drop-shadow(0 26px 48px rgba(185, 14, 98, 0.45));
 }
 
 .education-card-title {

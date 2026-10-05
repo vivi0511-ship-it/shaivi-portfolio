@@ -64,14 +64,15 @@ export const CREATIONS = [
     style: { left: '32.8%', top: '60.2%', width: '20.3%', height: '40.1%', zIndex: 4 },
   },
   {
-    id: 'item-5',
-    title: 'Ghosty Friend',
-    name: 'Ghosty Friend',
-    mysteryImage: '/assets/hobbies/silhouette-5.png',
-    unlockedImage: '/assets/hobbies/card-5-unlocked.png',
-    lockedCard: '/assets/hobbies/card-5.png',
-    unlockedCard: '/assets/hobbies/card-5-unlocked.png',
-    silhouette: '/assets/hobbies/silhouette-5.png',
+    id: 'soul-eater',
+    title: 'Soul Eater!',
+    name: 'Soul Eater!',
+    mysteryImage: '/assets/mystery-tall-soul-eater-silhouette.png',
+    unlockedImage: '/assets/soul-eater.jpg',
+    lockedCard: '/assets/hobbies/card-soul-eater-locked.png',
+    unlockedCard: '/assets/soul-eater.jpg',
+    silhouette: '/assets/mystery-tall-soul-eater-silhouette.png',
+    modalImage: '/assets/modal-soul-eater-card.png',
     targetX: 27,
     targetDepth: 230,
     style: { left: '20.5%', top: '50.4%', width: '13.3%', height: '49.3%', zIndex: 3 },
@@ -120,6 +121,7 @@ function HobbiesPage() {
         if (id === 'item-3') return 'mister-romantic'
         if (id === 'item-1') return 'chill-capyboy'
         if (id === 'item-4') return 'undead-kitty'
+        if (id === 'item-5') return 'soul-eater'
         return id
       })
     } catch {

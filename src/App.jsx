@@ -7,6 +7,7 @@ import Resume from './pages/Resume'
 import Contact from './pages/Contact'
 import SaathiCaseStudy from './pages/SaathiCaseStudy'
 import AgroVisionCaseStudy from './pages/AgroVisionCaseStudy'
+import Hobbies from './pages/Hobbies'
 import './App.css'
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/work/agri" element={<AgroVisionCaseStudy />} />
           <Route path="/about" element={<About />} />
           <Route path="/resume" element={<Resume />} />
+          <Route path="/hobbies" element={<Hobbies />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </BrowserRouter>

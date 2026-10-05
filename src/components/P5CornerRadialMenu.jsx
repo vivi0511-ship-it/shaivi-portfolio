@@ -43,7 +43,7 @@ function P5CornerRadialMenu() {
     {
       id: 'console',
       title: 'HOBBIES',
-      path: '/contact',
+      path: '/hobbies',
       img: '/assets/pod_console_trans.png',
       style: { top: '225px', right: '70px' },
       bannerStyle: { top: '185px', right: '90px' },

@@ -1,0 +1,456 @@
+/* ========================================================
+   HOBBIES PAGE — Arcade Claw Machine & Creations Gallery
+   Faithfully matching reference image layout and aesthetics
+   ======================================================== */
+
+.hobbies-page {
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: #f3b5cf;
+  background-image:
+    radial-gradient(ellipse at 20% 30%, rgba(255, 255, 255, 0.22) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 65%, rgba(214, 85, 175, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(255, 240, 248, 0.15) 0%, transparent 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* Subtle organic paper/stipple grain overlay */
+.hobbies-grain-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.75;
+}
+
+/* Turntable player pinned at top-left */
+.hobbies-turntable-slot {
+  position: fixed;
+  top: 24px;
+  left: 32px;
+  z-index: 90;
+  cursor: pointer;
+  filter: drop-shadow(0 8px 16px rgba(120, 20, 80, 0.15));
+}
+
+/* Main content wrapper containing left cabinet column and right gallery */
+.hobbies-main-container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 72px;
+  width: 100%;
+  max-width: 1180px;
+  min-height: 100vh;
+  padding: 40px 30px;
+  box-sizing: border-box;
+}
+
+/* ========================================================
+   LEFT: CLAW MACHINE COLUMN
+   A smooth vertical light-pink band from top to bottom
+   ======================================================== */
+.claw-machine-column {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 480px;
+  flex-shrink: 0;
+}
+
+/* The vertical light-pink band behind the machine */
+.claw-machine-column::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 480px;
+  background-color: #f8cde2;
+  z-index: -1;
+  box-shadow: 0 0 45px rgba(230, 140, 190, 0.25);
+  pointer-events: none;
+}
+
+.claw-machine-cabinet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Machine glass viewing window with thick neutral grey frame */
+.machine-window {
+  position: relative;
+  width: 480px;
+  height: 450px;
+  background-color: #faebf4;
+  border: 14px solid #808080;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* ===== CLAW MECHANISM ===== */
+.claw-assembly {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 20;
+  pointer-events: none;
+  transition: left 0.18s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Pink ceiling mount */
+.claw-ceiling-mount {
+  width: 44px;
+  height: 16px;
+  background: #efa8dc;
+  border: 2px solid #be188d;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  box-sizing: border-box;
+}
+
+/* Vertical magenta rod */
+.claw-shaft {
+  width: 8px;
+  background-color: #be188d;
+  min-height: 28px;
+  transition: height 0.05s linear;
+}
+
+/* Circular pivot joint */
+.claw-pivot {
+  width: 28px;
+  height: 28px;
+  background-color: #f5cbe7;
+  border: 2.5px solid #be188d;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin-top: -2px;
+  z-index: 2;
+}
+
+.claw-pivot-center {
+  width: 12px;
+  height: 12px;
+  background-color: #fae8f3;
+  border: 2px solid #be188d;
+  border-radius: 50%;
+}
+
+/* Claw prongs SVG container */
+.claw-arms-container {
+  width: 140px;
+  height: 80px;
+  margin-top: -8px;
+  position: relative;
+}
+
+.claw-prongs-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.claw-prong-path {
+  transition: d 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== CLAW MACHINE PRIZES PILE ===== */
+.claw-prizes-pile {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  pointer-events: none;
+}
+
+.prize-item {
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+/* ===== LOWER CONSOLE CONTROLS ===== */
+.claw-console {
+  width: 480px;
+  height: 142px;
+  background-color: #f2a8d6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 46px;
+  box-sizing: border-box;
+}
+
+/* White rounded rectangle chute */
+.console-chute {
+  width: 105px;
+  height: 94px;
+  background-color: #ffffff;
+  border: 2.5px solid #d563be;
+  border-radius: 14px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 12px rgba(180, 50, 130, 0.08);
+}
+
+/* White circular D-pad controller */
+.console-dpad {
+  position: relative;
+  width: 126px;
+  height: 126px;
+  background-color: #ffffff;
+  border: 2.5px solid #d563be;
+  border-radius: 50%;
+  box-sizing: border-box;
+  box-shadow: 0 4px 14px rgba(180, 50, 130, 0.12);
+}
+
+/* D-pad directional buttons */
+.dpad-key {
+  position: absolute;
+  width: 33px;
+  height: 33px;
+  background-color: #d250be;
+  border: 1.5px solid #b5188d;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: transform 0.1s ease, background-color 0.15s ease;
+  user-select: none;
+}
+
+.dpad-arrow {
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.dpad-key:hover:not(:disabled) {
+  background-color: #ba32a6;
+}
+
+.dpad-key:active:not(:disabled) {
+  transform: scale(0.92);
+}
+
+.dpad-key:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.dpad-up {
+  top: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.dpad-up:active:not(:disabled) {
+  transform: translateX(-50%) scale(0.92);
+}
+
+.dpad-down {
+  bottom: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.dpad-down:active:not(:disabled) {
+  transform: translateX(-50%) scale(0.92);
+}
+
+.dpad-left {
+  left: 7px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.dpad-left:active:not(:disabled) {
+  transform: translateY(-50%) scale(0.92);
+}
+
+.dpad-right {
+  right: 7px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.dpad-right:active:not(:disabled) {
+  transform: translateY(-50%) scale(0.92);
+}
+
+/* ========================================================
+   RIGHT: UNLOCK GALLERY
+   ======================================================== */
+.unlock-gallery-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+/* Title in Pixelify Sans matching reference */
+.unlock-heading {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 38px;
+  font-weight: 700;
+  color: #be188d;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  margin: 0 0 34px 0;
+  text-align: left;
+}
+
+/* 3-column card grid */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 105px);
+  gap: 16px;
+}
+
+/* 7th item (last card) centers under column 2 */
+.creation-card:nth-child(7) {
+  grid-column: 2;
+}
+
+/* Individual card */
+.creation-card {
+  width: 105px;
+  height: 105px;
+  background-color: #ffffff;
+  border: 2px solid #d563be;
+  border-radius: 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(180, 50, 130, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+.creation-card:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 6px 18px rgba(180, 50, 130, 0.16);
+}
+
+.creation-card.is-revealed {
+  animation: card-unlock 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-color: #be188d;
+}
+
+@keyframes card-unlock {
+  0%   { transform: scale(0.8) rotate(-6deg); }
+  60%  { transform: scale(1.1) rotate(2deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.card-shape-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+.card-shape-svg {
+  width: 90%;
+  height: 90%;
+  overflow: visible;
+}
+
+/* ========================================================
+   POPUP NOTIFICATION WHEN PRIZE IS WON
+   ======================================================== */
+.grabbed-card-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 200;
+  animation: popup-scale 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes popup-scale {
+  from { transform: translate(-50%, -55%) scale(0.6); opacity: 0; }
+  to   { transform: translate(-50%, -50%) scale(1);   opacity: 1; }
+}
+
+.grabbed-card-inner {
+  background: #ffffff;
+  border: 3px solid #be188d;
+  border-radius: 20px;
+  padding: 24px 38px;
+  text-align: center;
+  box-shadow: 0 16px 48px rgba(180, 30, 130, 0.28);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.grabbed-label {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 14px;
+  color: #888888;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.grabbed-name {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #be188d;
+}
+
+/* ========================================================
+   RESPONSIVENESS FOR SMALLER SCREENS
+   ======================================================== */
+@media (max-width: 980px) {
+  .hobbies-main-container {
+    flex-direction: column;
+    gap: 40px;
+    padding-top: 90px;
+    padding-bottom: 40px;
+  }
+
+  .claw-machine-column::before {
+    display: none;
+  }
+
+  .unlock-gallery-column {
+    align-items: center;
+    text-align: center;
+  }
+
+  .unlock-heading {
+    text-align: center;
+  }
+}

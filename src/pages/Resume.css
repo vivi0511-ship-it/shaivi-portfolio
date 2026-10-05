@@ -220,14 +220,15 @@
 }
 
 .resume-headline {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 3.8rem;
-  font-weight: 700;
-  color: #72083e;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 4.2rem;
+  font-weight: 300;
+  font-style: italic;
+  color: #e8009a;
   line-height: 1.05;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.06em;
   margin: 0 0 12px 0;
-  text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.5);
+  text-shadow: none;
   white-space: nowrap;
 }
 

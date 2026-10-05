@@ -8,7 +8,10 @@ import './Hobbies.css'
 export const CREATIONS = [
   {
     id: 'item-1',
+    title: 'Chill Capyboy!',
     name: 'Chill Capyboy!',
+    mysteryImage: '/assets/hobbies/silhouette-1.png',
+    unlockedImage: '/assets/hobbies/card-1-unlocked.png',
     lockedCard: '/assets/hobbies/card-1.png',
     unlockedCard: '/assets/hobbies/card-1-unlocked.png',
     silhouette: '/assets/hobbies/silhouette-1.png',
@@ -18,18 +21,25 @@ export const CREATIONS = [
     style: { left: '5.7%', top: '4.4%', width: '23.6%', height: '62.0%', zIndex: 6 },
   },
   {
-    id: 'item-2',
-    name: 'Sleepy Bear',
+    id: 'miss-rosy-cheeks',
+    title: 'Miss Rosy Cheeks!',
+    name: 'Miss Rosy Cheeks!',
+    mysteryImage: '/assets/mystery-kitty-silhouette.png',
+    unlockedImage: '/assets/miss-rosy-cheeks.png',
     lockedCard: '/assets/hobbies/card-2.png',
-    unlockedCard: '/assets/hobbies/card-2-unlocked.png',
-    silhouette: '/assets/hobbies/silhouette-2.png',
+    unlockedCard: '/assets/miss-rosy-cheeks.png',
+    silhouette: '/assets/mystery-kitty-silhouette.png',
+    modalImage: '/assets/modal-kitty-card.png',
     targetX: 10,
     targetDepth: 230,
     style: { left: '1.3%', top: '49.3%', width: '17.9%', height: '49.3%', zIndex: 4 },
   },
   {
     id: 'item-3',
+    title: 'Retro Camera',
     name: 'Retro Camera',
+    mysteryImage: '/assets/hobbies/silhouette-3.png',
+    unlockedImage: '/assets/hobbies/card-3-unlocked.png',
     lockedCard: '/assets/hobbies/card-3.png',
     unlockedCard: '/assets/hobbies/card-3-unlocked.png',
     silhouette: '/assets/hobbies/silhouette-3.png',
@@ -39,7 +49,10 @@ export const CREATIONS = [
   },
   {
     id: 'item-4',
+    title: 'Berry Bunny',
     name: 'Berry Bunny',
+    mysteryImage: '/assets/hobbies/silhouette-4.png',
+    unlockedImage: '/assets/hobbies/card-4-unlocked.png',
     lockedCard: '/assets/hobbies/card-4.png',
     unlockedCard: '/assets/hobbies/card-4-unlocked.png',
     silhouette: '/assets/hobbies/silhouette-4.png',
@@ -49,7 +62,10 @@ export const CREATIONS = [
   },
   {
     id: 'item-5',
+    title: 'Ghosty Friend',
     name: 'Ghosty Friend',
+    mysteryImage: '/assets/hobbies/silhouette-5.png',
+    unlockedImage: '/assets/hobbies/card-5-unlocked.png',
     lockedCard: '/assets/hobbies/card-5.png',
     unlockedCard: '/assets/hobbies/card-5-unlocked.png',
     silhouette: '/assets/hobbies/silhouette-5.png',
@@ -58,21 +74,30 @@ export const CREATIONS = [
     style: { left: '20.5%', top: '50.4%', width: '13.3%', height: '49.3%', zIndex: 3 },
   },
   {
-    id: 'item-6',
-    name: 'Starry Bloom',
+    id: 'angry-unc-axolotl',
+    title: 'Angry Unc Axolotl!',
+    name: 'Angry Unc Axolotl!',
+    mysteryImage: '/assets/mystery-axolotl-silhouette.png',
+    unlockedImage: '/assets/angry-unc-axolotl.png',
     lockedCard: '/assets/hobbies/card-6.png',
-    unlockedCard: '/assets/hobbies/card-6-unlocked.png',
-    silhouette: '/assets/hobbies/silhouette-6.png',
+    unlockedCard: '/assets/angry-unc-axolotl.png',
+    silhouette: '/assets/mystery-axolotl-silhouette.png',
+    modalImage: '/assets/modal-axolotl-card.png',
     targetX: 61,
     targetDepth: 230,
     style: { left: '52.0%', top: '47.4%', width: '19.2%', height: '51.1%', zIndex: 4 },
   },
   {
-    id: 'item-7',
-    name: 'Golden Bear',
+    id: 'me-right-now',
+    title: 'Me Right Now!',
+    name: 'Me Right Now!',
+    subtitle: '(I wish)',
+    mysteryImage: '/assets/mystery-rectangle-silhouette.png',
+    unlockedImage: '/assets/me-right-now.png',
     lockedCard: '/assets/hobbies/card-7.png',
-    unlockedCard: '/assets/hobbies/card-7-unlocked.png',
-    silhouette: '/assets/hobbies/silhouette-7.png',
+    unlockedCard: '/assets/me-right-now.png',
+    silhouette: '/assets/mystery-rectangle-silhouette.png',
+    modalImage: '/assets/modal-me-right-now-card.png',
     targetX: 83,
     targetDepth: 230,
     style: { left: '69.3%', top: '46.7%', width: '29.3%', height: '52.6%', zIndex: 3 },
@@ -83,7 +108,15 @@ function HobbiesPage() {
   const [unlockedIds, setUnlockedIds] = useState(() => {
     try {
       const stored = localStorage.getItem('shaivi_unlocked_creations')
-      return stored ? JSON.parse(stored) : []
+      if (!stored) return []
+      const parsed = JSON.parse(stored)
+      // Migrate legacy IDs
+      return parsed.map((id) => {
+        if (id === 'item-6') return 'angry-unc-axolotl'
+        if (id === 'item-2') return 'miss-rosy-cheeks'
+        if (id === 'item-7') return 'me-right-now'
+        return id
+      })
     } catch {
       return []
     }
@@ -110,12 +143,12 @@ function HobbiesPage() {
   // Movement controls
   const moveLeft = useCallback(() => {
     if (isAnimating) return
-    setClawX(prev => Math.max(8, prev - 6))
+    setClawX((prev) => Math.max(8, prev - 6))
   }, [isAnimating])
 
   const moveRight = useCallback(() => {
     if (isAnimating) return
-    setClawX(prev => Math.min(84, prev + 6))
+    setClawX((prev) => Math.min(84, prev + 6))
   }, [isAnimating])
 
   // Fire celebratory confetti burst
@@ -133,85 +166,91 @@ function HobbiesPage() {
   }, [])
 
   // Core Grab Sequence
-  const triggerGrab = useCallback((specificItem = null) => {
-    if (isAnimating) return
+  const triggerGrab = useCallback(
+    (specificItem = null) => {
+      if (isAnimating) return
 
-    // Choose target item: either the requested item or the closest available to clawX
-    const available = CREATIONS.filter(item => !unlockedIds.includes(item.id))
-    if (available.length === 0) {
-      // Empty machine idle drop
-      setIsAnimating(true)
-      setClawDepth(140)
-      setTimeout(() => {
-        setIsGrabbing(true)
+      // Choose target item: either the requested item or the closest available to clawX
+      const available = CREATIONS.filter((item) => !unlockedIds.includes(item.id))
+      if (available.length === 0) {
+        // Empty machine idle drop
+        setIsAnimating(true)
+        setClawDepth(140)
         setTimeout(() => {
-          setIsGrabbing(false)
-          setClawDepth(0)
-          setIsAnimating(false)
-        }, 500)
-      }, 600)
-      return
-    }
+          setIsGrabbing(true)
+          setTimeout(() => {
+            setIsGrabbing(false)
+            setClawDepth(0)
+            setIsAnimating(false)
+          }, 500)
+        }, 600)
+        return
+      }
 
-    let target = specificItem && !unlockedIds.includes(specificItem.id) ? specificItem : null
-    if (!target) {
-      let minDiff = 9999
-      for (const item of available) {
-        const diff = Math.abs(clawX - item.targetX)
-        if (diff < minDiff) {
-          minDiff = diff
-          target = item
+      let target =
+        specificItem && !unlockedIds.includes(specificItem.id) ? specificItem : null
+      if (!target) {
+        let minDiff = 9999
+        for (const item of available) {
+          const diff = Math.abs(clawX - item.targetX)
+          if (diff < minDiff) {
+            minDiff = diff
+            target = item
+          }
         }
       }
-    }
 
-    setIsAnimating(true)
+      setIsAnimating(true)
 
-    // Stage 1: Move claw directly over target item
-    setClawX(target.targetX)
-
-    setTimeout(() => {
-      // Stage 2: Lower claw shaft down to target depth
-      setClawDepth(target.targetDepth)
+      // Stage 1: Move claw directly over target item
+      setClawX(target.targetX)
 
       setTimeout(() => {
-        // Stage 3: Clamp prongs around target item
-        setIsGrabbing(true)
-        setHeldItem(target)
+        // Stage 2: Lower claw shaft down to target depth
+        setClawDepth(target.targetDepth)
 
         setTimeout(() => {
-          // Stage 4: Lift claw and item up back to ceiling
-          setClawDepth(0)
+          // Stage 3: Clamp prongs around target item
+          setIsGrabbing(true)
+          setHeldItem(target)
 
           setTimeout(() => {
-            // Stage 5: Move claw horizontally all the way to chute (far left)
-            setClawX(3)
+            // Stage 4: Lift claw and item up back to ceiling
+            setClawDepth(0)
 
             setTimeout(() => {
-              // Stage 6: Release prongs — item falls into chute!
-              setIsGrabbing(false)
-              const dropped = target
-              setHeldItem(null)
-              setChuteItem(dropped)
+              // Stage 5: Move claw horizontally all the way to chute (far left)
+              setClawX(3)
 
               setTimeout(() => {
-                // Stage 7: Item lands in chute box -> Confetti + Unlock + Modal
-                triggerConfetti()
-                setUnlockedIds(prev => (prev.includes(dropped.id) ? prev : [...prev, dropped.id]))
-                setModalItem(dropped)
-                setIsAnimating(false)
+                // Stage 6: Release prongs — item falls into chute!
+                setIsGrabbing(false)
+                const dropped = target
+                setHeldItem(null)
+                setChuteItem(dropped)
 
-                // Return claw to default rest position
                 setTimeout(() => {
-                  setClawX(24)
-                }, 400)
-              }, 600)
-            }, 550)
-          }, 700)
-        }, 600)
-      }, 650)
-    }, 250)
-  }, [clawX, isAnimating, unlockedIds, triggerConfetti])
+                  // Stage 7: Item lands in chute box -> Confetti + Unlock + Modal
+                  triggerConfetti()
+                  setUnlockedIds((prev) =>
+                    prev.includes(dropped.id) ? prev : [...prev, dropped.id]
+                  )
+                  setModalItem(dropped)
+                  setIsAnimating(false)
+
+                  // Return claw to default rest position
+                  setTimeout(() => {
+                    setClawX(24)
+                  }, 400)
+                }, 600)
+              }, 550)
+            }, 700)
+          }, 600)
+        }, 650)
+      }, 250)
+    },
+    [clawX, isAnimating, unlockedIds, triggerConfetti]
+  )
 
   // Keyboard controls
   useEffect(() => {
@@ -229,7 +268,12 @@ function HobbiesPage() {
       } else if (e.key === 'ArrowRight') {
         e.preventDefault()
         moveRight()
-      } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === ' ' || e.key === 'Enter') {
+      } else if (
+        e.key === 'ArrowDown' ||
+        e.key === 'ArrowUp' ||
+        e.key === ' ' ||
+        e.key === 'Enter'
+      ) {
         e.preventDefault()
         triggerGrab()
       }
@@ -309,8 +353,8 @@ function HobbiesPage() {
                       animate={{ scale: 1, opacity: 1 }}
                     >
                       <img
-                        src={heldItem.silhouette}
-                        alt={heldItem.name}
+                        src={heldItem.mysteryImage || heldItem.silhouette}
+                        alt={heldItem.title || heldItem.name}
                         className="w-full h-full object-contain filter drop-shadow select-none"
                       />
                     </motion.div>
@@ -325,6 +369,8 @@ function HobbiesPage() {
                   const isHeld = heldItem?.id === item.id
                   if (isHeld) return null
 
+                  const silhouetteSrc = item.mysteryImage || item.silhouette
+
                   return (
                     <motion.div
                       key={item.id}
@@ -333,11 +379,15 @@ function HobbiesPage() {
                       onClick={() => triggerGrab(item)}
                       whileHover={{ scale: isUnlocked ? 1 : 1.05 }}
                       whileTap={{ scale: 0.96 }}
-                      title={isUnlocked ? `${item.name} (Unlocked)` : `Grab ${item.name}!`}
+                      title={
+                        isUnlocked
+                          ? `${item.title || item.name} (Unlocked)`
+                          : `Grab ${item.title || item.name}!`
+                      }
                     >
                       <img
-                        src={item.silhouette}
-                        alt={item.name}
+                        src={silhouetteSrc}
+                        alt={item.title || item.name}
                         className={`w-full h-full object-contain select-none transition-opacity duration-300 ${
                           isUnlocked ? 'opacity-20 grayscale' : 'opacity-100'
                         }`}
@@ -361,8 +411,8 @@ function HobbiesPage() {
                     transition={{ duration: 0.55, ease: 'bounceOut' }}
                   >
                     <img
-                      src={chuteItem.silhouette}
-                      alt={chuteItem.name}
+                      src={chuteItem.mysteryImage || chuteItem.silhouette}
+                      alt={chuteItem.title || chuteItem.name}
                       className="w-full h-full object-contain filter drop-shadow-md select-none"
                     />
                   </motion.div>
@@ -424,6 +474,9 @@ function HobbiesPage() {
           <div className="creations-cards-grid grid grid-cols-3 gap-4 sm:gap-5">
             {CREATIONS.map((item) => {
               const isUnlocked = unlockedIds.includes(item.id)
+              const cardImage = isUnlocked
+                ? item.unlockedImage || item.unlockedCard
+                : item.lockedCard || item.mysteryImage
 
               return (
                 <motion.div
@@ -440,11 +493,15 @@ function HobbiesPage() {
                       triggerGrab(item)
                     }
                   }}
-                  title={isUnlocked ? `View ${item.name}` : `Locked — Click to Catch!`}
+                  title={
+                    isUnlocked
+                      ? `View ${item.title || item.name}`
+                      : `Locked — Click to Catch ${item.title || item.name}!`
+                  }
                 >
                   <img
-                    src={isUnlocked ? item.unlockedCard : item.lockedCard}
-                    alt={isUnlocked ? item.name : 'Mystery Creation'}
+                    src={cardImage}
+                    alt={isUnlocked ? item.title || item.name : 'Mystery Creation'}
                     className="w-full h-full object-contain select-none filter drop-shadow-sm transition-all"
                   />
                 </motion.div>
@@ -488,7 +545,7 @@ function HobbiesPage() {
             }}
           >
             {modalItem.modalImage ? (
-              /* User-Provided Modal Card Graphic (for Capy) */
+              /* User-Provided Modal Card Graphic (for Capyboy & Angry Unc Axolotl) */
               <motion.div
                 className="relative w-[340px] max-w-[90vw] select-none cursor-default"
                 initial={{ scale: 0.7, y: 20, opacity: 0 }}
@@ -499,7 +556,7 @@ function HobbiesPage() {
               >
                 <img
                   src={modalItem.modalImage}
-                  alt={modalItem.name}
+                  alt={modalItem.title || modalItem.name}
                   className="w-full h-auto drop-shadow-2xl rounded-[32px] pointer-events-none"
                 />
 
@@ -538,15 +595,15 @@ function HobbiesPage() {
                 {/* Unlocked Photo */}
                 <div className="w-[200px] h-[200px] flex items-center justify-center my-3">
                   <img
-                    src={modalItem.unlockedCard}
-                    alt={modalItem.name}
+                    src={modalItem.unlockedImage || modalItem.unlockedCard}
+                    alt={modalItem.title || modalItem.name}
                     className="max-w-full max-h-full object-contain rounded-2xl"
                   />
                 </div>
 
                 {/* Creation Title */}
                 <h2 className="modal-creation-title font-['Pixelify_Sans',_'Fredoka',_sans-serif] text-[28px] font-bold text-[#be188d] text-center leading-tight mt-1 mb-2">
-                  {modalItem.name}
+                  {modalItem.title || modalItem.name}
                 </h2>
               </motion.div>
             )}

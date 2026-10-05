@@ -50,14 +50,15 @@ export const CREATIONS = [
     style: { left: '34.1%', top: '5.5%', width: '36.6%', height: '52.9%', zIndex: 5 },
   },
   {
-    id: 'item-4',
-    title: 'Berry Bunny',
-    name: 'Berry Bunny',
-    mysteryImage: '/assets/hobbies/silhouette-4.png',
-    unlockedImage: '/assets/hobbies/card-4-unlocked.png',
-    lockedCard: '/assets/hobbies/card-4.png',
-    unlockedCard: '/assets/hobbies/card-4-unlocked.png',
-    silhouette: '/assets/hobbies/silhouette-4.png',
+    id: 'undead-kitty',
+    title: 'Undead Kitty!',
+    name: 'Undead Kitty!',
+    mysteryImage: '/assets/mystery-square-kitty-silhouette.png',
+    unlockedImage: '/assets/undead-kitty-tapestry.jpg',
+    lockedCard: '/assets/hobbies/card-undead-kitty-locked.png',
+    unlockedCard: '/assets/undead-kitty.png',
+    silhouette: '/assets/mystery-square-kitty-silhouette.png',
+    modalImage: '/assets/modal-undead-kitty-card.png',
     targetX: 43,
     targetDepth: 235,
     style: { left: '32.8%', top: '60.2%', width: '20.3%', height: '40.1%', zIndex: 4 },
@@ -118,6 +119,7 @@ function HobbiesPage() {
         if (id === 'item-7') return 'me-right-now'
         if (id === 'item-3') return 'mister-romantic'
         if (id === 'item-1') return 'chill-capyboy'
+        if (id === 'item-4') return 'undead-kitty'
         return id
       })
     } catch {
